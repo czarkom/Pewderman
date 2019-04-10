@@ -7,4 +7,10 @@ public class Board {
         width = _width;
     }
 
+
+    //metody
+
+    public Field[][] fields(){
+
+    }
 }

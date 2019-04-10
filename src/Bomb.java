@@ -11,4 +11,10 @@ public class Bomb {
         cord = new Point(x,y);
         time_to_explode = 3;
     }
+
+    //metody
+
+    public void explode() {
+
+    }
 }

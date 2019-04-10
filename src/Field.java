@@ -10,5 +10,9 @@ public class Field {
         cord = new Point(x,y);
     }
 
+    //metody
 
+    public void destroy(){
+
+    }
 }

@@ -13,4 +13,19 @@ public class Player {
         playerId = _playerId;
     }
 
+
+    //metody
+
+
+        public void move(){
+
+        }
+
+        public void dropBomb(){
+
+        }
+
+        public void die(){
+
+        }
 }

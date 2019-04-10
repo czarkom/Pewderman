@@ -11,4 +11,16 @@ public class Game {
             counter--;
         }
     }
+
+
+    //metody
+
+
+    public void start(){
+
+    }
+
+    public void end(){
+
+    }
 }
