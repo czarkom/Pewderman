@@ -1,20 +1,15 @@
 public class Board {
     public int height;
     public int width;
-    public Field[][] fields = new Field[height][width];
+    public Field[][] fields;
 
-    public Board(int _height,int _width, Field.Type _fieldType ){
-        height = _height;
-        width = _width;
+    public Board(){
+        this.height = 100;
+        this.width = 100;
 
-        for(int x=0;x<height;x++){
+        this.fields = new Field[width][height];
+        System.out.println("Board: Board has been created, size "+this.width+","+this.height);
 
-            for(int y=0;y<width;y++){
-
-                fields[x][y] = new Field(_fieldType, x, y);
-
-            }
-        }
     }
 
 }

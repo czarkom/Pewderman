@@ -13,6 +13,7 @@ public class Field {
     //metody
 
     public void destroy(){
-
+        System.out.println("Field: The wall has been destroyed");
+        this.field_type = Type.NO_WALL;
     }
 }
