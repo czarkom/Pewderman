@@ -3,18 +3,19 @@ import java.util.ArrayList;
 
 public class Player {
     enum MoveDirection {UP, DOWN, RIGHT, LEFT}
+    enum IsAlive {DEAD,ALIVE}
 
     ;
     MoveDirection faceDirection;
     public Point cord;
     public String name;
-    public Boolean isAlive;
+    public IsAlive isAlive;
     public int playerId; // dodaje pole tu i w Bomb w celu przyznawania punktow graczom
 
     public Player(int x, int y, String _name, int _playerId) {
         this.cord = new Point(x, y);
         this.name = _name;
-        this.isAlive = true;
+        this.isAlive = IsAlive.ALIVE;
         this.playerId = _playerId;
         System.out.println("Player ["+this.playerId+"]: constructor");
     }
@@ -39,7 +40,7 @@ public class Player {
 
     public void die() {
         System.out.println("Player [" + this.playerId + "] : Player has died");
-        this.isAlive = false;
+        this.isAlive = IsAlive.DEAD;
 
     }
 }

@@ -5,12 +5,12 @@ public class Game {
     public Player[] players;
     public ArrayList<Bomb> bombs;
 
-    public Game(int player_count){
+    public Game(int playerCount){
         this.board = new Board();
-        this.players = new Player[player_count];
-        this.bombs = new ArrayList<Bomb>();
+        this.players = new Player[playerCount];
+        this.bombs = new ArrayList<>();
 
-        for(int i=0; i<player_count; i++) {
+        for(int i=0; i<playerCount; i++) {
             this.players[i] = new Player((i+10)*2, (i+10)*2, "player_" + i, i);
         }
     }
@@ -24,9 +24,27 @@ public class Game {
         this.players[0].dropBomb(this.board, this.bombs);
         this.bombs.get(0).explode(this.players, this.board);
         this.players[0].die();
+        this.players[1].die();
+        this.players[2].die();
+        this.end(3,this.players);
     }
 
-    public void end(){
+    public void end(int playerCount, Player[] players){
+
+        int playersAlive = playerCount;
+
+        for (Player player:players) {
+            if (player.isAlive == Player.IsAlive.DEAD){
+                playersAlive--;
+            }
+        }
+
+        System.out.println("Game: Currently "+playersAlive+" players alive.");
+
+        if (playersAlive == 0){
+            System.out.println("Game: The game has ended");
+        }
+
 
 
     }
