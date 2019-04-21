@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     public Board board;
@@ -24,9 +27,7 @@ public class Game {
         this.players[0].dropBomb(this.board, this.bombs);
         this.bombs.get(0).explode(this.players, this.board);
         this.players[0].die();
-        this.players[1].die();
-        this.players[2].die();
-        this.end(3,this.players);
+        this.end(2,this.players);
     }
 
     public void end(int playerCount, Player[] players){
@@ -51,7 +52,38 @@ public class Game {
     public static void main(String[] args) {
         System.out.println("Main: start");
 
-        Game game = new Game(3);
+        System.out.println("Main: Insert number of players:");
+
+        Scanner scan = new Scanner(System.in);
+
+        int playerCount = scan.nextInt();
+
+        scan.close();
+
+        File fileUW = new File(args[0]);
+
+        ArrayList<Field> fieldsModifiedUW = new ArrayList<>();
+
+
+        try{
+            Scanner sc = new Scanner(fileUW);
+            while(sc.hasNext()){
+                int x = sc.nextInt();
+                int y = sc.nextInt();
+                System.out.println("Scan:"+x+" "+y);
+                Field _field = new Field(Field.Type.UNDESTROYABLE_WALL,x,y);
+                fieldsModifiedUW.add(_field);
+
+            }
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Game game = new Game(playerCount);
+
+        game.board.fillBoard(fieldsModifiedUW);
 
         game.start();
     }
