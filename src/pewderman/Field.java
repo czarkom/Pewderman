@@ -5,7 +5,7 @@ import java.awt.*;
 public class Field {
     public Point cord;
 
-    enum Type {DESTROYABLE_WALL, UNDESTROYABLE_WALL, NO_WALL, FIRE}
+    enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE}
 
     public Type field_type;
 

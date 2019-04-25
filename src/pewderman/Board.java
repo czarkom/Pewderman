@@ -10,8 +10,8 @@ public class Board {
     private Game currentGame;
 
     public Board(Game currentGame) {
-        this.height = 100;
-        this.width = 100;
+        this.height = 21;
+        this.width = 21;
 
         this.currentGame = currentGame;
 
