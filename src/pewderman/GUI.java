@@ -23,6 +23,20 @@ public class GUI extends JFrame implements KeyListener {
     }
 
     public void keyPressed(KeyEvent evt) {
+        switch (evt.getKeyChar()) {
+            case 'w':
+                hanleKeyPress(1, UP);
+                break;
+            case 'd':
+                hanleKeyPress(1, RIGHT);
+                break;
+            case 's':
+                hanleKeyPress(1, DOWN);
+                break;
+            case 'a':
+                hanleKeyPress(1, LEFT);
+                break;
+        }
     }
 
     public void keyReleased(KeyEvent evt) {
@@ -39,6 +53,12 @@ public class GUI extends JFrame implements KeyListener {
     private void handleKeyRelease(int playerNum) {
         if (currentGame.players.length >= playerNum) {
             currentGame.players[playerNum - 1].moveDirection = NONE;
+        }
+    }
+
+    private void hanleKeyPress(int playerNum, Player.MoveDirection direction) {
+        if (currentGame.players.length >= playerNum) {
+            currentGame.players[playerNum - 1].moveDirection = direction;
         }
     }
 }
