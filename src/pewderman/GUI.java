@@ -22,6 +22,11 @@ public class GUI extends JFrame implements KeyListener {
         this.currentGame = currentGame;
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
     public void keyPressed(KeyEvent evt) {
         switch (evt.getKeyChar()) {
             case 'w':

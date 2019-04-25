@@ -57,33 +57,11 @@ public class Game {
 
         System.out.println("Main: Insert number of players:");
 
-        Scanner scan = new Scanner(System.in);
+        GameConfiguration config = new GameConfiguration("data/boardData.txt");
 
-        int playerCount = scan.nextInt();
+        Game game = new Game(config.getPlayerCount());
 
-        scan.close();
-
-        File fileUW = new File(args[0]);
-
-        ArrayList<Field> fieldsModifiedUW = new ArrayList<>();
-
-        try {
-            Scanner sc = new Scanner(fileUW);
-            while (sc.hasNext()) {
-                int x = sc.nextInt();
-                int y = sc.nextInt();
-                System.out.println("Scan:" + x + " " + y);
-                Field _field = new Field(Field.Type.UNDESTROYABLE_WALL, x, y);
-                fieldsModifiedUW.add(_field);
-
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        Game game = new Game(playerCount);
-
-        game.board.fillBoard(fieldsModifiedUW);
+        game.board.fillBoard(config.getWalls());
 
         game.start();
     }
