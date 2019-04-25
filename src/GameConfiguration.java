@@ -15,11 +15,12 @@ public class GameConfiguration {
             reader = new BufferedReader(new FileReader(fileName));
             String line = reader.readLine();
             while (line != null) {
-                System.out.println(line);
+                System.out.println("Read config: " + line);
                 // read next line
                 line = reader.readLine();
             }
             reader.close();
+            System.out.println("End of file!");
         } catch (IOException e) {
             e.printStackTrace();
         }
