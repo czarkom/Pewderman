@@ -8,7 +8,7 @@ public class Player {
 
     public int moveCounter;
 
-    ;
+
     MoveDirection faceDirection;
     public Point cord;
     public String name;
