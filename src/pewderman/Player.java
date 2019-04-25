@@ -12,6 +12,7 @@ public class Player {
 
 
     MoveDirection faceDirection;
+    MoveDirection moveDirection;
     public Point cord;
     public String name;
     public IsAlive isAlive;
