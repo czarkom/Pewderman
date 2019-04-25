@@ -9,12 +9,12 @@ public class Game {
     public ArrayList<Bomb> bombs;
 
     public Game(int playerCount){
-        this.board = new Board();
+        this.board = new Board(this);
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
 
         for(int i=0; i<playerCount; i++) {
-            this.players[i] = new Player((i+10)*2, (i+10)*2, "player_" + i, i);
+            this.players[i] = new Player((i+10)*2, (i+10)*2, "player_" + i, i, this);
         }
     }
 
