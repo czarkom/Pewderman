@@ -10,9 +10,8 @@ public class Player {
 
     public int moveCounter;
 
-
-    MoveDirection faceDirection;
-    MoveDirection moveDirection;
+    MoveDirection faceDirection = MoveDirection.UP;
+    MoveDirection moveDirection = MoveDirection.NONE;
     public Point cord;
     public String name;
     public IsAlive isAlive;
