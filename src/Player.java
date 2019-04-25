@@ -6,6 +6,8 @@ public class Player {
 
     enum IsAlive {DEAD, ALIVE}
 
+    public int moveCounter;
+
     ;
     MoveDirection faceDirection;
     public Point cord;
@@ -21,6 +23,7 @@ public class Player {
         this.isAlive = IsAlive.ALIVE;
         this.playerId = _playerId;
         this.currentGame = currentGame;
+        this.moveCounter = 0;
         System.out.println("Player [" + this.playerId + "]: constructor");
     }
 
@@ -29,18 +32,21 @@ public class Player {
 
 
     public void move(MoveDirection _moveDirection) {
-        int counter;
-        if (_moveDirection == MoveDirection.UP) {cord.y++; counter = 0;}
-        else if (_moveDirection == MoveDirection.DOWN) {cord.y--;counter = 0;}
-        else if (_moveDirection == MoveDirection.LEFT) {cord.x--;counter = 0;}
-        else if (_moveDirection == MoveDirection.RIGHT) {cord.x++; counter = 0;}
+
+        if (_moveDirection == MoveDirection.UP) {cord.y++; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.DOWN) {cord.y--; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.LEFT) {cord.x--; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.RIGHT) {cord.x++; this.moveCounter = 0;}
         else if (_moveDirection == MoveDirection.NONE) {
 
 
-            counter++;
+            this.moveCounter++;
 
-            if(counter == 30){
-            System.out.println("Player.move: Gotta keep moving");}}
+            if(this.moveCounter == 30){
+
+            System.out.println("Player.move: Gotta keep moving");
+            }
+        }
 
     }
 
