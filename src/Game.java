@@ -27,7 +27,7 @@ public class Game {
         this.players[0].dropBomb(this.board, this.bombs);
         this.bombs.get(0).explode(this.players, this.board);
         this.players[0].die();
-        this.end(this.players.length, this.players);
+        this.end(this.players.length    , this.players);
     }
 
     public void end(int playerCount, Player[] players) {
