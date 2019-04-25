@@ -33,18 +33,26 @@ public class Player {
 
     public void move(MoveDirection _moveDirection) {
 
-        if (_moveDirection == MoveDirection.UP) {cord.y++; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.DOWN) {cord.y--; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.LEFT) {cord.x--; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.RIGHT) {cord.x++; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.NONE) {
+        if (_moveDirection == MoveDirection.UP) {
+            cord.y++;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.DOWN) {
+            cord.y--;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.LEFT) {
+            cord.x--;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.RIGHT) {
+            cord.x++;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.NONE) {
 
 
             this.moveCounter++;
 
-            if(this.moveCounter == 30){
+            if (this.moveCounter == 30) {
 
-            System.out.println("Player.move: Gotta keep moving");
+                System.out.println("Player.move: Gotta keep moving");
             }
         }
 

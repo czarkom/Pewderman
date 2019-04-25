@@ -7,10 +7,10 @@ public class Bomb {
 
     private Game currentGame;
 
-    public Bomb(int x, int y, int playerId, Game currentGame){
-        System.out.println("Bomb: Bomb has been planted on field: "+ x +", " + y);
+    public Bomb(int x, int y, int playerId, Game currentGame) {
+        System.out.println("Bomb: Bomb has been planted on field: " + x + ", " + y);
         plantedBy = playerId;
-        cord = new Point(x,y);
+        cord = new Point(x, y);
         time_to_explode = 500;
         this.currentGame = currentGame;
     }
@@ -21,7 +21,7 @@ public class Bomb {
 
         System.out.println("Bomb: Bomb has exploded. Checked if any players near if so tougth luck... Also checked if nearby walls are destroyable.");
         for (Player player : players) {
-            if(player.cord==this.cord){
+            if (player.cord == this.cord) {
                 player.die();
             }
         }
