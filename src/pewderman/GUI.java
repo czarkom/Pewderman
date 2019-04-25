@@ -9,10 +9,10 @@ import javax.swing.JFrame;
 //import static pewderman.Player.MoveDirection.*;
 public class GUI extends JFrame implements KeyListener {
 
-    public KeyTest() {
+    public GUI() {
         super("KeyListener Test");
         setPreferredSize(new Dimension(300, 300));
-        addKeyListener(this);
+        addKeyListener(new Player);
 
         pack();
         setVisible(true);
