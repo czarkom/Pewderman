@@ -8,13 +8,13 @@ public class Game {
     public Player[] players;
     public ArrayList<Bomb> bombs;
 
-    public Game(int playerCount){
+    public Game(int playerCount) {
         this.board = new Board(this);
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
 
-        for(int i=0; i<playerCount; i++) {
-            this.players[i] = new Player((i+10)*2, (i+10)*2, "player_" + i, i, this);
+        for (int i = 0; i < playerCount; i++) {
+            this.players[i] = new Player((i + 10) * 2, (i + 10) * 2, "player_" + i, i, this);
         }
     }
 
@@ -22,33 +22,33 @@ public class Game {
     //metody
 
 
-    public void start(){
-        System.out.println("Game: Game has started, there are "+players.length+" players alive.");
+    public void start() {
+        System.out.println("Game: Game has started, there are " + players.length + " players alive.");
         this.players[0].dropBomb(this.board, this.bombs);
         this.bombs.get(0).explode(this.players, this.board);
         this.players[0].die();
-        this.end(2,this.players);
+        this.end(2, this.players);
     }
 
-    public void end(int playerCount, Player[] players){
+    public void end(int playerCount, Player[] players) {
 
         int playersAlive = playerCount;
 
-        for (Player player:players) {
-            if (player.isAlive == Player.IsAlive.DEAD){
+        for (Player player : players) {
+            if (player.isAlive == Player.IsAlive.DEAD) {
                 playersAlive--;
             }
         }
 
-        System.out.println("Game: Currently "+playersAlive+" players alive.");
+        System.out.println("Game: Currently " + playersAlive + " players alive.");
 
-        if (playersAlive == 0){
+        if (playersAlive == 0) {
             System.out.println("Game: The game has ended");
         }
 
 
-
     }
+
     public static void main(String[] args) {
         System.out.println("Main: start");
 
@@ -65,19 +65,17 @@ public class Game {
         ArrayList<Field> fieldsModifiedUW = new ArrayList<>();
 
 
-        try{
+        try {
             Scanner sc = new Scanner(fileUW);
-            while(sc.hasNext()){
+            while (sc.hasNext()) {
                 int x = sc.nextInt();
                 int y = sc.nextInt();
-                System.out.println("Scan:"+x+" "+y);
-                Field _field = new Field(Field.Type.UNDESTROYABLE_WALL,x,y);
+                System.out.println("Scan:" + x + " " + y);
+                Field _field = new Field(Field.Type.UNDESTROYABLE_WALL, x, y);
                 fieldsModifiedUW.add(_field);
 
             }
-        }
-
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
