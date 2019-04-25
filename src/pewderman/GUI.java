@@ -41,6 +41,8 @@ public class GUI extends JFrame implements KeyListener {
             case 'a':
                 hanleKeyPress(1, LEFT);
                 break;
+            case ' ':
+                hanleKeyPress();
         }
     }
 
