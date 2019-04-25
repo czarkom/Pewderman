@@ -64,6 +64,8 @@ public class Game {
         game.board.fillBoard(config.getWalls());
 
         game.start();
+
+        new GUI(game);
     }
 }
 
