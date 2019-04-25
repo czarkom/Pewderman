@@ -6,10 +6,12 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-//import static pewderman.Player.MoveDirection.*;
-public class GUI extends JFrame implements KeyListener {
+import static pewderman.Player.MoveDirection.*;
 
-    public KeyTest() {
+public class GUI extends JFrame implements KeyListener {
+    private Game currentGame;
+
+    public GUI(Game currentGame) {
         super("KeyListener Test");
         setPreferredSize(new Dimension(300, 300));
         addKeyListener(this);
@@ -17,25 +19,26 @@ public class GUI extends JFrame implements KeyListener {
         pack();
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.currentGame = currentGame;
     }
 
-    public void keyPressed(KeyEvent evt){
+    public void keyPressed(KeyEvent evt) {
     }
 
     public void keyReleased(KeyEvent evt) {
         switch (evt.getKeyChar()) {
             case 'w':
-                Player.MoveDirection;
-                break;
             case 'd':
-                scrollThread.setKeyRight(false);
-                break;
             case 's':
-                scrollThread.setKeyDown(false);
-                break;
             case 'a':
-                scrollThread.setKeyLeft(false);
+                handleKeyRelease(1);
                 break;
+        }
+    }
+
+    private void handleKeyRelease(int playerNum) {
+        if (currentGame.players.length >= playerNum) {
+            currentGame.players[playerNum - 1].moveDirection = NONE;
         }
     }
 }
