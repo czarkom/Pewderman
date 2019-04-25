@@ -7,7 +7,9 @@ public class Player {
     enum IsAlive {DEAD, ALIVE}
 
     public int moveCounter;
-    MoveDirection faceDirection = MoveDirection.NONE;
+
+    ;
+    MoveDirection faceDirection;
     public Point cord;
     public String name;
     public IsAlive isAlive;
@@ -31,25 +33,18 @@ public class Player {
 
     public void move(MoveDirection _moveDirection) {
 
-        if (_moveDirection == MoveDirection.UP) {
-            cord.y++;
-            this.moveCounter = 0;
-        } else if (_moveDirection == MoveDirection.DOWN) {
-            cord.y--;
-            this.moveCounter = 0;
-        } else if (_moveDirection == MoveDirection.LEFT) {
-            cord.x--;
-            this.moveCounter = 0;
-        } else if (_moveDirection == MoveDirection.RIGHT) {
-            cord.x++;
-            this.moveCounter = 0;
-        } else if (_moveDirection == MoveDirection.NONE) {
+        if (_moveDirection == MoveDirection.UP) {cord.y++; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.DOWN) {cord.y--; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.LEFT) {cord.x--; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.RIGHT) {cord.x++; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.NONE) {
 
 
             this.moveCounter++;
 
-            if (this.moveCounter == 30) {
-                System.out.println("Player [ " + this.name + " ]: Gotta keep moving");
+            if(this.moveCounter == 30){
+
+            System.out.println("Player.move: Gotta keep moving");
             }
         }
 
