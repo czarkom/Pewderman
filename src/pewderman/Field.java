@@ -1,3 +1,5 @@
+package pewderman;
+
 import java.awt.*;
 
 public class Field {
@@ -13,7 +15,7 @@ public class Field {
     }
 
     public void destroy() {
-        System.out.println("Field: The wall has been destroyed");
+        System.out.println("pewderman.Field: The wall has been destroyed");
 
         this.field_type = Type.NO_WALL;
     }

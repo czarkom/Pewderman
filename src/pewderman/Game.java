@@ -1,3 +1,5 @@
+package pewderman;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class Game {
 
 
     public void start() {
-        System.out.println("Game: Game has started, there are " + players.length + " players alive.");
+        System.out.println("pewderman.Game: pewderman.Game has started, there are " + players.length + " players alive.");
         this.players[0].dropBomb(this.board, this.bombs);
         this.bombs.get(0).explode(this.players, this.board);
         this.players[0].die();
@@ -41,10 +43,10 @@ public class Game {
             }
         }
 
-        System.out.println("Game: Currently " + playersAlive + " players alive.");
+        System.out.println("pewderman.Game: Currently " + playersAlive + " players alive.");
 
         if (playersAlive == 0) {
-            System.out.println("Game: The game has ended");
+            System.out.println("pewderman.Game: The game has ended");
         }
 
 

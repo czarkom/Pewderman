@@ -1,3 +1,5 @@
+package pewderman;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -14,7 +16,7 @@ public class Board {
         this.currentGame = currentGame;
 
         this.fields = new Field[width][height];
-        System.out.println("Board: Board has been created, size " + this.width + "," + this.height);
+        System.out.println("pewderman.Board: pewderman.Board has been created, size " + this.width + "," + this.height);
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
                 this.fields[i][j] = new Field(Field.Type.NO_WALL, i, j);
@@ -26,7 +28,7 @@ public class Board {
     public void fillBoard(ArrayList<Field> _fileds) {
         for (Field field : _fileds) {
             this.fields[field.cord.x][field.cord.y] = field;
-            System.out.println("Field: " + field.cord + " " + field.field_type);
+            System.out.println("pewderman.Field: " + field.cord + " " + field.field_type);
         }
     }
 }

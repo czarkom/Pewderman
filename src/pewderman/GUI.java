@@ -1,10 +1,12 @@
+package pewderman;
+
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-//import static Player.MoveDirection.*;
+//import static pewderman.Player.MoveDirection.*;
 public class GUI extends JFrame implements KeyListener {
 
     public KeyTest() {

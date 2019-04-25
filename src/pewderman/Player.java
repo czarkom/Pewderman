@@ -1,3 +1,5 @@
+package pewderman;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ public class Player {
     public Point cord;
     public String name;
     public IsAlive isAlive;
-    public int playerId; // dodaje pole tu i w Bomb w celu przyznawania punktow graczom
+    public int playerId; // dodaje pole tu i w pewderman.Bomb w celu przyznawania punktow graczom
 
     private Game currentGame;
 
@@ -24,7 +26,7 @@ public class Player {
         this.playerId = _playerId;
         this.currentGame = currentGame;
         this.moveCounter = 0;
-        System.out.println("Player [" + this.playerId + "]: constructor");
+        System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
 
@@ -44,20 +46,20 @@ public class Player {
 
             if(this.moveCounter == 30){
 
-            System.out.println("Player.move: Gotta keep moving");
+            System.out.println("pewderman.Player.move: Gotta keep moving");
             }
         }
 
     }
 
     public void dropBomb(Board board, ArrayList<Bomb> bombs) {
-        System.out.println("Player: Player planted a bomb on field:" + cord.x + ", " + cord.y + ".");
+        System.out.println("pewderman.Player: pewderman.Player planted a bomb on field:" + cord.x + ", " + cord.y + ".");
         Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame);
         bombs.add(bomb);
     }
 
     public void die() {
-        System.out.println("Player [" + this.playerId + "] : Player has died");
+        System.out.println("pewderman.Player [" + this.playerId + "] : pewderman.Player has died");
         this.isAlive = IsAlive.DEAD;
 
     }
