@@ -5,9 +5,13 @@ public class Board {
     public int width;
     public Field[][] fields;
 
-    public Board(){
+    private Game currentGame;
+
+    public Board(Game currentGame){
         this.height = 100;
         this.width = 100;
+
+        this.currentGame = currentGame;
 
         this.fields = new Field[width][height];
         System.out.println("Board: Board has been created, size "+this.width+","+this.height);
