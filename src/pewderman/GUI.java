@@ -11,22 +11,23 @@ import static pewderman.Player.MoveDirection.*;
 
 public class GUI extends JFrame implements KeyListener {
     private Game currentGame;
-    private int LeftCornerX=30;
-    private int LeftCornerY=100;
+    private int leftCornerX =30;
+    private int leftCornerY =100;
 
     public GUI(Game currentGame) {
         super("Bomberman");
-        setPreferredSize(new Dimension(LeftCornerX + currentGame.board.height*7 + 100, currentGame.board.width*7 + LeftCornerY + 150));
+        setPreferredSize(new Dimension(leftCornerX + currentGame.board.height*7 + 100, currentGame.board.width*7 + leftCornerY + 150));
 //      Player player1=addKeyListener(new Player);
 
         pack();
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         this.currentGame = currentGame;
     }
 
     public void paint(Graphics graphics){
-        graphics.drawRect(LeftCornerX,LeftCornerY,LeftCornerX + currentGame.board.height*7, currentGame.board.width*7 + LeftCornerY);
+        graphics.drawRect(0, 25, 100, 100);
     }
 
     @Override
