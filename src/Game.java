@@ -64,7 +64,6 @@ public class Game {
 
         ArrayList<Field> fieldsModifiedUW = new ArrayList<>();
 
-
         try {
             Scanner sc = new Scanner(fileUW);
             while (sc.hasNext()) {
