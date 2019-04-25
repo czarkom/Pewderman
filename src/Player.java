@@ -2,11 +2,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Player {
-    enum MoveDirection {UP, DOWN, RIGHT, LEFT}
+    enum MoveDirection {UP, DOWN, RIGHT, LEFT, NONE}
 
     enum IsAlive {DEAD, ALIVE}
 
-    ;
+    public int moveCounter;
+
+
     MoveDirection faceDirection;
     public Point cord;
     public String name;
@@ -21,6 +23,7 @@ public class Player {
         this.isAlive = IsAlive.ALIVE;
         this.playerId = _playerId;
         this.currentGame = currentGame;
+        this.moveCounter = 0;
         System.out.println("Player [" + this.playerId + "]: constructor");
     }
 
@@ -29,10 +32,21 @@ public class Player {
 
 
     public void move(MoveDirection _moveDirection) {
-        if (_moveDirection == MoveDirection.UP) cord.y++;
-        else if (_moveDirection == MoveDirection.DOWN) cord.y--;
-        else if (_moveDirection == MoveDirection.LEFT) cord.x--;
-        else if (_moveDirection == MoveDirection.RIGHT) cord.x++;
+
+        if (_moveDirection == MoveDirection.UP) {cord.y++; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.DOWN) {cord.y--; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.LEFT) {cord.x--; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.RIGHT) {cord.x++; this.moveCounter = 0;}
+        else if (_moveDirection == MoveDirection.NONE) {
+
+
+            this.moveCounter++;
+
+            if(this.moveCounter == 30){
+
+            System.out.println("Player.move: Gotta keep moving");
+            }
+        }
 
     }
 
