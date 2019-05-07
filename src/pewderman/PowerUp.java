@@ -1,6 +1,5 @@
 package pewderman;
 
-import java.text.Format;
 import java.util.Random;
 
 public class PowerUp {

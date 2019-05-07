@@ -16,6 +16,9 @@ public class Player {
     public String name;
     public IsAlive isAlive;
     public int playerId; // dodaje pole tu i w pewderman.Bomb w celu przyznawania punktow graczom
+    public int bombsToPlantCount;
+    public int bombsRange;
+
 
     private Game currentGame;
 
@@ -26,6 +29,8 @@ public class Player {
         this.playerId = _playerId;
         this.currentGame = currentGame;
         this.moveCounter = 0;
+        this.bombsToPlantCount = 1;
+        this.bombsRange = 1;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
@@ -35,18 +40,26 @@ public class Player {
 
     public void move(MoveDirection _moveDirection) {
 
-        if (_moveDirection == MoveDirection.UP) {cord.y++; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.DOWN) {cord.y--; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.LEFT) {cord.x--; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.RIGHT) {cord.x++; this.moveCounter = 0;}
-        else if (_moveDirection == MoveDirection.NONE) {
+        if (_moveDirection == MoveDirection.UP) {
+            cord.y++;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.DOWN) {
+            cord.y--;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.LEFT) {
+            cord.x--;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.RIGHT) {
+            cord.x++;
+            this.moveCounter = 0;
+        } else if (_moveDirection == MoveDirection.NONE) {
 
 
             this.moveCounter++;
 
-            if(this.moveCounter == 30){
+            if (this.moveCounter == 30) {
 
-            System.out.println("pewderman.Player.move: Gotta keep moving");
+                System.out.println("pewderman.Player.move: Gotta keep moving");
             }
         }
 
@@ -54,8 +67,10 @@ public class Player {
 
     public void dropBomb(Board board, ArrayList<Bomb> bombs) {
         System.out.println("pewderman.Player: pewderman.Player planted a bomb on field:" + cord.x + ", " + cord.y + ".");
-        Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame);
+        Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame, this.bombsRange);
         bombs.add(bomb);
+        // Tutaj powstaje pytanie czy chcemy robic polaczenie miedzy graczem a detonacja bomby czy poprostu uruchomic drugi timer
+        // w graczu i przywracac mu po czasie
     }
 
     public void die() {

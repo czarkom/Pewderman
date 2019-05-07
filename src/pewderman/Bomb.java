@@ -6,14 +6,16 @@ public class Bomb {
     public int time_to_explode;
     public Point cord;
     public int plantedBy; // dodaje pole tu oraz w player (player id) w celu przyznawania punktow graczom
+    public int power;
 
     private Game currentGame;
 
-    public Bomb(int x, int y, int playerId, Game currentGame) {
+    public Bomb(int x, int y, int playerId, Game currentGame, int bombPower) {
         System.out.println("pewderman.Bomb: pewderman.Bomb has been planted on field: " + x + ", " + y);
-        plantedBy = playerId;
-        cord = new Point(x, y);
-        time_to_explode = 500;
+        this.plantedBy = playerId;
+        this.cord = new Point(x, y);
+        this.time_to_explode = 500;
+        this.power = bombPower;
         this.currentGame = currentGame;
     }
 
