@@ -27,7 +27,7 @@ public class GUI extends JFrame implements KeyListener {
     }
 
     public void paint(Graphics graphics){
-        graphics.drawRect(0, 25, 100, 100);
+            graphics.drawRect(0, 25, 100, 100);
     }
 
     @Override
