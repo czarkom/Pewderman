@@ -7,7 +7,7 @@ import java.util.Random;
 public class Field {
     public Point cord;
 
-    enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIFES, IMMORTALITY}
+    enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIFES, CUBA_LIBRE}
 
     public Type field_type;
 

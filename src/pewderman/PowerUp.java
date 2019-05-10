@@ -17,7 +17,7 @@ public class PowerUp {
         probability = 10 * generator.nextDouble();
 
         if (probability > 9) {
-            this.powerUp = Field.Type.IMMORTALITY;
+            this.powerUp = Field.Type.CUBA_LIBRE;
         } else if (probability > 8) {
             this.powerUp = Field.Type.LIFES;
         } else if (probability > 4) {
