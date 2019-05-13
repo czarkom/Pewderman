@@ -18,7 +18,7 @@ public class Player {
     public int playerId; // dodaje pole tu i w pewderman.Bomb w celu przyznawania punktow graczom
     public int bombsToPlantCount;
     public int bombsRange;
-    public int lifes;
+    public int lives;
 
     private Game currentGame;
 
@@ -31,7 +31,7 @@ public class Player {
         this.moveCounter = 0;
         this.bombsToPlantCount = 1;
         this.bombsRange = 1;
-        this.lifes = 1;
+        this.lives = 1;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
@@ -87,7 +87,7 @@ public class Player {
             case CUBA_LIBRE:
                 //immortality need an implemantation discution
             case LIFES:
-                this.lifes++;
+                this.lives++;
             case BOMBS:
                 this.bombsToPlantCount++;
         }
