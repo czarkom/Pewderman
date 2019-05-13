@@ -8,27 +8,24 @@ import javax.swing.*;
 
 import static pewderman.Player.MoveDirection.*;
 
-public class GUI extends JFrame implements KeyListener {
+public class GUI extends JFrame {
     private Game currentGame;
 
     public GUI(Game currentGame) {
         super("Bomberman");
-        //setSize(700,700);
-        //setLocation(400,250);
-        /**setLayout(new FlowLayout(FlowLayout.CENTER));
-        add(new JButton("New Game"));
-        add(new JButton("Settings"));*/
+        //setSize(800,800);
+        setLocation(400,250);
+
         JPanel pictureJPanel = new PictureJPanel();
         add(pictureJPanel);
-        pack();
-
-        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
         setResizable(false);
         this.currentGame = currentGame;
     }
 
-    public void paint(Graphics graphics){
+    /**public void paint(Graphics graphics){
     }
 
     public void keyTyped(KeyEvent e) {
@@ -73,5 +70,5 @@ public class GUI extends JFrame implements KeyListener {
         if (currentGame.players.length >= playerNum) {
             currentGame.players[playerNum - 1].moveDirection = direction;
         }
-    }
+    }*/
 }

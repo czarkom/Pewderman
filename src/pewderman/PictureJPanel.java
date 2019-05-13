@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class PictureJPanel extends JPanel{
     private BufferedImage image;
@@ -22,8 +22,12 @@ public class PictureJPanel extends JPanel{
             e.printStackTrace();
         }
 
-        Dimension dimension = new Dimension(2*image.getWidth(), 2*image.getHeight());
+        Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
         setPreferredSize(dimension);
+        setLayout(new GridLayout(10, 10));
+        add(new JButton("New Game"));
+        add(new JButton("Settings"));
+
     }
 
     public void paintComponent(Graphics g) {
