@@ -66,12 +66,7 @@ public class Game {
 
         game.start();
 
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GUI(game);
-            }
-        });
+        new GUI(game);
     }
 }
 
