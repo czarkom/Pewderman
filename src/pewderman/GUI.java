@@ -1,33 +1,33 @@
 package pewderman;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.Graphics;
-
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import static pewderman.Player.MoveDirection.*;
 
 public class GUI extends JFrame implements KeyListener {
     private Game currentGame;
-    private int leftCornerX =30;
-    private int leftCornerY =100;
 
     public GUI(Game currentGame) {
         super("Bomberman");
-        setPreferredSize(new Dimension(leftCornerX + currentGame.board.height*7 + 100, currentGame.board.width*7 + leftCornerY + 150));
-//      Player player1=addKeyListener(new Player);
+        setSize(700,700);
+        setLocation(400,250);
+        /**setLayout(new FlowLayout(FlowLayout.CENTER));
+        add(new JButton("New Game"));
+        add(new JButton("Settings"));*/
+        JPanel obrazJPanel = new ObrazJPanel();
+        add(obrazJPanel);
 
-        pack();
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        pack();
         this.currentGame = currentGame;
     }
 
     public void paint(Graphics graphics){
-            graphics.drawRect(0, 25, 100, 100);
     }
 
     @Override

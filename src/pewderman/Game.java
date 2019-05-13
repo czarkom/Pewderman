@@ -1,5 +1,6 @@
 package pewderman;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -65,7 +66,12 @@ public class Game {
 
         game.start();
 
-        new GUI(game);
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new GUI(game);
+            }
+        });
     }
 }
 
