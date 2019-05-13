@@ -18,7 +18,7 @@ public class Player {
     public int playerId; // dodaje pole tu i w pewderman.Bomb w celu przyznawania punktow graczom
     public int bombsToPlantCount;
     public int bombsRange;
-
+    public int lifes;
 
     private Game currentGame;
 
@@ -31,6 +31,7 @@ public class Player {
         this.moveCounter = 0;
         this.bombsToPlantCount = 1;
         this.bombsRange = 1;
+        this.lifes = 1;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
@@ -77,5 +78,18 @@ public class Player {
         System.out.println("pewderman.Player [" + this.playerId + "] : pewderman.Player has died");
         this.isAlive = IsAlive.DEAD;
 
+    }
+
+    public void collectPowerUp() {
+        switch (this.currentGame.board.fields[this.cord.x][this.cord.y].field_type) {
+            case RANGE:
+                this.bombsRange++;
+            case CUBA_LIBRE:
+                //immortality need an implemantation discution
+            case LIFES:
+                this.lifes++;
+            case BOMBS:
+                this.bombsToPlantCount++;
+        }
     }
 }
