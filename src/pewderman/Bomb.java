@@ -26,7 +26,10 @@ public class Bomb {
         System.out.println("pewderman.Bomb: pewderman.Bomb has exploded. Checked if any players near if so tougth luck... Also checked if nearby walls are destroyable.");
         for (Player player : players) {
             if (player.cord == this.cord) {
-                player.die();
+                player.lives--;
+                if (player.lives == 0){
+                    player.die();
+                }
             }
         }
     }
