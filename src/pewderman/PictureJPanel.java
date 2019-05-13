@@ -24,10 +24,13 @@ public class PictureJPanel extends JPanel{
 
         Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
         setPreferredSize(dimension);
-        setLayout(new GridLayout(10, 10));
-        add(new JButton("New Game"));
-        add(new JButton("Settings"));
-
+        setLayout(null);
+        JButton button = new JButton("New Game");
+        button.setBounds(image.getWidth()/2-45,40,100,30);
+        add(button);
+        JButton button2 = new JButton("Settings");
+        button2.setBounds(image.getWidth()/2-45,230,100,30);
+        add(button2);
     }
 
     public void paintComponent(Graphics g) {
