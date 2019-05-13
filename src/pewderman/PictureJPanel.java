@@ -10,11 +10,13 @@ import javax.swing.*;
 
 public class PictureJPanel extends JPanel{
     private BufferedImage image;
+   //private ImageIcon buttonPlay;
 
     public PictureJPanel() {
         super();
 
         File imageFile = new File("data/java.jpg");
+       // File imageFileButton = new File("data/PlayButton.jpg");
         try {
             image = ImageIO.read(imageFile);
         } catch (IOException e) {
