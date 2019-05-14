@@ -19,7 +19,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
         super();
 
-        ImageIcon startGame = new ImageIcon("data/PlayButton.jpg");
+        ImageIcon startGame = new ImageIcon("assets/GUI/PlayButton.jpg");
 
         Image img = startGame.getImage();
         Image newImg = img.getScaledInstance(100,30,Image.SCALE_SMOOTH);
@@ -28,7 +28,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
 
 
-        File imageFile = new File("data/java.jpg");
+        File imageFile = new File("assets/GUI/java.jpg");
         try {
             image = ImageIO.read(imageFile);
         } catch (IOException e) {
