@@ -10,13 +10,23 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener {
+
     private BufferedImage image;
     private JButton startGameButton;
     private JButton exitButton;
 
     public MainMenu() {
+
         super();
+
         ImageIcon startGame = new ImageIcon("data/PlayButton.jpg");
+
+        Image img = startGame.getImage();
+        Image newImg = img.getScaledInstance(100,30,Image.SCALE_SMOOTH);
+        startGame = new ImageIcon(newImg);
+
+
+
 
         File imageFile = new File("data/java.jpg");
         try {
@@ -29,12 +39,15 @@ public class MainMenu extends JPanel implements ActionListener {
         Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
         setPreferredSize(dimension);
         setLayout(null);
+
         startGameButton = new JButton( startGame );
         startGameButton.setBounds(image.getWidth()/2-45,40,100,30);
         add(startGameButton);
+
         exitButton = new JButton("Exit");
         exitButton.setBounds(image.getWidth()/2-45,230,100,30);
         add(exitButton);
+
         startGameButton.addActionListener(this);
         exitButton.addActionListener(this);
 
