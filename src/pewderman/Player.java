@@ -84,12 +84,16 @@ public class Player {
         switch (this.currentGame.board.fields[this.cord.x][this.cord.y].field_type) {
             case RANGE:
                 this.bombsRange++;
+                break;
             case CUBA_LIBRE:
                 //immortality need an implemantation discution
+                break;
             case LIFES:
                 this.lives++;
+                break;
             case BOMBS:
                 this.bombsToPlantCount++;
+                break;
         }
     }
 }
