@@ -22,6 +22,10 @@ public class PowerUp {
             this.powerUp = Field.Type.LIFES;
         } else if (probability > 4) {
             this.powerUp = Field.Type.BOMBS;
+        } else if(probability > 2){
+            this.powerUp = Field.Type.GHOST;
+        } else if(probability > 1){
+            this.powerUp = Field.Type.BOOTS;
         }
 
     }
