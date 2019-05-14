@@ -1,10 +1,7 @@
 package pewderman;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.*;
-//import javax.swing.JPanel;
 
 import static pewderman.Player.MoveDirection.*;
 
@@ -16,7 +13,7 @@ public class GUI extends JFrame {
         //setSize(800,800);
         setLocation(400,250);
 
-        JPanel pictureJPanel = new PictureJPanel();
+        JPanel pictureJPanel = new MainMenu();
         add(pictureJPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
