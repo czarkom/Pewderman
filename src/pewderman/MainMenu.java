@@ -11,12 +11,12 @@ import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener {
     private BufferedImage image;
-    private JButton button;
-    private JButton button2;
+    private JButton startGameButton;
+    private JButton exitButton;
 
     public MainMenu() {
         super();
-
+        ImageIcon startGame = new ImageIcon("data/PlayButton.jpg");
 
         File imageFile = new File("data/java.jpg");
         try {
@@ -29,14 +29,14 @@ public class MainMenu extends JPanel implements ActionListener {
         Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
         setPreferredSize(dimension);
         setLayout(null);
-        button = new JButton("New Game");
-        button.setBounds(image.getWidth()/2-45,40,100,30);
-        add(button);
-        button2 = new JButton("Exit");
-        button2.setBounds(image.getWidth()/2-45,230,100,30);
-        add(button2);
-        button.addActionListener(this);
-        button2.addActionListener(this);
+        startGameButton = new JButton( startGame );
+        startGameButton.setBounds(image.getWidth()/2-45,40,100,30);
+        add(startGameButton);
+        exitButton = new JButton("Exit");
+        exitButton.setBounds(image.getWidth()/2-45,230,100,30);
+        add(exitButton);
+        startGameButton.addActionListener(this);
+        exitButton.addActionListener(this);
 
     }
 
@@ -48,8 +48,10 @@ public class MainMenu extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if (source == button2)
+        if (source == exitButton)
             System.exit(0);
+        if (source == startGameButton)
+            setVisible(false);
     }
 }
 
