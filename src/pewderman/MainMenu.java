@@ -1,6 +1,7 @@
 package pewderman;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,11 +9,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class PictureJPanel extends JPanel{
+public class MainMenu extends JPanel implements ActionListener {
     private BufferedImage image;
+    private JButton button;
+    private JButton button2;
 
-    public PictureJPanel() {
+    public MainMenu() {
         super();
+
 
         File imageFile = new File("data/java.jpg");
         try {
@@ -25,17 +29,28 @@ public class PictureJPanel extends JPanel{
         Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
         setPreferredSize(dimension);
         setLayout(null);
-        JButton button = new JButton("New Game");
+        button = new JButton("New Game");
         button.setBounds(image.getWidth()/2-45,40,100,30);
         add(button);
-        JButton button2 = new JButton("Settings");
+        button2 = new JButton("Exit");
         button2.setBounds(image.getWidth()/2-45,230,100,30);
         add(button2);
+        button.addActionListener(this);
+        button2.addActionListener(this);
+
     }
 
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image, 0, 0, this);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if (source == button2)
+            System.exit(0);
+    }
 }
+
 
