@@ -19,6 +19,7 @@ public class Player {
     public int bombsToPlantCount;
     public int bombsRange;
     public int lives;
+    public int movementSpeed;
 
     private Game currentGame;
 
@@ -32,6 +33,7 @@ public class Player {
         this.bombsToPlantCount = 1;
         this.bombsRange = 1;
         this.lives = 1;
+        this.movementSpeed = 3;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
@@ -84,12 +86,16 @@ public class Player {
         switch (this.currentGame.board.fields[this.cord.x][this.cord.y].field_type) {
             case RANGE:
                 this.bombsRange++;
+                break;
             case CUBA_LIBRE:
                 //immortality need an implemantation discution
+                break;
             case LIFES:
                 this.lives++;
+                break;
             case BOMBS:
                 this.bombsToPlantCount++;
+                break;
         }
     }
 }
