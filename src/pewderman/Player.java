@@ -23,17 +23,20 @@ public class Player {
 
     private Game currentGame;
 
-    public Player(int x, int y, String _name, int _playerId, Game currentGame) {
-        this.cord = new Point(x, y);
-        this.name = _name;
-        this.playerState = PlayerState.ALIVE;
-        this.playerId = _playerId;
+    private long lastMoveTimestamp = 0;
+    private long moveFrame = 400;
+
+    public Player(int x, int y, String _name, int playerId, Game currentGame) {
+        cord = new Point(x, y);
+        name = _name;
+        playerState = PlayerState.ALIVE;
+        this.playerId = playerId;
         this.currentGame = currentGame;
-        this.moveCounter = 0;
-        this.bombsToPlantCount = 1;
-        this.bombsRange = 1;
-        this.lives = 1;
-        this.movementSpeed = 3;
+        moveCounter = 0;
+        bombsToPlantCount = 1;
+        bombsRange = 1;
+        lives = 1;
+        movementSpeed = 3;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
@@ -42,30 +45,32 @@ public class Player {
 
 
     public void move(MoveDirection _moveDirection) {
+        if (lastMoveTimestamp != 0 && (System.currentTimeMillis() - lastMoveTimestamp) < moveFrame) return;
 
         if (_moveDirection == MoveDirection.UP) {
             cord.y++;
-            this.moveCounter = 0;
+            moveCounter = 0;
         } else if (_moveDirection == MoveDirection.DOWN) {
             cord.y--;
-            this.moveCounter = 0;
+            moveCounter = 0;
         } else if (_moveDirection == MoveDirection.LEFT) {
             cord.x--;
-            this.moveCounter = 0;
+            moveCounter = 0;
         } else if (_moveDirection == MoveDirection.RIGHT) {
             cord.x++;
-            this.moveCounter = 0;
+            moveCounter = 0;
         } else if (_moveDirection == MoveDirection.NONE) {
 
 
-            this.moveCounter++;
+            moveCounter++;
 
-            if (this.moveCounter == 30) {
+            if (moveCounter == 30) {
 
                 System.out.println("pewderman.Player.move: Gotta keep moving");
             }
         }
 
+        lastMoveTimestamp = System.currentTimeMillis();
     }
 
     public void dropBomb() {
