@@ -9,7 +9,7 @@ public class Field {
 
     public enum TypeFamily {WALL, POWER_UP}
 
-    public enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIFES, CUBA_LIBRE, GHOST, BOOTS}
+    public enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIVES, CUBA_LIBRE, GHOST, BOOTS}
 
     private Type fieldType;
     private TypeFamily fieldTypeFamily;

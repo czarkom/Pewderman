@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class PicturePanel extends JPanel {
 
@@ -14,6 +14,8 @@ public class PicturePanel extends JPanel {
 
     public PicturePanel() {
         super();
+
+
 
         File imageFile = new File("assets/GUI/java.jpg");
         try {
@@ -23,7 +25,7 @@ public class PicturePanel extends JPanel {
             e.printStackTrace();
         }
 
-        Dimension dimension = new Dimension(image.getWidth(), image.getHeight());
+        Dimension dimension = new Dimension(image.getWidth() - 30, image.getHeight() - 30);
         setPreferredSize(dimension);
     }
 

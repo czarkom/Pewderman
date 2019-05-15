@@ -1,5 +1,6 @@
 package pewderman;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -62,12 +63,12 @@ public class Game {
 
         game.start();
 
-//        EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new GUI();
-//            }
-//        });
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new GUI();
+            }
+        });
 
     }
 }
