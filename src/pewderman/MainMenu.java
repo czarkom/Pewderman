@@ -21,10 +21,10 @@ public class MainMenu extends JPanel implements ActionListener {
 
         super();
 
-        ImageIcon startGame = new ImageIcon("assets/GUI/PlayButton.jpg");
+        ImageIcon startGame = new ImageIcon("assets/GUI/play_button.png");
 
         Image img = startGame.getImage();
-        Image newImg = img.getScaledInstance(100,30,Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(70,86,Image.SCALE_SMOOTH);
         startGame = new ImageIcon(newImg);
 
         File imageFile = new File("assets/GUI/java.jpg");
@@ -40,7 +40,7 @@ public class MainMenu extends JPanel implements ActionListener {
         setLayout(null);
 
         startGameButton = new JButton( startGame );
-        startGameButton.setBounds(image.getWidth()/2-45,40,100,30);
+        startGameButton.setBounds(image.getWidth()/2-45,40,70,86);
         add(startGameButton);
 
         exitButton = new JButton("Exit");
