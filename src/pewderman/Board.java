@@ -23,11 +23,11 @@ public class Board {
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
                 if (i == 0 || j == 0 || i == 20 || j == 20) {
-                    this.fields[i][j] = new Field(Field.Type.UNBREAKABLE_WALL, i, j);
+                    this.fields[i][j] = new Field(Field.Type.UNBREAKABLE_WALL, Field.TypeFamily.WALL, i, j);
                 } else if (generator.nextDouble() < 0.7) {
-                    this.fields[i][j] = new Field(Field.Type.BREAKABLE_WALL, i, j);
+                    this.fields[i][j] = new Field(Field.Type.BREAKABLE_WALL, Field.TypeFamily.WALL, i, j);
                 } else {
-                    this.fields[i][j] = new Field(Field.Type.NO_WALL, i, j);
+                    this.fields[i][j] = new Field(Field.Type.NO_WALL, Field.TypeFamily.WALL, i, j);
                 }
             }
         }
@@ -37,7 +37,6 @@ public class Board {
     public void fillBoard(ArrayList<Field> _fileds) {
         for (Field field : _fileds) {
             this.fields[field.cord.x][field.cord.y] = field;
-            System.out.println("pewderman.Field: " + field.cord + " " + field.field_type);
         }
     }
 }

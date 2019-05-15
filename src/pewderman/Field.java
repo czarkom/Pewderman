@@ -7,30 +7,63 @@ import java.util.Random;
 public class Field {
     public Point cord;
 
-    enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIFES, CUBA_LIBRE, GHOST, BOOTS}
+    public enum TypeFamily {WALL, POWER_UP}
+    public enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIFES, CUBA_LIBRE, GHOST, BOOTS}
 
-    public Type field_type;
+    private Type fieldType;
+    private TypeFamily fieldTypeFamily;
 
-    public Field(Type _field_type, int x, int y) {
-        field_type = _field_type;
+    public Field(Type fieldType, TypeFamily fieldTypeFamily, int x, int y) {
+        this.fieldType = fieldType;
+        this.fieldTypeFamily = fieldTypeFamily;
         cord = new Point(x, y);
+
+        System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: created");
     }
 
-    public void destroy() {
-        System.out.println("pewderman.Field: The wall has been destroyed");
-        if (this.field_type == Type.BREAKABLE_WALL) {
-            double probability;
-            Random generator = new Random();
-            probability = generator.nextDouble();
-            if (probability * 10 < 4) {
-                PowerUp powerUp = new PowerUp();
+    public Type getFieldType() {
+        return fieldType;
+    }
 
-                this.field_type = powerUp.getPowerUp();
-            } else {
-                this.field_type = Type.NO_WALL;
+    public TypeFamily getFieldTypeFamily() {
+        return fieldTypeFamily;
+    }
+
+    private void destroyAllTypes() {
+        fieldType = Type.NO_WALL;
+        fieldTypeFamily = TypeFamily.WALL;
+        System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state to NO_WALL");
+    }
+
+    private void destroyDestroyableWall() {
+        double probability;
+        Random generator = new Random();
+        probability = generator.nextDouble();
+
+        if (probability * 10 < 4) {
+            PowerUp powerUp = new PowerUp();
+            fieldType = powerUp.getPowerUp();
+            fieldTypeFamily = TypeFamily.POWER_UP;
+            System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state to POWER_UP");
+        } else {
+            fieldType = Type.NO_WALL;
+            System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state to NO_WALL");
+        }
+    }
+
+    public boolean destroy(TypeFamily typeFamily, boolean force) {
+        switch (typeFamily) {
+            case WALL: {
+                if (fieldType == Type.BREAKABLE_WALL) destroyDestroyableWall();
+                else if (fieldType == Type.UNBREAKABLE_WALL && force) destroyAllTypes();
+                else return false;
+                return true;
+            }
+            case POWER_UP: {
+                destroyAllTypes();
+                return true;
             }
         }
-
-        this.field_type = Type.NO_WALL;
+        return false;
     }
 }
