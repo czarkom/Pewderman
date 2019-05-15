@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Player {
     enum MoveDirection {UP, DOWN, RIGHT, LEFT, NONE}
 
-    enum IsAlive {DEAD, ALIVE}
+    enum PlayerState {DEAD, ALIVE}
 
     public int moveCounter;
 
@@ -14,7 +14,7 @@ public class Player {
     MoveDirection moveDirection = MoveDirection.NONE;
     public Point cord;
     public String name;
-    public IsAlive isAlive;
+    public PlayerState playerState;
     public int playerId; // dodaje pole tu i w pewderman.Bomb w celu przyznawania punktow graczom
     public int bombsToPlantCount;
     public int bombsRange;
@@ -26,7 +26,7 @@ public class Player {
     public Player(int x, int y, String _name, int _playerId, Game currentGame) {
         this.cord = new Point(x, y);
         this.name = _name;
-        this.isAlive = IsAlive.ALIVE;
+        this.playerState = PlayerState.ALIVE;
         this.playerId = _playerId;
         this.currentGame = currentGame;
         this.moveCounter = 0;
@@ -69,17 +69,25 @@ public class Player {
     }
 
     public void dropBomb(Board board, ArrayList<Bomb> bombs) {
-        System.out.println("pewderman.Player: pewderman.Player planted a bomb on field:" + cord.x + ", " + cord.y + ".");
+        System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
         Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame, bombsRange);
         bombs.add(bomb);
         // Tutaj powstaje pytanie czy chcemy robic polaczenie miedzy graczem a detonacja bomby czy poprostu uruchomic drugi timer
         // w graczu i przywracac mu po czasie
     }
 
-    public void die() {
-        System.out.println("pewderman.Player [" + playerId + "] : pewderman.Player has died");
-        this.isAlive = IsAlive.DEAD;
+    public boolean isAlive() {
+        return playerState == PlayerState.ALIVE;
+    }
 
+    public void die() {
+        playerState = PlayerState.DEAD;
+        System.out.println("pewderman.Player [" + playerId + "] :  has died");
+    }
+
+    public void looseALife() {
+        lives--;
+        if (lives <= 0) die();
     }
 
     public void collectPowerUp() {

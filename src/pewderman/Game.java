@@ -1,10 +1,6 @@
 package pewderman;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Game {
@@ -39,7 +35,7 @@ public class Game {
         int playersAlive = playerCount;
 
         for (Player player : players) {
-            if (player.isAlive == Player.IsAlive.DEAD) {
+            if (player.playerState == Player.PlayerState.DEAD) {
                 playersAlive--;
             }
         }
