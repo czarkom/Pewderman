@@ -1,10 +1,13 @@
 package pewderman;
 
+import sun.applet.Main;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.rmi.MarshalledObject;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -66,10 +69,7 @@ public class MainMenu extends JPanel implements ActionListener {
             System.exit(0);
         if (source == startGameButton) {
             this.setVisible(false);
-            JPanel panel = new JPanel();
-            add(panel);
-            panel.setBackground(Color.BLACK);
-            panel.setVisible(true);
+
             /**mydialog = new JDialog();
             mydialog.setSize(new Dimension(300,100));
             mydialog.setLocation(480,350);

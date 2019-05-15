@@ -29,6 +29,7 @@ public class GUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(((MainMenu) pictureJPanel).image.getWidth(),((MainMenu) pictureJPanel).image.getHeight()+30);
         this.setLocation(400,250);
+        this.setVisible(true);
         //pack();
         this.setResizable(false);
         this.currentGame = currentGame;
