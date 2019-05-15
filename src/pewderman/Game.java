@@ -66,7 +66,9 @@ public class Game {
 
         game.start();
 
-        new GUI(game);
+        GUI gui = new GUI(game);
+        gui.setVisible(true);
+        //gui.addGameSpace();
     }
 }
 

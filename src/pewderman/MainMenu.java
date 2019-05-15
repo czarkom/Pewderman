@@ -11,9 +11,11 @@ import javax.swing.*;
 
 public class MainMenu extends JPanel implements ActionListener {
 
-    private BufferedImage image;
+    public BufferedImage image;
     private JButton startGameButton;
     private JButton exitButton;
+    private JPanel gameSpace;
+    private JDialog mydialog;
 
     public MainMenu() {
 
@@ -24,9 +26,6 @@ public class MainMenu extends JPanel implements ActionListener {
         Image img = startGame.getImage();
         Image newImg = img.getScaledInstance(100,30,Image.SCALE_SMOOTH);
         startGame = new ImageIcon(newImg);
-
-
-
 
         File imageFile = new File("assets/GUI/java.jpg");
         try {
@@ -51,6 +50,8 @@ public class MainMenu extends JPanel implements ActionListener {
         startGameButton.addActionListener(this);
         exitButton.addActionListener(this);
 
+
+
     }
 
     public void paintComponent(Graphics g) {
@@ -63,8 +64,21 @@ public class MainMenu extends JPanel implements ActionListener {
         Object source = e.getSource();
         if (source == exitButton)
             System.exit(0);
-        if (source == startGameButton)
-            setVisible(false);
+        if (source == startGameButton) {
+            this.setVisible(false);
+            JPanel panel = new JPanel();
+            add(panel);
+            panel.setBackground(Color.BLACK);
+            panel.setVisible(true);
+            /**mydialog = new JDialog();
+            mydialog.setSize(new Dimension(300,100));
+            mydialog.setLocation(480,350);
+            mydialog.setBackground(Color.GREEN);
+            mydialog.setTitle("Set number of players");
+            mydialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
+            mydialog.setVisible(true);*/
+        }
+
     }
 }
 

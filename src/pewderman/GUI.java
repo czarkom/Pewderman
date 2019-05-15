@@ -6,19 +6,31 @@ import javax.swing.*;
 import static pewderman.Player.MoveDirection.*;
 
 public class GUI extends JFrame {
+
     private Game currentGame;
+    public JPanel gameSpace;
+
+
+
+
 
     public GUI(Game currentGame) {
+
         super("Bomberman");
-        //setSize(800,800);
-        setLocation(400,250);
 
         JPanel pictureJPanel = new MainMenu();
-        add(pictureJPanel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
-        setVisible(true);
-        setResizable(false);
+        //this.add(pictureJPanel);
+        this.getContentPane().add(pictureJPanel);
+
+        //JPanel gameSpace = new GamePanel();
+        //this.add(gameSpace);
+        //this.getContentPane().add(gameSpace);
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(((MainMenu) pictureJPanel).image.getWidth(),((MainMenu) pictureJPanel).image.getHeight()+30);
+        this.setLocation(400,250);
+        //pack();
+        this.setResizable(false);
         this.currentGame = currentGame;
     }
 
