@@ -1,83 +1,92 @@
 package pewderman;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import static pewderman.Player.MoveDirection.*;
 
 public class GUI extends JFrame {
 
-    private Game currentGame;
-    public JPanel gameSpace;
+    public BufferedImage image;
+    JFrame frame = new JFrame();
+    JPanel panelContainer = new JPanel();
+    JPanel panelFirst = new JPanel();
+    JPanel panelSecond = new JPanel();
+    JButton playButton = new JButton("Play");
+    JButton exitButton = new JButton("Exit");
+    CardLayout cl = new CardLayout();
 
-
-
-
-
-    public GUI(Game currentGame) {
+    public GUI() {
 
         super("Bomberman");
+        panelContainer.setLayout(cl);
+        panelFirst.add(playButton);
+        panelFirst.add(exitButton);
+        panelSecond.setBackground(Color.GREEN);
 
-        JPanel pictureJPanel = new MainMenu();
-        //this.add(pictureJPanel);
-        this.getContentPane().add(pictureJPanel);
+        //ImageIcon startGame = new ImageIcon("assets/GUI/play_button.png");
 
-        //JPanel gameSpace = new GamePanel();
-        //this.add(gameSpace);
-        //this.getContentPane().add(gameSpace);
+        //Image img = startGame.getImage();
+        //Image newImg = img.getScaledInstance(70,86,Image.SCALE_SMOOTH);
+        //startGame = new ImageIcon(newImg);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(((MainMenu) pictureJPanel).image.getWidth(),((MainMenu) pictureJPanel).image.getHeight()+30);
-        this.setLocation(400,250);
-        //pack();
-        this.setResizable(false);
-        this.currentGame = currentGame;
-    }
-
-    /**public void paint(Graphics graphics){
-    }
-
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    public void keyPressed(KeyEvent evt) {
-        switch (evt.getKeyChar()) {
-            case 'w':
-                handleKeyPress(1, UP);
-                break;
-            case 'd':
-                handleKeyPress(1, RIGHT);
-                break;
-            case 's':
-                handleKeyPress(1, DOWN);
-                break;
-            case 'a':
-                handleKeyPress(1, LEFT);
-                break;
+        File imageFile = new File("assets/GUI/java.jpg");
+        try {
+            image = ImageIO.read(imageFile);
+        } catch (IOException e) {
+            System.err.println("Image read error");
+            e.printStackTrace();
         }
+
+        Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
+        panelContainer.setPreferredSize(dimension);
+
+        panelContainer.add(panelFirst, "1");
+        panelContainer.add(panelSecond, "2");
+
+
+        cl.show(panelContainer, "1");
+
+
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelContainer, "2");
+            }
+        });
+
+
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        frame.add(panelContainer);
+
+
+
+        //setLayout(null);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setSize(600,600);
+        //frame.setLocation(400,250);
+        frame.setVisible(true);
+        frame.pack();
+        frame.setResizable(false);
     }
 
-    public void keyReleased(KeyEvent evt) {
-        switch (evt.getKeyChar()) {
-            case 'w':
-            case 'd':
-            case 's':
-            case 'a':
-                handleKeyRelease(1);
-                break;
-        }
+    public void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(image, 0, 0, this);
     }
 
-    private void handleKeyRelease(int playerNum) {
-        if (currentGame.players.length >= playerNum) {
-            currentGame.players[playerNum - 1].moveDirection = NONE;
-        }
-    }
-
-    private void handleKeyPress(int playerNum, Player.MoveDirection direction) {
-        if (currentGame.players.length >= playerNum) {
-            currentGame.players[playerNum - 1].moveDirection = direction;
-        }
-    }*/
 }

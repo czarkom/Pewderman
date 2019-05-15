@@ -66,9 +66,13 @@ public class Game {
 
         game.start();
 
-        GUI gui = new GUI(game);
-        gui.setVisible(true);
-        //gui.addGameSpace();
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new GUI();
+            }
+        });
+
     }
 }
 
