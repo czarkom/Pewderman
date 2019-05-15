@@ -19,7 +19,7 @@ public class PowerUp {
         if (probability > 9) {
             this.powerUp = Field.Type.CUBA_LIBRE;
         } else if (probability > 8) {
-            this.powerUp = Field.Type.LIFES;
+            this.powerUp = Field.Type.LIVES;
         } else if (probability > 4) {
             this.powerUp = Field.Type.BOMBS;
         } else if(probability > 2){
