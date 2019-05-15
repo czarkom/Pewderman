@@ -1,7 +1,5 @@
 package pewderman;
 
-import sun.applet.Main;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;

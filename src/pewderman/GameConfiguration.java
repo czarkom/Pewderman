@@ -59,7 +59,7 @@ public class GameConfiguration {
         int x = Integer.parseInt(keyValue[0].trim());
         int y = Integer.parseInt(keyValue[1].trim());
 
-        configWalls.add(new Field(type, x, y));
+        configWalls.add(new Field(type, Field.TypeFamily.WALL, x, y));
     }
 
     private void advance() {

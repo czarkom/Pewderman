@@ -70,20 +70,20 @@ public class Player {
 
     public void dropBomb(Board board, ArrayList<Bomb> bombs) {
         System.out.println("pewderman.Player: pewderman.Player planted a bomb on field:" + cord.x + ", " + cord.y + ".");
-        Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame, this.bombsRange);
+        Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame, bombsRange);
         bombs.add(bomb);
         // Tutaj powstaje pytanie czy chcemy robic polaczenie miedzy graczem a detonacja bomby czy poprostu uruchomic drugi timer
         // w graczu i przywracac mu po czasie
     }
 
     public void die() {
-        System.out.println("pewderman.Player [" + this.playerId + "] : pewderman.Player has died");
+        System.out.println("pewderman.Player [" + playerId + "] : pewderman.Player has died");
         this.isAlive = IsAlive.DEAD;
 
     }
 
     public void collectPowerUp() {
-        switch (this.currentGame.board.fields[this.cord.x][this.cord.y].fieldType) {
+        switch (currentGame.board.fields[cord.x][cord.y].getFieldType()) {
             case RANGE:
                 this.bombsRange++;
                 break;
