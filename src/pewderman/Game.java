@@ -14,8 +14,8 @@ public class Game {
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
 
-        this.players[0] = new Player(15, 1, "player_1", 1, this);
-        if (playerCount == 2) this.players[1] = new Player(16, 1, "player_2", 2, this);
+        this.players[0] = new Player(1, 1, "player_1", 1, this);
+        if (playerCount == 2) this.players[1] = new Player(19, 19, "player_2", 2, this);
     }
 
 
