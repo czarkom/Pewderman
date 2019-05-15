@@ -14,8 +14,8 @@ public class Game {
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
 
-        this.players[0] = new Player(1, 1, "player_1", 1, this);
-        if (playerCount == 2) this.players[1] = new Player(19, 19, "player_2", 2, this);
+        this.players[0] = new Player(15, 1, "player_1", 1, this);
+        if (playerCount == 2) this.players[1] = new Player(16, 1, "player_2", 2, this);
     }
 
 
@@ -25,9 +25,7 @@ public class Game {
     public void start() {
         System.out.println("pewderman.Game: pewderman.Game has started, there are " + players.length + " players alive.");
         this.players[0].dropBomb(this.board, this.bombs);
-        this.players[1].dropBomb(this.board, this.bombs);
         this.bombs.get(0).explode();
-        this.bombs.get(1).explode();
         this.end(this.players.length    , this.players);
     }
 
@@ -62,13 +60,13 @@ public class Game {
         game.board.fillBoard(config.getWalls());
 
         game.start();
-
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GUI();
-            }
-        });
+//
+//        EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new GUI();
+//            }
+//        });
 
     }
 }
