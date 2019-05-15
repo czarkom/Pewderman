@@ -83,7 +83,7 @@ public class Player {
     }
 
     public void collectPowerUp() {
-        switch (this.currentGame.board.fields[this.cord.x][this.cord.y].field_type) {
+        switch (this.currentGame.board.fields[this.cord.x][this.cord.y].fieldType) {
             case RANGE:
                 this.bombsRange++;
                 break;
