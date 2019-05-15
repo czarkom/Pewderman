@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     int x=0, y=0, velX=0, velY=0;
 
     public GamePanel(){
-        setBackground(Color.BLUE);
+        //setBackground(Color.BLUE);
         tm.start();
         addKeyListener(this);
         setFocusable(true);
@@ -48,14 +48,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
             velX = 1;
             velY = 0;
        }
-       /**else if (e.getKeyCode() == KeyEvent.VK_W)
-       {
-
-       }
-       else if (e.getKeyCode() == KeyEvent.VK_W)
-       {
-
-       }*/
     }
 
     @Override
@@ -75,5 +67,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         super.paintComponent(g);
         g.setColor(Color.RED);
         g.fillRect(x,y,50,30);
+        //tm.start();
     }
 }

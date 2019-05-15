@@ -15,20 +15,33 @@ public class GUI extends JFrame{
 
     private BufferedImage image;
 
-
-    JFrame frame = new JFrame();
+    //1 opcja, 2 to deklaracja tego w konstruktorze
+    /**JFrame frame = new JFrame();
     JPanel panelContainer = new JPanel();
     JPanel panelFirst = new PicturePanel();
-    JPanel panelSecond = new GamePanel();
+     JPanel panelSecond = new GamePanel();
+
     //JButton playButton = new JButton();
     //JButton exitButton = new JButton();
-    CardLayout cl = new CardLayout();
+    CardLayout cl = new CardLayout();*/
     private JButton playButton;
     private JButton exitButton;
 
     public GUI(){
 
-        super("Bomberman");
+        //super("Bomberman");
+        JFrame frame = new JFrame();
+        JPanel panelContainer = new JPanel();
+        JPanel panelFirst = new PicturePanel();
+        GamePanel panelSecond = new GamePanel();
+        //frame.add(panelFirst);
+        frame.add(panelSecond);
+        frame.setTitle("Bomberman");
+
+        //JButton playButton = new JButton();
+        //JButton exitButton = new JButton();
+        CardLayout cl = new CardLayout();
+
 
         ImageIcon startGame = new ImageIcon("assets/GUI/play_button.png");
 
@@ -44,13 +57,10 @@ public class GUI extends JFrame{
 
         playButton = new JButton(startGame);
         exitButton = new JButton(exit);
-        //playButton.setLayout(null);
-        //playButton.setBounds(200,200,200,200);
-        //exitButton.setBounds(300,300,60,30);
         panelContainer.setLayout(cl);
         panelFirst.add(playButton);
         panelFirst.add(exitButton);
-        frame.add(panelFirst);
+        //frame.add(panelFirst); (opcjonalnie)
         validate();
 
 
