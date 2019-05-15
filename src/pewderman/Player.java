@@ -90,11 +90,14 @@ public class Player {
             case CUBA_LIBRE:
                 //immortality need an implemantation discution
                 break;
-            case LIFES:
+            case LIVES:
                 this.lives++;
                 break;
             case BOMBS:
                 this.bombsToPlantCount++;
+                break;
+            case BOOTS:
+                this.movementSpeed++;
                 break;
         }
     }
