@@ -18,7 +18,7 @@ public class GUI extends JFrame{
     JFrame frame = new JFrame();
     JPanel panelContainer = new JPanel();
     JPanel panelFirst = new PicturePanel();
-    JPanel panelSecond = new JPanel();
+    JPanel panelSecond = new GamePanel();
     JButton playButton = new JButton("Play");
     JButton exitButton = new JButton("Exit");
     CardLayout cl = new CardLayout();
@@ -26,29 +26,19 @@ public class GUI extends JFrame{
     public GUI(){
 
         super("Bomberman");
+        playButton.setIcon(new ImageIcon("assets/GUI/play_button.png"));
         panelContainer.setLayout(cl);
         panelFirst.add(playButton);
         panelFirst.add(exitButton);
-        panelSecond.setBackground(Color.GREEN);
-
         frame.add(panelFirst);
+        validate();
 
-        //ImageIcon startGame = new ImageIcon("assets/GUI/play_button.png");
 
-        //Image img = startGame.getImage();
-        //Image newImg = img.getScaledInstance(70,86,Image.SCALE_SMOOTH);
-        //startGame = new ImageIcon(newImg);
+        /**ImageIcon startGame = new ImageIcon("assets/GUI/play_button.png");
 
-        /**File imageFile = new File("assets/GUI/java.jpg");
-        try {
-            image = ImageIO.read(imageFile);
-        } catch (IOException e) {
-            System.err.println("Image read error");
-            e.printStackTrace();
-        }
-
-        Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
-        panelContainer.setPreferredSize(dimension);*/
+        Image img = startGame.getImage();
+        Image newImg = img.getScaledInstance(30,30,Image.SCALE_SMOOTH);
+        startGame = new ImageIcon(newImg);*/
 
         panelContainer.add(panelFirst, "1");
         panelContainer.add(panelSecond, "2");
@@ -75,21 +65,11 @@ public class GUI extends JFrame{
 
         frame.add(panelContainer);
 
-
-
-        //setLayout(null);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setSize(600,600);
-        //frame.setLocation(400,250);
+        frame.setLocation(400,250);
         frame.setVisible(true);
         frame.pack();
         frame.setResizable(false);
-    }
-
-    public void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(image, 0, 0, this);
     }
 
 }
