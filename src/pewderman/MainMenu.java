@@ -17,7 +17,6 @@ public class MainMenu extends JPanel implements ActionListener {
     public BufferedImage image;
     private JButton startGameButton;
     private JButton exitButton;
-    private JPanel gameSpace;
     private JDialog mydialog;
 
     public MainMenu() {

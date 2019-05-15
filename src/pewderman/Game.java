@@ -69,7 +69,7 @@ public class Game {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GUI(game);
+                new GUI();
             }
         });
 
