@@ -47,18 +47,44 @@ public class Player {
     public void move(MoveDirection _moveDirection) {
         if (lastMoveTimestamp != 0 && (System.currentTimeMillis() - lastMoveTimestamp) < moveFrame) return;
 
+        Field nextField;
+
         if (_moveDirection == MoveDirection.UP) {
-            cord.y++;
-            moveCounter = 0;
+            nextField = currentGame.board.fields[this.cord.x][this.cord.y++];
+            if (nextField.isEmpty() || nextField.isAPowerUp()) {
+                cord.y++;
+                moveCounter = 0;
+                if (nextField.isAPowerUp()) {
+                    collectPowerUp();
+                }
+            }
         } else if (_moveDirection == MoveDirection.DOWN) {
-            cord.y--;
-            moveCounter = 0;
+            nextField = currentGame.board.fields[this.cord.x][this.cord.y--];
+            if (nextField.isEmpty() || nextField.isAPowerUp()) {
+                cord.y--;
+                moveCounter = 0;
+                if (nextField.isAPowerUp()) {
+                    collectPowerUp();
+                }
+            }
         } else if (_moveDirection == MoveDirection.LEFT) {
-            cord.x--;
-            moveCounter = 0;
+            nextField = currentGame.board.fields[this.cord.x--][this.cord.y];
+            if (nextField.isEmpty() || nextField.isAPowerUp()) {
+                cord.x--;
+                moveCounter = 0;
+                if (nextField.isAPowerUp()) {
+                    collectPowerUp();
+                }
+            }
         } else if (_moveDirection == MoveDirection.RIGHT) {
-            cord.x++;
-            moveCounter = 0;
+            nextField = currentGame.board.fields[this.cord.x++][this.cord.y];
+            if (nextField.isEmpty() || nextField.isAPowerUp()) {
+                cord.x++;
+                moveCounter = 0;
+                if (nextField.isAPowerUp()) {
+                    collectPowerUp();
+                }
+            }
         } else if (_moveDirection == MoveDirection.NONE) {
 
 
@@ -77,8 +103,6 @@ public class Player {
         System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
         Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame, bombsRange);
         currentGame.bombs.add(bomb);
-        // Tutaj powstaje pytanie czy chcemy robic polaczenie miedzy graczem a detonacja bomby czy poprostu uruchomic drugi timer
-        // w graczu i przywracac mu po czasie
     }
 
     public boolean isAlive() {
@@ -101,7 +125,10 @@ public class Player {
                 this.bombsRange++;
                 break;
             case CUBA_LIBRE:
-                // immortality need an implementation discussion
+                this.bombsRange++;
+                this.bombsToPlantCount++;
+                this.movementSpeed++;
+                this.lives++;
                 break;
             case LIVES:
                 this.lives++;
