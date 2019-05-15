@@ -68,10 +68,10 @@ public class Player {
 
     }
 
-    public void dropBomb(Board board, ArrayList<Bomb> bombs) {
+    public void dropBomb() {
         System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
         Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame, bombsRange);
-        bombs.add(bomb);
+        currentGame.bombs.add(bomb);
         // Tutaj powstaje pytanie czy chcemy robic polaczenie miedzy graczem a detonacja bomby czy poprostu uruchomic drugi timer
         // w graczu i przywracac mu po czasie
     }
