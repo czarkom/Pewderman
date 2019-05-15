@@ -43,7 +43,6 @@ public class Player {
 
     //metody
 
-
     public void move(MoveDirection _moveDirection) {
         if (lastMoveTimestamp != 0 && (System.currentTimeMillis() - lastMoveTimestamp) < moveFrame) return;
 
@@ -101,7 +100,7 @@ public class Player {
 
     public void dropBomb() {
         System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
-        Bomb bomb = new Bomb(cord.x, cord.y, playerId, currentGame, bombsRange);
+        Bomb bomb = new Bomb(cord.x, cord.y, this, currentGame);
         currentGame.bombs.add(bomb);
     }
 

@@ -11,11 +11,11 @@ public class Bomb {
 
     private Game currentGame;
 
-    public Bomb(int x, int y, Player planter, Game currentGame, int bombRange) {
+    public Bomb(int x, int y, Player planter, Game currentGame) {
         this.planter = planter;
         cord = new Point(x, y);
         timeToExplode = 6000;
-        range = bombRange;
+        range = planter.bombsRange;
         this.currentGame = currentGame;
         plantTime = System.currentTimeMillis();
 
