@@ -13,9 +13,8 @@ public class Game {
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
 
-        for (int i = 0; i < playerCount; i++) {
-            this.players[i] = new Player((i + 10) * 2, (i + 10) * 2, "player_" + i, i, this);
-        }
+        this.players[0] = new Player(1, 1, "player_1", 1, this);
+        if (playerCount == 2) this.players[1] = new Player(19, 19, "player_2", 2, this);
     }
 
 
@@ -25,8 +24,9 @@ public class Game {
     public void start() {
         System.out.println("pewderman.Game: pewderman.Game has started, there are " + players.length + " players alive.");
         this.players[0].dropBomb(this.board, this.bombs);
-        this.bombs.get(0).explode(this.players, this.board);
-        this.players[0].die();
+        this.players[1].dropBomb(this.board, this.bombs);
+        this.bombs.get(0).explode();
+        this.bombs.get(1).explode();
         this.end(this.players.length    , this.players);
     }
 
