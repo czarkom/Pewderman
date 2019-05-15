@@ -24,7 +24,7 @@ public class Game {
 
     public void start() {
         System.out.println("pewderman.Game: pewderman.Game has started, there are " + players.length + " players alive.");
-        this.players[0].dropBomb(this.board, this.bombs);
+        this.players[0].dropBomb();
         this.bombs.get(0).explode();
         this.end(this.players.length    , this.players);
     }

@@ -5,21 +5,21 @@ import java.awt.*;
 public class Bomb {
     private int timeToExplode; // w milisekundach
     private Point cord;
-    private int plantedBy; // dodaje pole tu oraz w player (player id) w celu przyznawania punktow graczom
+    private Player planter; // dodaje pole tu oraz w player (player id) w celu przyznawania punktow graczom
     private int range;
     private long plantTime;
 
     private Game currentGame;
 
-    public Bomb(int x, int y, int playerId, Game currentGame, int bombRange) {
-        plantedBy = playerId;
+    public Bomb(int x, int y, Player planter, Game currentGame, int bombRange) {
+        this.planter = planter;
         cord = new Point(x, y);
         timeToExplode = 6000;
         range = bombRange;
         this.currentGame = currentGame;
         plantTime = System.currentTimeMillis();
 
-        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: planted by player " + plantedBy);
+        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: planted by player " + planter.playerId);
     }
 
     public boolean isTimerUp() {
