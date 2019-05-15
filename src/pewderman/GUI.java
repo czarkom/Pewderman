@@ -11,18 +11,19 @@ import javax.swing.*;
 
 import static pewderman.Player.MoveDirection.*;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame{
 
-    public BufferedImage image;
+    private BufferedImage image;
+
     JFrame frame = new JFrame();
     JPanel panelContainer = new JPanel();
-    JPanel panelFirst = new JPanel();
+    JPanel panelFirst = new PicturePanel();
     JPanel panelSecond = new JPanel();
     JButton playButton = new JButton("Play");
     JButton exitButton = new JButton("Exit");
     CardLayout cl = new CardLayout();
 
-    public GUI() {
+    public GUI(){
 
         super("Bomberman");
         panelContainer.setLayout(cl);
@@ -30,13 +31,15 @@ public class GUI extends JFrame {
         panelFirst.add(exitButton);
         panelSecond.setBackground(Color.GREEN);
 
+        frame.add(panelFirst);
+
         //ImageIcon startGame = new ImageIcon("assets/GUI/play_button.png");
 
         //Image img = startGame.getImage();
         //Image newImg = img.getScaledInstance(70,86,Image.SCALE_SMOOTH);
         //startGame = new ImageIcon(newImg);
 
-        File imageFile = new File("assets/GUI/java.jpg");
+        /**File imageFile = new File("assets/GUI/java.jpg");
         try {
             image = ImageIO.read(imageFile);
         } catch (IOException e) {
@@ -45,7 +48,7 @@ public class GUI extends JFrame {
         }
 
         Dimension dimension = new Dimension(image.getWidth()-10, image.getHeight()-10);
-        panelContainer.setPreferredSize(dimension);
+        panelContainer.setPreferredSize(dimension);*/
 
         panelContainer.add(panelFirst, "1");
         panelContainer.add(panelSecond, "2");
