@@ -20,13 +20,14 @@ public class GUI extends JFrame{
     JPanel panelFirst = new PicturePanel();
     JPanel panelSecond = new GamePanel();
     JButton playButton = new JButton();
-    JButton exitButton = new JButton("Exit");
+    JButton exitButton = new JButton();
     CardLayout cl = new CardLayout();
 
     public GUI(){
 
         super("Bomberman");
         playButton.setIcon(new ImageIcon("assets/GUI/play_button.png"));
+        exitButton.setIcon(new ImageIcon("assets/GUI/exit_button.png"));
         panelContainer.setLayout(cl);
         panelFirst.add(playButton);
         panelFirst.add(exitButton);
