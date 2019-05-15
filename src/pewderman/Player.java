@@ -50,6 +50,7 @@ public class Player {
         Field nextField;
 
         if (_moveDirection == MoveDirection.UP) {
+            this.faceDirection = _moveDirection;
             nextField = currentGame.board.fields[this.cord.x][this.cord.y++];
             if (nextField.isEmpty() || nextField.isAPowerUp()) {
                 cord.y++;
@@ -59,6 +60,7 @@ public class Player {
                 }
             }
         } else if (_moveDirection == MoveDirection.DOWN) {
+            this.faceDirection = _moveDirection;
             nextField = currentGame.board.fields[this.cord.x][this.cord.y--];
             if (nextField.isEmpty() || nextField.isAPowerUp()) {
                 cord.y--;
@@ -68,6 +70,7 @@ public class Player {
                 }
             }
         } else if (_moveDirection == MoveDirection.LEFT) {
+            this.faceDirection = _moveDirection;
             nextField = currentGame.board.fields[this.cord.x--][this.cord.y];
             if (nextField.isEmpty() || nextField.isAPowerUp()) {
                 cord.x--;
@@ -77,6 +80,7 @@ public class Player {
                 }
             }
         } else if (_moveDirection == MoveDirection.RIGHT) {
+            this.faceDirection = _moveDirection;
             nextField = currentGame.board.fields[this.cord.x++][this.cord.y];
             if (nextField.isEmpty() || nextField.isAPowerUp()) {
                 cord.x++;
