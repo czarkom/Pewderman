@@ -26,6 +26,10 @@ public class Field {
         return fieldType;
     }
 
+    public boolean isAPowerUp(){
+        return fieldTypeFamily == TypeFamily.POWER_UP;
+    }
+
     public boolean isAWall() {
         return fieldTypeFamily == TypeFamily.WALL;
     }
