@@ -19,7 +19,7 @@ public class GUI extends JFrame{
     JPanel panelContainer = new JPanel();
     JPanel panelFirst = new PicturePanel();
     JPanel panelSecond = new GamePanel();
-    JButton playButton = new JButton("Play");
+    JButton playButton = new JButton();
     JButton exitButton = new JButton("Exit");
     CardLayout cl = new CardLayout();
 
