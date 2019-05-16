@@ -17,7 +17,16 @@ public class Renderer extends JPanel {
     private BufferedImage UWImage;
 
     private BufferedImage BombImage;
+
     private BufferedImage PUBombsImage;
+    private BufferedImage PULivesImage;
+    private BufferedImage PUCubaLibreImage;
+    private BufferedImage PUGhostImage;
+    private BufferedImage PUBootsImage;
+    private BufferedImage PUOneUpImage;
+    private BufferedImage PURangeImage;
+    private BufferedImage PUThanosImage;
+    private BufferedImage PUTrumpImage;
 
     long frameCounter = 0;
 
@@ -42,6 +51,14 @@ public class Renderer extends JPanel {
             BombImage = ImageIO.read(new File("assets/sprites/bomba.png"));
 
             PUBombsImage = ImageIO.read(new File("assets/power_ups/add_bomba.png"));
+            PULivesImage = ImageIO.read(new File("assets/power_ups/add_lives.png"));
+            PUCubaLibreImage = ImageIO.read(new File("assets/power_ups/cuba_libre.png"));
+            PUGhostImage = ImageIO.read(new File("assets/power_ups/ghost.png"));
+            PUBootsImage = ImageIO.read(new File("assets/power_ups/movement_speed_powerup.png"));
+            PUOneUpImage = ImageIO.read(new File("assets/power_ups/one_up.png"));
+            PURangeImage = ImageIO.read(new File("assets/power_ups/range_up.png"));
+            PUThanosImage = ImageIO.read(new File("assets/power_ups/thanos.png"));
+            PUTrumpImage = ImageIO.read(new File("assets/power_ups/trump.png"));
 
             PlayerImage[0] = ImageIO.read(new File("assets/sprites/player_1_sprote__LGBTQSans.png"));
             PlayerImage[1] = ImageIO.read(new File("assets/sprites/player_3_sprite__gotta_go_fast.png"));
@@ -68,14 +85,27 @@ public class Renderer extends JPanel {
                     case UNBREAKABLE_WALL:
                         g.drawImage(UWImage, x * scaleCoeficient, y * scaleCoeficient, null);
                         break;
+
                     case BOMBS:
-                    case RANGE:
-                    case LIVES:
-                    case CUBA_LIBRE:
-                    case GHOST:
-                    case BOOTS:
                         g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
                         g.drawImage(PUBombsImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        break;
+                    case RANGE:
+                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(PURangeImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        break;
+                    case LIVES:
+                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(PULivesImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        break;
+                    case CUBA_LIBRE:
+                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(PUCubaLibreImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        break;
+                    case BOOTS:
+                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(PUBootsImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        break;
                 }
             }
         }

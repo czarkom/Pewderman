@@ -14,7 +14,7 @@ public class Bomb {
     public Bomb(int x, int y, Player planter, Game currentGame) {
         this.planter = planter;
         cord = new Point(x, y);
-        timeToExplode = 6000;
+        timeToExplode = 2500;
         range = planter.bombsRange;
         this.currentGame = currentGame;
         plantTime = System.currentTimeMillis();

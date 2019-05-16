@@ -57,7 +57,7 @@ public class Field {
             PowerUp powerUp = new PowerUp();
             fieldType = powerUp.getPowerUp();
             fieldTypeFamily = TypeFamily.POWER_UP;
-            System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to POWER_UP");
+            System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to %s%n", fieldType);
         } else {
             fieldType = Type.NO_WALL;
             System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to NO_WALL");
