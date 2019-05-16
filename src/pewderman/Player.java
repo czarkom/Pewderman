@@ -34,7 +34,7 @@ public class Player {
         this.currentGame = currentGame;
         moveCounter = 0;
         bombsToPlantCount = 1;
-        bombsRange = 1      ;
+        bombsRange = 1;
         lives = 1;
         movementSpeed = 3;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
@@ -153,11 +153,11 @@ public class Player {
     }
 
     public void dropBomb() {
-        if(this.bombsToPlantCount!=0){
-        System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
-        Bomb bomb = new Bomb(cord.x, cord.y, this, currentGame);
-        currentGame.bombs.add(bomb);
-        this.bombsToPlantCount--;
+        if (this.bombsToPlantCount != 0) {
+            System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
+            Bomb bomb = new Bomb(cord.x, cord.y, this, currentGame);
+            currentGame.bombs.add(bomb);
+            this.bombsToPlantCount--;
         }
     }
 
