@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class Renderer extends JPanel {
-    private static int scaleCoeficient = 40;
     private static int minFrameDuration = 40;
     private Game currentGame;
 
@@ -30,6 +29,12 @@ public class Renderer extends JPanel {
 
     private BufferedImage FireImage;
 
+    private static int spriteSize = 40;
+    private static int boardSize = 840;
+
+    private static double scale = 0.95;
+    private static int scaledSprite = (int) (scale * spriteSize);
+    private static int scaledBoard = (int) (scale * boardSize);
 
     long frameCounter = 0;
 
@@ -38,8 +43,8 @@ public class Renderer extends JPanel {
     private BufferedImage HaloImage;
 
     Renderer(Game game) {
-        setSize(840, 840);
-        setPreferredSize(new Dimension(840, 840));
+        setSize(scaledBoard, scaledBoard);
+        setPreferredSize(new Dimension(scaledBoard, scaledBoard));
 
         currentGame = game;
 
@@ -87,66 +92,67 @@ public class Renderer extends JPanel {
 
                 switch (currentField.getFieldType()) {
                     case NO_WALL:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case BREAKABLE_WALL:
-                        g.drawImage(BWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(BWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case UNBREAKABLE_WALL:
-                        g.drawImage(UWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(UWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
 
                     case BOMBS:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
-                        g.drawImage(PUBombsImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PUBombsImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case RANGE:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
-                        g.drawImage(PURangeImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PURangeImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case LIVES:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
-                        g.drawImage(PULivesImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PULivesImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case CUBA_LIBRE:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
-                        g.drawImage(PUCubaLibreImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PUCubaLibreImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case BOOTS:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
-                        g.drawImage(PUBootsImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PUBootsImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case GHOST:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
-                        g.drawImage(PUGhostImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PUGhostImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case FIRE:
-                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
-                        g.drawImage(FireImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(FireImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                 }
             }
         }
 
         for (Bomb bomb : currentGame.bombs) {
-            g.drawImage(BombImage, bomb.cord.x * scaleCoeficient, bomb.cord.y * scaleCoeficient, null);
+            g.drawImage(BombImage, bomb.cord.x * scaledSprite, bomb.cord.y * scaledSprite, scaledSprite, scaledSprite, null);
         }
 
         Player currentPlayer;
         for (int i = 0; i < currentGame.players.length; i++) {
             currentPlayer = currentGame.players[i];
 
-            if(!currentPlayer.isAlive()) g.drawImage(DeadPlayerImage, currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
+            if (!currentPlayer.isAlive())
+                g.drawImage(DeadPlayerImage, currentPlayer.cord.x * scaledSprite, currentPlayer.cord.y * scaledSprite, scaledSprite, scaledSprite, null);
         }
 
         for (int i = 0; i < currentGame.players.length; i++) {
             currentPlayer = currentGame.players[i];
 
-            if(currentPlayer.isAlive())
-                g.drawImage(PlayerImage[i], currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
+            if (currentPlayer.isAlive())
+                g.drawImage(PlayerImage[i], currentPlayer.cord.x * scaledSprite, currentPlayer.cord.y * scaledSprite, scaledSprite, scaledSprite, null);
 
-            for(int j = 0; j < currentPlayer.numberOfHalos(); j++)
-                g.drawImage(HaloImage, currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
+            for (int j = 0; j < currentPlayer.numberOfHalos(); j++)
+                g.drawImage(HaloImage, currentPlayer.cord.x * scaledSprite, currentPlayer.cord.y * scaledSprite, scaledSprite, scaledSprite, null);
         }
     }
 
@@ -167,11 +173,13 @@ public class Renderer extends JPanel {
 
         JFrame frame = new JFrame();
         frame.setTitle("PewDerMan");
+
         frame.add(renderer);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setResizable(false);
 
         frame.repaint();
 
