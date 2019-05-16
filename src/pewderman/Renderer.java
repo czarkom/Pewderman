@@ -9,12 +9,14 @@ import java.io.IOException;
 
 public class Renderer extends JPanel {
     private static int scaleCoeficient = 40;
-    private static int minFrameDuration = 16;
+    private static int minFrameDuration = 40;
     private Game currentGame;
 
     private BufferedImage NWImage;
     private BufferedImage BWImage;
     private BufferedImage UWImage;
+
+    long frameCounter = 0;
 
     private BufferedImage[] PlayerImage = new BufferedImage[2];
 
@@ -23,6 +25,9 @@ public class Renderer extends JPanel {
         setPreferredSize(new Dimension(840, 840));
 
         currentGame = game;
+
+        setFocusable(true);
+        addKeyListener(currentGame);
     }
 
     private void loadImages() {
@@ -40,7 +45,7 @@ public class Renderer extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
-
+        frameCounter++;
         Field currentField;
         for (int y = 0; y < currentGame.board.height; y++) {
             for (int x = 0; x < currentGame.board.width; x++) {
@@ -98,6 +103,7 @@ public class Renderer extends JPanel {
         while (true) {
             frameStart = System.currentTimeMillis();
 
+            game.step();
             frame.repaint();
 
             timeDiff = System.currentTimeMillis() - frameStart;

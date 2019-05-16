@@ -1,13 +1,56 @@
 package pewderman;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 
-public class Game {
+public class Game implements KeyListener {
     public Board board;
     public Player[] players;
     public ArrayList<Bomb> bombs;
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int c = e.getKeyCode();
+        switch (c) {
+            case KeyEvent.VK_W:
+                players[0].moveDirection = Player.MoveDirection.UP;
+                players[0].faceDirection = Player.MoveDirection.UP;
+                break;
+            case KeyEvent.VK_S:
+                players[0].moveDirection = Player.MoveDirection.DOWN;
+                players[0].faceDirection = Player.MoveDirection.DOWN;
+                break;
+            case KeyEvent.VK_A:
+                players[0].moveDirection = Player.MoveDirection.LEFT;
+                players[0].faceDirection = Player.MoveDirection.LEFT;
+                break;
+            case KeyEvent.VK_D:
+                players[0].moveDirection = Player.MoveDirection.RIGHT;
+                players[0].faceDirection = Player.MoveDirection.RIGHT;
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int c = e.getKeyCode();
+        switch (c) {
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_A:
+            case KeyEvent.VK_D:
+                players[0].moveDirection = Player.MoveDirection.NONE;
+                break;
+        }
+    }
 
     public Game(int playerCount) {
         this.board = new Board(this);
@@ -46,6 +89,12 @@ public class Game {
         }
 
 
+    }
+
+    public void step() {
+        for (Player player : players) {
+            player.move();
+        }
     }
 
     public static void main(String[] args) {
