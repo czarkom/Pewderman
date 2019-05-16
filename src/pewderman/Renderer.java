@@ -32,7 +32,7 @@ public class Renderer extends JPanel {
     private static int spriteSize = 40;
     private static int boardSize = 840;
 
-    private static double scale = 0.95;
+    private static double scale = 1;
     private static int scaledSprite = (int) (scale * spriteSize);
     private static int scaledBoard = (int) (scale * boardSize);
 
