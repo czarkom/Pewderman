@@ -35,6 +35,7 @@ public class Renderer extends JPanel {
 
     private BufferedImage[] PlayerImage = new BufferedImage[2];
     private BufferedImage DeadPlayerImage;
+    private BufferedImage HaloImage;
 
     Renderer(Game game) {
         setSize(840, 840);
@@ -69,6 +70,7 @@ public class Renderer extends JPanel {
             PlayerImage[0] = ImageIO.read(new File("assets/sprites/player_1_sprote__LGBTQSans.png"));
             PlayerImage[1] = ImageIO.read(new File("assets/sprites/player_3_sprite__gotta_go_fast.png"));
             DeadPlayerImage = ImageIO.read(new File("assets/sprites/Dead.png"));
+            HaloImage = ImageIO.read(new File("assets/sprites/halo.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,7 +142,11 @@ public class Renderer extends JPanel {
         for (int i = 0; i < currentGame.players.length; i++) {
             currentPlayer = currentGame.players[i];
 
-            if(currentPlayer.isAlive()) g.drawImage(PlayerImage[i], currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
+            if(currentPlayer.isAlive())
+                g.drawImage(PlayerImage[i], currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
+
+            for(int j = 0; j < currentPlayer.numberOfHalos(); j++)
+                g.drawImage(HaloImage, currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
         }
     }
 

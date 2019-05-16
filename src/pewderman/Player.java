@@ -163,6 +163,10 @@ public class Player {
         return playerState == PlayerState.ALIVE;
     }
 
+    public int numberOfHalos() {
+        return lives - 1;
+    }
+
     public void die() {
         playerState = PlayerState.DEAD;
         System.out.println("pewderman.Player [" + playerId + "] :  has died");
