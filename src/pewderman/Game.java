@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Game implements KeyListener {
@@ -13,7 +14,15 @@ public class Game implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        int c = e.getKeyCode();
+        switch (c) {
+            case KeyEvent.VK_Q:
+                players[0].dropBomb();
+                break;
+            case KeyEvent.VK_SLASH:
+                players[1].dropBomb();
+                break;
+        }
     }
 
     @Override
@@ -36,6 +45,23 @@ public class Game implements KeyListener {
                 players[0].moveDirection = Player.MoveDirection.RIGHT;
                 players[0].faceDirection = Player.MoveDirection.RIGHT;
                 break;
+
+            case KeyEvent.VK_UP:
+                players[1].moveDirection = Player.MoveDirection.UP;
+                players[1].faceDirection = Player.MoveDirection.UP;
+                break;
+            case KeyEvent.VK_DOWN:
+                players[1].moveDirection = Player.MoveDirection.DOWN;
+                players[1].faceDirection = Player.MoveDirection.DOWN;
+                break;
+            case KeyEvent.VK_LEFT:
+                players[1].moveDirection = Player.MoveDirection.LEFT;
+                players[1].faceDirection = Player.MoveDirection.LEFT;
+                break;
+            case KeyEvent.VK_RIGHT:
+                players[1].moveDirection = Player.MoveDirection.RIGHT;
+                players[1].faceDirection = Player.MoveDirection.RIGHT;
+                break;
         }
     }
 
@@ -48,6 +74,13 @@ public class Game implements KeyListener {
             case KeyEvent.VK_A:
             case KeyEvent.VK_D:
                 players[0].moveDirection = Player.MoveDirection.NONE;
+                break;
+
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_RIGHT:
+                players[1].moveDirection = Player.MoveDirection.NONE;
                 break;
         }
     }
@@ -94,6 +127,20 @@ public class Game implements KeyListener {
     public void step() {
         for (Player player : players) {
             player.move();
+        }
+
+        List<Bomb> bombRemoval = new ArrayList<>();
+
+        for (int i = 0; i < bombs.size(); i++) {
+            Bomb currentBomb = bombs.get(i);
+            if (currentBomb.isTimerUp()) {
+                currentBomb.explode();
+                bombRemoval.add(currentBomb);
+            }
+        }
+
+        for (Bomb bomb : bombRemoval) {
+            bombs.remove(bomb);
         }
     }
 
