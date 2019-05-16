@@ -50,37 +50,53 @@ public class Player {
             case UP:
                 faceDirection = moveDirection;
                 int cord_yU = cord.y;
-                Field nextFieldU = currentGame.board.fields[cord.x][cord_yU-1];
+                Field nextFieldU = currentGame.board.fields[cord.x][cord_yU - 1];
                 System.out.printf("Next Field Type: %s%n", nextFieldU.getFieldType());
                 if (nextFieldU.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.y--;
+                }
+                if (nextFieldU.getFieldTypeFamily() == Field.TypeFamily.POWER_UP) {
+                    this.cord.y--;
+                    collectPowerUp();
                 }
                 break;
             case DOWN:
                 faceDirection = moveDirection;
                 int cord_yD = cord.y;
-                Field nextFieldD = currentGame.board.fields[cord.x][cord_yD+1];
+                Field nextFieldD = currentGame.board.fields[cord.x][cord_yD + 1];
                 System.out.printf("Next Field Type: %s%n", nextFieldD.getFieldType());
                 if (nextFieldD.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.y++;
+                }
+                if (nextFieldD.getFieldTypeFamily() == Field.TypeFamily.POWER_UP) {
+                    this.cord.y++;
+                    collectPowerUp();
                 }
                 break;
             case LEFT:
                 faceDirection = moveDirection;
                 int cord_xL = cord.x;
-                Field nextFieldL = currentGame.board.fields[cord_xL-1][cord.y];
+                Field nextFieldL = currentGame.board.fields[cord_xL - 1][cord.y];
                 System.out.printf("Next Field Type: %s%n", nextFieldL.getFieldType());
                 if (nextFieldL.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.x--;
+                }
+                if (nextFieldL.getFieldTypeFamily() == Field.TypeFamily.POWER_UP) {
+                    this.cord.x--;
+                    collectPowerUp();
                 }
                 break;
             case RIGHT:
                 faceDirection = moveDirection;
                 int cord_xR = cord.x;
-                Field nextFieldR = currentGame.board.fields[cord_xR+1][cord.y];
+                Field nextFieldR = currentGame.board.fields[cord_xR + 1][cord.y];
                 System.out.printf("Next Field Type: %s%n", nextFieldR.getFieldType());
                 if (nextFieldR.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.x++;
+                }
+                if (nextFieldR.getFieldTypeFamily() == Field.TypeFamily.POWER_UP) {
+                    this.cord.x++;
+                    collectPowerUp();
                 }
                 break;
         }
@@ -160,21 +176,26 @@ public class Player {
         switch (currentGame.board.fields[cord.x][cord.y].getFieldType()) {
             case RANGE:
                 this.bombsRange++;
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
             case CUBA_LIBRE:
                 this.bombsRange++;
                 this.bombsToPlantCount++;
                 this.movementSpeed++;
                 this.lives++;
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
             case LIVES:
                 this.lives++;
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
             case BOMBS:
                 this.bombsToPlantCount++;
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
             case BOOTS:
                 this.movementSpeed++;
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
         }
     }

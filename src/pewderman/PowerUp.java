@@ -16,14 +16,14 @@ public class PowerUp {
 
         probability = 10 * generator.nextDouble();
 
+        System.out.printf("POWER_UP: %f", probability);
+
         if (probability > 9) {
             this.powerUp = Field.Type.CUBA_LIBRE;
         } else if (probability > 8) {
             this.powerUp = Field.Type.LIVES;
         } else if (probability > 4) {
             this.powerUp = Field.Type.BOMBS;
-        } else if(probability > 2){
-            this.powerUp = Field.Type.GHOST;
         } else if(probability > 1){
             this.powerUp = Field.Type.BOOTS;
         }
