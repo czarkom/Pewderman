@@ -28,6 +28,9 @@ public class Renderer extends JPanel {
     private BufferedImage PUThanosImage;
     private BufferedImage PUTrumpImage;
 
+    private BufferedImage FireImage;
+
+
     long frameCounter = 0;
 
     private BufferedImage[] PlayerImage = new BufferedImage[2];
@@ -59,6 +62,8 @@ public class Renderer extends JPanel {
             PURangeImage = ImageIO.read(new File("assets/power_ups/range_up.png"));
             PUThanosImage = ImageIO.read(new File("assets/power_ups/thanos.png"));
             PUTrumpImage = ImageIO.read(new File("assets/power_ups/trump.png"));
+
+            FireImage = ImageIO.read(new File("assets/walls/explosion_2.png"));
 
             PlayerImage[0] = ImageIO.read(new File("assets/sprites/player_1_sprote__LGBTQSans.png"));
             PlayerImage[1] = ImageIO.read(new File("assets/sprites/player_3_sprite__gotta_go_fast.png"));
@@ -109,6 +114,10 @@ public class Renderer extends JPanel {
                     case GHOST:
                         g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
                         g.drawImage(PUGhostImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        break;
+                    case FIRE:
+                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(FireImage, x * scaleCoeficient, y * scaleCoeficient, null);
                         break;
                 }
             }
