@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Bomb {
     private int timeToExplode; // w milisekundach
-    private Point cord;
+    public Point cord;
     private Player planter; // dodaje pole tu oraz w player (player id) w celu przyznawania punktow graczom
     private int range;
     private long plantTime;
@@ -14,7 +14,7 @@ public class Bomb {
     public Bomb(int x, int y, Player planter, Game currentGame) {
         this.planter = planter;
         cord = new Point(x, y);
-        timeToExplode = 6000;
+        timeToExplode = 2500;
         range = planter.bombsRange;
         this.currentGame = currentGame;
         plantTime = System.currentTimeMillis();
@@ -36,6 +36,8 @@ public class Bomb {
         if (!currentField.isEmpty() && currentField.isAWall()) {
             currentField.destroy(Field.TypeFamily.WALL, false);
             return false;
+        } else {
+            currentField.setOnFire(currentField.getFieldType());
         }
         dealDamageToPlayers(currentField);
         return true;

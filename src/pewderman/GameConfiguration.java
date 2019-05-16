@@ -12,7 +12,7 @@ import static pewderman.Field.Type.*;
 
 public class GameConfiguration {
     private ArrayList<Field> configWalls = new ArrayList<>();
-    private int playerCount;
+    private int playerCount = 2;
 
     private String configFile;
     private String currentLine = null;
@@ -22,7 +22,7 @@ public class GameConfiguration {
 
     GameConfiguration(String fileName) {
         this.configFile = fileName;
-        setPlayerCount();
+//        setPlayerCount();
         getConfig();
     }
 

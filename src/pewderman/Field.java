@@ -42,6 +42,20 @@ public class Field {
         return fieldTypeFamily;
     }
 
+    public void setOnFire(Type postExplosion) {
+        this.fieldType = Type.FIRE;
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(250);
+                this.fieldType = postExplosion;
+            } catch (InterruptedException e) {
+                this.fieldType = postExplosion;
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
     private void destroyAllTypes() {
         fieldType = Type.NO_WALL;
         fieldTypeFamily = TypeFamily.WALL;
@@ -55,11 +69,11 @@ public class Field {
 
         if (probability * 10 < 4) {
             PowerUp powerUp = new PowerUp();
-            fieldType = powerUp.getPowerUp();
+            setOnFire(powerUp.getPowerUp());
             fieldTypeFamily = TypeFamily.POWER_UP;
-            System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to POWER_UP");
+            System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to %s%n", fieldType);
         } else {
-            fieldType = Type.NO_WALL;
+            setOnFire(Type.NO_WALL);
             System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to NO_WALL");
         }
     }
