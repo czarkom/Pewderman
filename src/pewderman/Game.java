@@ -21,44 +21,60 @@ public class Game implements KeyListener {
         int c = e.getKeyCode();
         switch (c) {
             case KeyEvent.VK_W:
-                players[0].moveDirection = Player.MoveDirection.UP;
-                players[0].faceDirection = Player.MoveDirection.UP;
+                if (players[0].isAlive()) {
+                    players[0].moveDirection = Player.MoveDirection.UP;
+                    players[0].faceDirection = Player.MoveDirection.UP;
+                }
                 break;
             case KeyEvent.VK_S:
-                players[0].moveDirection = Player.MoveDirection.DOWN;
-                players[0].faceDirection = Player.MoveDirection.DOWN;
+                if (players[0].isAlive()) {
+                    players[0].moveDirection = Player.MoveDirection.DOWN;
+                    players[0].faceDirection = Player.MoveDirection.DOWN;
+                }
                 break;
             case KeyEvent.VK_A:
-                players[0].moveDirection = Player.MoveDirection.LEFT;
-                players[0].faceDirection = Player.MoveDirection.LEFT;
+                if (players[0].isAlive()) {
+                    players[0].moveDirection = Player.MoveDirection.LEFT;
+                    players[0].faceDirection = Player.MoveDirection.LEFT;
+                }
                 break;
             case KeyEvent.VK_D:
-                players[0].moveDirection = Player.MoveDirection.RIGHT;
-                players[0].faceDirection = Player.MoveDirection.RIGHT;
+                if (players[0].isAlive()) {
+                    players[0].moveDirection = Player.MoveDirection.RIGHT;
+                    players[0].faceDirection = Player.MoveDirection.RIGHT;
+                }
                 break;
 
             case KeyEvent.VK_UP:
-                players[1].moveDirection = Player.MoveDirection.UP;
-                players[1].faceDirection = Player.MoveDirection.UP;
+                if (players[1].isAlive()) {
+                    players[1].moveDirection = Player.MoveDirection.UP;
+                    players[1].faceDirection = Player.MoveDirection.UP;
+                }
                 break;
             case KeyEvent.VK_DOWN:
-                players[1].moveDirection = Player.MoveDirection.DOWN;
-                players[1].faceDirection = Player.MoveDirection.DOWN;
+                if (players[1].isAlive()) {
+                    players[1].moveDirection = Player.MoveDirection.DOWN;
+                    players[1].faceDirection = Player.MoveDirection.DOWN;
+                }
                 break;
             case KeyEvent.VK_LEFT:
-                players[1].moveDirection = Player.MoveDirection.LEFT;
-                players[1].faceDirection = Player.MoveDirection.LEFT;
+                if (players[1].isAlive()) {
+                    players[1].moveDirection = Player.MoveDirection.LEFT;
+                    players[1].faceDirection = Player.MoveDirection.LEFT;
+                }
                 break;
             case KeyEvent.VK_RIGHT:
-                players[1].moveDirection = Player.MoveDirection.RIGHT;
-                players[1].faceDirection = Player.MoveDirection.RIGHT;
+                if (players[1].isAlive()) {
+                    players[1].moveDirection = Player.MoveDirection.RIGHT;
+                    players[1].faceDirection = Player.MoveDirection.RIGHT;
+                }
                 break;
 
             case KeyEvent.VK_Q:
-                players[0].dropBomb();
+                if (players[0].isAlive()) players[0].dropBomb();
                 break;
             case KeyEvent.VK_SLASH:
-                players[1].dropBomb();
+                if (players[1].isAlive()) players[1].dropBomb();
                 break;
         }
     }

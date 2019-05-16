@@ -34,6 +34,7 @@ public class Renderer extends JPanel {
     long frameCounter = 0;
 
     private BufferedImage[] PlayerImage = new BufferedImage[2];
+    private BufferedImage DeadPlayerImage;
 
     Renderer(Game game) {
         setSize(840, 840);
@@ -67,6 +68,8 @@ public class Renderer extends JPanel {
 
             PlayerImage[0] = ImageIO.read(new File("assets/sprites/player_1_sprote__LGBTQSans.png"));
             PlayerImage[1] = ImageIO.read(new File("assets/sprites/player_3_sprite__gotta_go_fast.png"));
+            DeadPlayerImage = ImageIO.read(new File("assets/sprites/Dead.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -128,6 +131,12 @@ public class Renderer extends JPanel {
         }
 
         Player currentPlayer;
+        for (int i = 0; i < currentGame.players.length; i++) {
+            currentPlayer = currentGame.players[i];
+
+            if(!currentPlayer.isAlive()) g.drawImage(DeadPlayerImage, currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
+        }
+
         for (int i = 0; i < currentGame.players.length; i++) {
             currentPlayer = currentGame.players[i];
 
