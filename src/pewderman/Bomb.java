@@ -67,10 +67,14 @@ public class Bomb {
     public void explode() {
         System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: exploded");
 
+        int range = planter.bombsRange;
+
+        planter.bombsToPlantCount++;
+
         damageTheField(currentGame.board.fields[cord.x][cord.y]);
-        explodeDirection(0, -1); // wybuch w górę
-        explodeDirection(1, 0); // wybuch w prawo
-        explodeDirection(0, 1); // wybuch w dół
-        explodeDirection(-1, 0); // wybuch w lewo
+        explodeDirection(0, -range); // wybuch w górę
+        explodeDirection(range, 0); // wybuch w prawo
+        explodeDirection(0, range); // wybuch w dół
+        explodeDirection(-range, 0); // wybuch w lewo
     }
 }
