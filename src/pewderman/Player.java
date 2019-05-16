@@ -49,34 +49,38 @@ public class Player {
         switch (moveDirection) {
             case UP:
                 faceDirection = moveDirection;
-                Field nextFieldU = currentGame.board.fields[cord.x][cord.y--];
+                int cord_yU = cord.y;
+                Field nextFieldU = currentGame.board.fields[cord.x][cord_yU-1];
                 System.out.printf("Next Field Type: %s%n", nextFieldU.getFieldType());
                 if (nextFieldU.getFieldType() == Field.Type.NO_WALL) {
-                    cord = new Point(cord.x, cord.y--);
+                    this.cord.y--;
                 }
                 break;
             case DOWN:
                 faceDirection = moveDirection;
-                Field nextFieldD = currentGame.board.fields[cord.x][cord.y++];
+                int cord_yD = cord.y;
+                Field nextFieldD = currentGame.board.fields[cord.x][cord_yD+1];
                 System.out.printf("Next Field Type: %s%n", nextFieldD.getFieldType());
                 if (nextFieldD.getFieldType() == Field.Type.NO_WALL) {
-                    cord = new Point(cord.x, cord.y++);
+                    this.cord.y++;
                 }
                 break;
             case LEFT:
                 faceDirection = moveDirection;
-                Field nextFieldL = currentGame.board.fields[cord.x--][cord.y];
+                int cord_xL = cord.x;
+                Field nextFieldL = currentGame.board.fields[cord_xL-1][cord.y];
                 System.out.printf("Next Field Type: %s%n", nextFieldL.getFieldType());
                 if (nextFieldL.getFieldType() == Field.Type.NO_WALL) {
-                    cord = new Point(cord.x--, cord.y);
+                    this.cord.x--;
                 }
                 break;
             case RIGHT:
                 faceDirection = moveDirection;
-                Field nextFieldR = currentGame.board.fields[cord.x++][cord.y];
+                int cord_xR = cord.x;
+                Field nextFieldR = currentGame.board.fields[cord_xR+1][cord.y];
                 System.out.printf("Next Field Type: %s%n", nextFieldR.getFieldType());
                 if (nextFieldR.getFieldType() == Field.Type.NO_WALL) {
-                    cord = new Point(cord.x++, cord.y);
+                    this.cord.x++;
                 }
                 break;
         }
