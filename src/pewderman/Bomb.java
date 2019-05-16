@@ -36,6 +36,8 @@ public class Bomb {
         if (!currentField.isEmpty() && currentField.isAWall()) {
             currentField.destroy(Field.TypeFamily.WALL, false);
             return false;
+        } else {
+            currentField.setOnFire(currentField.getFieldType());
         }
         dealDamageToPlayers(currentField);
         return true;
