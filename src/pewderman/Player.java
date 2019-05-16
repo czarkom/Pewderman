@@ -19,7 +19,6 @@ public class Player {
     public int bombsToPlantCount;
     public int bombsRange;
     public int lives;
-    public int movementSpeed;
 
     private Game currentGame;
 
@@ -34,9 +33,8 @@ public class Player {
         this.currentGame = currentGame;
         moveCounter = 0;
         bombsToPlantCount = 1;
-        bombsRange = 1      ;
+        bombsRange = 1;
         lives = 1;
-        movementSpeed = 3;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
@@ -153,11 +151,11 @@ public class Player {
     }
 
     public void dropBomb() {
-        if(this.bombsToPlantCount!=0){
-        System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
-        Bomb bomb = new Bomb(cord.x, cord.y, this, currentGame);
-        currentGame.bombs.add(bomb);
-        this.bombsToPlantCount--;
+        if (this.bombsToPlantCount != 0) {
+            System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
+            Bomb bomb = new Bomb(cord.x, cord.y, this, currentGame);
+            currentGame.bombs.add(bomb);
+            this.bombsToPlantCount--;
         }
     }
 
@@ -184,7 +182,9 @@ public class Player {
             case CUBA_LIBRE:
                 this.bombsRange++;
                 this.bombsToPlantCount++;
-                this.movementSpeed++;
+                if (this.moveFrame > 79) {
+                    this.moveFrame = this.moveFrame - 10;
+                }
                 this.lives++;
                 currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
@@ -197,7 +197,9 @@ public class Player {
                 currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
             case BOOTS:
-                this.movementSpeed++;
+                if (this.moveFrame > 79) {
+                    this.moveFrame = this.moveFrame - 10;
+                }
                 currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
         }
