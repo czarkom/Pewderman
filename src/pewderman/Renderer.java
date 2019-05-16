@@ -106,6 +106,10 @@ public class Renderer extends JPanel {
                         g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
                         g.drawImage(PUBootsImage, x * scaleCoeficient, y * scaleCoeficient, null);
                         break;
+                    case GHOST:
+                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(PUGhostImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        break;
                 }
             }
         }
