@@ -14,15 +14,6 @@ public class Game implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        int c = e.getKeyCode();
-        switch (c) {
-            case KeyEvent.VK_Q:
-                players[0].dropBomb();
-                break;
-            case KeyEvent.VK_SLASH:
-                players[1].dropBomb();
-                break;
-        }
     }
 
     @Override
@@ -61,6 +52,13 @@ public class Game implements KeyListener {
             case KeyEvent.VK_RIGHT:
                 players[1].moveDirection = Player.MoveDirection.RIGHT;
                 players[1].faceDirection = Player.MoveDirection.RIGHT;
+                break;
+
+            case KeyEvent.VK_Q:
+                players[0].dropBomb();
+                break;
+            case KeyEvent.VK_SLASH:
+                players[1].dropBomb();
                 break;
         }
     }
@@ -102,7 +100,7 @@ public class Game implements KeyListener {
         System.out.println("pewderman.Game: pewderman.Game has started, there are " + players.length + " players alive.");
         this.players[0].dropBomb();
         this.bombs.get(0).explode();
-        this.end(this.players.length    , this.players);
+        this.end(this.players.length, this.players);
     }
 
     public void end(int playerCount, Player[] players) {

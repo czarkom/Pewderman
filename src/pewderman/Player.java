@@ -34,7 +34,7 @@ public class Player {
         this.currentGame = currentGame;
         moveCounter = 0;
         bombsToPlantCount = 1;
-        bombsRange = 1;
+        bombsRange = 5;
         lives = 1;
         movementSpeed = 3;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");

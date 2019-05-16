@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Bomb {
     private int timeToExplode; // w milisekundach
-    private Point cord;
+    public Point cord;
     private Player planter; // dodaje pole tu oraz w player (player id) w celu przyznawania punktow graczom
     private int range;
     private long plantTime;

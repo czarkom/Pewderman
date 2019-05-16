@@ -16,6 +16,9 @@ public class Renderer extends JPanel {
     private BufferedImage BWImage;
     private BufferedImage UWImage;
 
+    private BufferedImage BombImage;
+    private BufferedImage PUBombsImage;
+
     long frameCounter = 0;
 
     private BufferedImage[] PlayerImage = new BufferedImage[2];
@@ -35,6 +38,10 @@ public class Renderer extends JPanel {
             NWImage = ImageIO.read(new File("assets/walls/walking_space.png"));
             BWImage = ImageIO.read(new File("assets/walls/wall_to_decide_1.png"));
             UWImage = ImageIO.read(new File("assets/walls/wall_to_decide_2.png"));
+
+            BombImage = ImageIO.read(new File("assets/sprites/bomba.png"));
+
+            PUBombsImage = ImageIO.read(new File("assets/power_ups/add_bomba.png"));
 
             PlayerImage[0] = ImageIO.read(new File("assets/sprites/player_1_sprote__LGBTQSans.png"));
             PlayerImage[1] = ImageIO.read(new File("assets/sprites/player_3_sprite__gotta_go_fast.png"));
@@ -61,15 +68,27 @@ public class Renderer extends JPanel {
                     case UNBREAKABLE_WALL:
                         g.drawImage(UWImage, x * scaleCoeficient, y * scaleCoeficient, null);
                         break;
+                    case BOMBS:
+                    case RANGE:
+                    case LIVES:
+                    case CUBA_LIBRE:
+                    case GHOST:
+                    case BOOTS:
+                        g.drawImage(NWImage, x * scaleCoeficient, y * scaleCoeficient, null);
+                        g.drawImage(PUBombsImage, x * scaleCoeficient, y * scaleCoeficient, null);
                 }
             }
+        }
+
+        for (Bomb bomb : currentGame.bombs) {
+            g.drawImage(BombImage, bomb.cord.x * scaleCoeficient, bomb.cord.y * scaleCoeficient, null);
         }
 
         Player currentPlayer;
         for (int i = 0; i < currentGame.players.length; i++) {
             currentPlayer = currentGame.players[i];
 
-            g.drawImage(PlayerImage[i], currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
+            if(currentPlayer.isAlive()) g.drawImage(PlayerImage[i], currentPlayer.cord.x * scaleCoeficient, currentPlayer.cord.y * scaleCoeficient, null);
         }
     }
 
