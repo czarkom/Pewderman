@@ -49,10 +49,11 @@ public class Player {
         switch (moveDirection) {
             case UP:
                 faceDirection = moveDirection;
-                Field nextFieldU = currentGame.board.fields[cord.x][cord.y--];
+                int cord_y = cord.y;
+                Field nextFieldU = currentGame.board.fields[cord.x][cord_y-1];
                 System.out.printf("Next Field Type: %s%n", nextFieldU.getFieldType());
                 if (nextFieldU.getFieldType() == Field.Type.NO_WALL) {
-                    cord = new Point(cord.x, cord.y--);
+                    this.cord.y--;
                 }
                 break;
             case DOWN:
