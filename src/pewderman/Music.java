@@ -10,15 +10,16 @@ import java.net.URL;
 public class Music {
 
 
-    private static Mixer mixer;
+
     private static Clip clip;
 
 
     public Music(){//String musicSource) {
+        Mixer mixer;
         Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
-        //for(Mixer.Info info: mixInfos){
-        //  System.out.println(info.getName() + " --- " + info.getDescription());
-        //}
+        for(Mixer.Info info: mixInfos){
+          System.out.println(info.getName() + " --- " + info.getDescription());
+        }
 
         mixer = AudioSystem.getMixer(mixInfos[2]);
 
@@ -30,7 +31,7 @@ public class Music {
         }
 
         try {
-            URL soundURL = Music.class.getResource("/assets/music/music.wav");
+            URL soundURL = Music.class.getResource("/music/music.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
             clip.open(audioStream);
         } catch (IOException ioe) {
@@ -44,7 +45,7 @@ public class Music {
 
     public void playMusic() {
         clip.start();
-        do {
+        /*do {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ie) {
@@ -52,6 +53,6 @@ public class Music {
             }
         }
         while
-        (clip.isActive());
+        (clip.isActive());*/
     }
 }
