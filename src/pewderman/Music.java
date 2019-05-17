@@ -32,7 +32,7 @@ public class Music {
         }
 
         try {
-            URL soundURL = Music.class.getResource("/music/music.wav");
+            URL soundURL = Music.class.getResource("/music/music2.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
             clip.open(audioStream);
         } catch (IOException ioe) {
