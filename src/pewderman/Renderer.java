@@ -55,8 +55,8 @@ public class Renderer extends JPanel {
     private void loadImages() {
         try {
             NWImage = ImageIO.read(new File("assets/walls/walking_space.png"));
-            BWImage = ImageIO.read(new File("assets/walls/wall_to_decide_1.png"));
-            UWImage = ImageIO.read(new File("assets/walls/wall_to_decide_2.png"));
+            BWImage = ImageIO.read(new File("assets/walls/wall_to_decide.png"));
+            UWImage = ImageIO.read(new File("assets/walls/wall_to_decide_2_2.png"));
 
             BombImage = ImageIO.read(new File("assets/sprites/bomba.png"));
 
@@ -170,6 +170,9 @@ public class Renderer extends JPanel {
         Renderer renderer = new Renderer(game);
 
         renderer.loadImages();
+
+        Music music = new Music();
+        music.playMusic();
 
         JFrame frame = new JFrame();
         frame.setTitle("PewDerMan");
