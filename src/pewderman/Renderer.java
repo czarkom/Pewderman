@@ -171,8 +171,7 @@ public class Renderer extends JPanel {
 
         renderer.loadImages();
 
-        Music music = new Music();
-        music.playMusic();
+
 
         JFrame frame = new JFrame();
         frame.setTitle("PewDerMan");
@@ -195,6 +194,7 @@ public class Renderer extends JPanel {
             frame.repaint();
 
             timeDiff = System.currentTimeMillis() - frameStart;
+
             if (timeDiff < minFrameDuration) {
                 try {
                     Thread.sleep(minFrameDuration - timeDiff);
@@ -202,6 +202,7 @@ public class Renderer extends JPanel {
                     e.printStackTrace();
                 }
             }
+
         }
     }
 }

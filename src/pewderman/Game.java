@@ -11,6 +11,7 @@ public class Game implements KeyListener {
     public Board board;
     public Player[] players;
     public ArrayList<Bomb> bombs;
+    public Music music;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -89,6 +90,14 @@ public class Game implements KeyListener {
             case KeyEvent.VK_D:
                 players[0].moveDirection = Player.MoveDirection.NONE;
                 break;
+            case KeyEvent.VK_M:
+                if(music.getMusicState()){
+                    music.stopMusic();
+                }
+                else{
+                    music.playMusic();
+                }
+                break;
 
             case KeyEvent.VK_UP:
             case KeyEvent.VK_DOWN:
@@ -103,6 +112,7 @@ public class Game implements KeyListener {
         this.board = new Board(this);
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
+        this.music = new Music();
 
         this.players[0] = new Player(1, 1, "player_1", 1, this);
         if (playerCount == 2) this.players[1] = new Player(19, 19, "player_2", 2, this);
@@ -170,6 +180,7 @@ public class Game implements KeyListener {
         game.board.fillBoard(config.getWalls());
 
         game.start();
+
 
 //        EventQueue.invokeLater(new Runnable() {
 //            @Override

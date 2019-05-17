@@ -12,9 +12,10 @@ public class Music {
 
 
     private static Clip clip;
-
+    private boolean musicState;
 
     public Music(){//String musicSource) {
+        this.musicState = true;
         Mixer mixer;
         Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
         for(Mixer.Info info: mixInfos){
@@ -41,18 +42,21 @@ public class Music {
         } catch (UnsupportedAudioFileException uafe) {
             uafe.printStackTrace();
         }
+        clip.start();
+        clip.loop(10000);
     }
 
     public void playMusic() {
         clip.start();
-        /*do {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            }
-        }
-        while
-        (clip.isActive());*/
+        clip.loop(10000);
+        this.musicState = true;
+    }
+    public void stopMusic() {
+        this.musicState = false;
+        clip.stop();
+    }
+
+    public boolean getMusicState(){
+        return this.musicState;
     }
 }
