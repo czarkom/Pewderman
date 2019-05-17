@@ -43,12 +43,12 @@ public class Music {
             uafe.printStackTrace();
         }
         clip.start();
-        clip.loop(10000);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     public void playMusic() {
         clip.start();
-        clip.loop(10000);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
         this.musicState = true;
     }
     public void stopMusic() {
