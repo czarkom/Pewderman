@@ -21,7 +21,7 @@ public class Music {
             System.out.println(info.getName() + " --- " + info.getDescription());
         }
 
-        mixer = AudioSystem.getMixer(mixInfos[getDefaultAudioDeviceNumber()]);
+        mixer = AudioSystem.getMixer(mixInfos[2]);
 
         DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
         try {
