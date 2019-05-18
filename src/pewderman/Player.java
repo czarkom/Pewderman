@@ -130,33 +130,33 @@ public class Player {
         if (lives <= 0) die();
     }
 
-    public void buildAWall() {
+    public void useTrumpsBlessing() {
         switch (this.faceDirection) {
             case UP:
                 int cordYU = this.cord.y - 1;
-                if (currentGame.board.fields[this.cord.x][cordYU].getFieldType() == Field.Type.NO_WALL) {
+                if (currentGame.board.fields[this.cord.x][cordYU].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
                     currentGame.board.fields[this.cord.x][cordYU].buildAWall();
                     this.hasTrumpBlessing--;
                 }
                 break;
             case DOWN:
                 int cordYD = this.cord.y + 1;
-                if (currentGame.board.fields[this.cord.x][cordYD].getFieldType() == Field.Type.NO_WALL) {
+                if (currentGame.board.fields[this.cord.x][cordYD].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
                     currentGame.board.fields[this.cord.x][cordYD].buildAWall();
                     this.hasTrumpBlessing--;
                 }
                 break;
             case RIGHT:
                 int cordXR = this.cord.x + 1;
-                if (currentGame.board.fields[this.cord.x][cordXR].getFieldType() == Field.Type.NO_WALL) {
+                if (currentGame.board.fields[this.cord.x][cordXR].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
                     currentGame.board.fields[this.cord.x][cordXR].buildAWall();
                     this.hasTrumpBlessing--;
                 }
                 break;
             case LEFT:
                 int cordXL = this.cord.x - 1;
-                if (currentGame.board.fields[this.cord.x][cordXL].getFieldType() == Field.Type.NO_WALL) {
-                      currentGame.board.fields[this.cord.x][cordXL].buildAWall();
+                if (currentGame.board.fields[this.cord.x][cordXL].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
+                    currentGame.board.fields[this.cord.x][cordXL].buildAWall();
                     this.hasTrumpBlessing--;
                 }
                 break;

@@ -47,11 +47,11 @@ public class Game implements KeyListener {
                 break;
 
             case KeyEvent.VK_E:
-                if(players[0].isAlive()) players[0].buildAWall();
+                if(players[0].isAlive()) players[0].useTrumpsBlessing();
                 break;
 
             case KeyEvent.VK_BACK_SLASH:
-                if(players[1].isAlive()) players[1].buildAWall();
+                if(players[1].isAlive()) players[1].useTrumpsBlessing();
                 break;
 
             case KeyEvent.VK_UP:
