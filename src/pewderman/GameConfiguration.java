@@ -36,19 +36,7 @@ public class GameConfiguration {
         return this.playerCount;
     }
 
- /*   public int getDefaultAudioDeviceNumber() {
-        int counter = 0;
-        int i = 0;
-        Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
-        for (Mixer.Info info : mixInfos) {
-            counter++;
-        }
-        String[] comparanceString = new String[counter];
-        for (Mixer.Info info : mixInfos) {
-            info.getName();
-        }
-        return 0;
-    }*/
+
 
     private void parseLine() {
         String[] keyValue = currentLine.split(":");

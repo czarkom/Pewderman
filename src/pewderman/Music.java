@@ -10,19 +10,18 @@ import java.net.URL;
 public class Music {
 
 
-
     private static Clip clip;
     private boolean musicState;
 
-    public Music(){//String musicSource) {
+    public Music() {//String musicSource) {
         this.musicState = true;
         Mixer mixer;
         Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
-        for(Mixer.Info info: mixInfos){
-          System.out.println(info.getName() + " --- " + info.getDescription());
+        for (Mixer.Info info : mixInfos) {
+            System.out.println(info.getName() + " --- " + info.getDescription());
         }
 
-        mixer = AudioSystem.getMixer(mixInfos[2]);
+        mixer = AudioSystem.getMixer(mixInfos[getDefaultAudioDeviceNumber()]);
 
         DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
         try {
@@ -51,12 +50,30 @@ public class Music {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
         this.musicState = true;
     }
+
     public void stopMusic() {
         this.musicState = false;
         clip.stop();
     }
 
-    public boolean getMusicState(){
+    public boolean getMusicState() {
         return this.musicState;
+    }
+
+    public int getDefaultAudioDeviceNumber() {
+        int counter = 0;
+        int outputDevice = -1;
+        char[] charArray;
+        Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
+        for (Mixer.Info info : mixInfos) {
+            charArray = info.getName().toCharArray();
+            for (char singleChar : charArray) {
+                if (singleChar == 'D') {
+                    outputDevice = counter;
+                }
+            }
+            counter++;
+        }
+        return outputDevice;
     }
 }
