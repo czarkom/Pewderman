@@ -1,5 +1,7 @@
 package pewderman;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Mixer;
 import java.util.ArrayList;
 
 import java.io.BufferedReader;
@@ -33,6 +35,20 @@ public class GameConfiguration {
     public int getPlayerCount() {
         return this.playerCount;
     }
+
+ /*   public int getDefaultAudioDeviceNumber() {
+        int counter = 0;
+        int i = 0;
+        Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
+        for (Mixer.Info info : mixInfos) {
+            counter++;
+        }
+        String[] comparanceString = new String[counter];
+        for (Mixer.Info info : mixInfos) {
+            info.getName();
+        }
+        return 0;
+    }*/
 
     private void parseLine() {
         String[] keyValue = currentLine.split(":");
