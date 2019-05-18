@@ -19,6 +19,7 @@ public class Player {
     public int bombsToPlantCount;
     public int bombsRange;
     public int lives;
+    public int hasTrumpBlessing;
 
     private Game currentGame;
 
@@ -35,6 +36,7 @@ public class Player {
         bombsToPlantCount = 1;
         bombsRange = 1;
         lives = 1;
+        hasTrumpBlessing = 0;
         System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
@@ -98,55 +100,6 @@ public class Player {
                 }
                 break;
         }
-
-//        if (moveDirection == MoveDirection.UP) {
-//            this.faceDirection = moveDirection;
-//            ;
-//            System.out.printf("Next Field Type: %s%n", nextField.getFieldType());
-//            if (nextField.isEmpty() || nextField.isAPowerUp()) {
-//                cord.y--;
-//                moveCounter = 0;
-//                if (nextField.isAPowerUp()) {
-//                    collectPowerUp();
-//                }
-//            }
-//        } else if (moveDirection == MoveDirection.DOWN) {
-//            this.faceDirection = moveDirection;
-//            nextField = currentGame.board.fields[this.cord.x][this.cord.y++];
-//            System.out.printf("Next Field Type: %s%n", nextField.getFieldType());
-//            if (nextField.isEmpty() || nextField.isAPowerUp()) {
-//                cord.y++;
-//                moveCounter = 0;
-//                if (nextField.isAPowerUp()) {
-//                    collectPowerUp();
-//                }
-//            }
-//        } else if (moveDirection == MoveDirection.LEFT) {
-//            this.faceDirection = moveDirection;
-//            nextField = currentGame.board.fields[this.cord.x--][this.cord.y];
-//            if (nextField.isEmpty() || nextField.isAPowerUp()) {
-//                cord.x--;
-//                moveCounter = 0;
-//                if (nextField.isAPowerUp()) {
-//                    collectPowerUp();
-//                }
-//            }
-//        } else if (moveDirection == MoveDirection.RIGHT) {
-//            this.faceDirection = moveDirection;
-//            nextField = currentGame.board.fields[this.cord.x++][this.cord.y];
-//            if (nextField.isEmpty() || nextField.isAPowerUp()) {
-//                cord.x++;
-//                moveCounter = 0;
-//                if (nextField.isAPowerUp()) {
-//                    collectPowerUp();
-//                }
-//            }
-//        } else if (moveDirection == MoveDirection.NONE) {
-//            moveCounter++;
-//            if (moveCounter == 30) {
-//                System.out.println("pewderman.Player.move: Gotta keep moving");
-//            }
-//        }
         lastMoveTimestamp = System.currentTimeMillis();
     }
 
@@ -177,6 +130,39 @@ public class Player {
         if (lives <= 0) die();
     }
 
+    public void buildAWall() {
+        switch (this.faceDirection) {
+            case UP:
+                int cordYU = this.cord.y - 1;
+                if (currentGame.board.fields[this.cord.x][cordYU].getFieldType() == Field.Type.NO_WALL) {
+                    currentGame.board.fields[this.cord.x][cordYU].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
+            case DOWN:
+                int cordYD = this.cord.y + 1;
+                if (currentGame.board.fields[this.cord.x][cordYD].getFieldType() == Field.Type.NO_WALL) {
+                    currentGame.board.fields[this.cord.x][cordYD].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
+            case RIGHT:
+                int cordXR = this.cord.x + 1;
+                if (currentGame.board.fields[this.cord.x][cordXR].getFieldType() == Field.Type.NO_WALL) {
+                    currentGame.board.fields[this.cord.x][cordXR].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
+            case LEFT:
+                int cordXL = this.cord.x - 1;
+                if (currentGame.board.fields[this.cord.x][cordXL].getFieldType() == Field.Type.NO_WALL) {
+                      currentGame.board.fields[this.cord.x][cordXL].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
+        }
+    }
+
     public void collectPowerUp() {
         switch (currentGame.board.fields[cord.x][cord.y].getFieldType()) {
             case RANGE:
@@ -204,6 +190,10 @@ public class Player {
                 if (this.moveFrame > 79) {
                     this.moveFrame = this.moveFrame - 10;
                 }
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
+                break;
+            case TRUMP_BLESSING:
+                this.hasTrumpBlessing++;
                 currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
                 break;
         }

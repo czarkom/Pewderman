@@ -9,7 +9,7 @@ public class Field {
 
     public enum TypeFamily {WALL, POWER_UP}
 
-    public enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIVES, CUBA_LIBRE, GHOST, BOOTS}
+    public enum Type {BREAKABLE_WALL, UNBREAKABLE_WALL, NO_WALL, FIRE, RANGE, BOMBS, LIVES, CUBA_LIBRE, GHOST, BOOTS, TRUMP_BLESSING}
 
     private Type fieldType;
     private TypeFamily fieldTypeFamily;
@@ -54,6 +54,10 @@ public class Field {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    public void buildAWall(){
+        fieldType = Type.BREAKABLE_WALL;
     }
 
     private void destroyAllTypes() {

@@ -46,6 +46,14 @@ public class Game implements KeyListener {
                 }
                 break;
 
+            case KeyEvent.VK_E:
+                if(players[0].isAlive()) players[0].buildAWall();
+                break;
+
+            case KeyEvent.VK_BACK_SLASH:
+                if(players[1].isAlive()) players[1].buildAWall();
+                break;
+
             case KeyEvent.VK_UP:
                 if (players[1].isAlive()) {
                     players[1].moveDirection = Player.MoveDirection.UP;
@@ -98,6 +106,7 @@ public class Game implements KeyListener {
                     music.playMusic();
                 }
                 break;
+
 
             case KeyEvent.VK_UP:
             case KeyEvent.VK_DOWN:

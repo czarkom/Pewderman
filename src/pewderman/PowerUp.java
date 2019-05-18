@@ -22,11 +22,14 @@ public class PowerUp {
             this.powerUp = Field.Type.CUBA_LIBRE;
         } else if (probability > 8) {
             this.powerUp = Field.Type.LIVES;
-        } else if (probability > 4) {
+        } else if (probability > 6) {
             this.powerUp = Field.Type.BOMBS;
-        } else if(probability > 2){
+        } else if(probability > 4){
             this.powerUp = Field.Type.BOOTS;
+        } else if(probability > 2){
+            this.powerUp = Field.Type.TRUMP_BLESSING;
         }
+
 
     }
 
