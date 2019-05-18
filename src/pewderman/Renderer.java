@@ -129,6 +129,10 @@ public class Renderer extends JPanel {
                         g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         g.drawImage(FireImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
+                    case TRUMP_BLESSING:
+                        g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PUTrumpImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        break;
                 }
             }
         }
