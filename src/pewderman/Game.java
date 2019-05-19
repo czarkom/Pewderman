@@ -47,11 +47,11 @@ public class Game implements KeyListener {
                 break;
 
             case KeyEvent.VK_E:
-                if(players[0].isAlive()) players[0].useTrumpsBlessing();
+                if (players[0].isAlive()) players[0].useTrumpsBlessing();
                 break;
 
             case KeyEvent.VK_BACK_SLASH:
-                if(players[1].isAlive()) players[1].useTrumpsBlessing();
+                if (players[1].isAlive()) players[1].useTrumpsBlessing();
                 break;
 
             case KeyEvent.VK_UP:
@@ -99,11 +99,12 @@ public class Game implements KeyListener {
                 players[0].moveDirection = Player.MoveDirection.NONE;
                 break;
             case KeyEvent.VK_M:
-                if(music.getMusicState()){
-                    music.stopMusic();
-                }
-                else{
-                    music.playMusic();
+                if (music != null) {
+                    if (music.getMusicState()) {
+                        music.stopMusic();
+                    } else {
+                        music.playMusic();
+                    }
                 }
                 break;
 
@@ -121,7 +122,15 @@ public class Game implements KeyListener {
         this.board = new Board(this);
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
-        this.music = new Music();
+
+        try {
+            this.music = new Music();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Starting without music!");
+            this.music = null;
+        }
+
 
         this.players[0] = new Player(1, 1, "player_1", 1, this);
         if (playerCount == 2) this.players[1] = new Player(19, 19, "player_2", 2, this);

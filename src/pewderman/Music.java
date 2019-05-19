@@ -21,7 +21,7 @@ public class Music {
             System.out.println(info.getName() + " --- " + info.getDescription());
         }
 
-        mixer = AudioSystem.getMixer(mixInfos[2]);
+        mixer = AudioSystem.getMixer(mixInfos[9]);
 
         DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
         try {
@@ -34,12 +34,8 @@ public class Music {
             URL soundURL = Music.class.getResource("/music/music.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
             clip.open(audioStream);
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } catch (LineUnavailableException e) {
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
-        } catch (UnsupportedAudioFileException uafe) {
-            uafe.printStackTrace();
         }
         clip.start();
         clip.loop(Clip.LOOP_CONTINUOUSLY);
