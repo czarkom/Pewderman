@@ -2,8 +2,7 @@ package pewderman;
 
 
 import javax.sound.sampled.*;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import javax.xml.transform.SourceLocator;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -13,26 +12,30 @@ public class Music {
     private static Clip clip;
     private boolean musicState;
 
-    public Music() {//String musicSource) {
+    Music() {
         this.musicState = true;
-        Mixer mixer;
+        Mixer mixer = null;
         Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
-        for (Mixer.Info info : mixInfos) {
-            System.out.println(info.getName() + " --- " + info.getDescription());
+
+//        for (Mixer.Info info : mixInfos) {
+//            System.out.println(info.getName() + " --- " + info.getDescription());
+//        }
+
+        for (Mixer.Info mixInfo : mixInfos) {
+            try {
+                mixer = AudioSystem.getMixer(mixInfo);
+                DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
+                clip = (Clip) mixer.getLine(dataInfo);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.printf("%s is unsupported!%n", mixInfo);
+            } catch (LineUnavailableException e) {
+                System.out.printf("%s is unavailable!%n", mixInfo);
+            }
         }
 
-        mixer = AudioSystem.getMixer(mixInfos[9]);
-
-        DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
         try {
-            clip = (Clip) mixer.getLine(dataInfo);
-        } catch (LineUnavailableException lue) {
-            lue.printStackTrace();
-        }
-
-        try {
-            URL soundURL = Music.class.getResource("/music/music.wav");
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File("assets/music/music.wav"));
             clip.open(audioStream);
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
