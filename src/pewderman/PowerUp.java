@@ -2,8 +2,8 @@ package pewderman;
 
 import java.util.Random;
 
-public class PowerUp {
-    public static Field.Type getPowerUp() {
+class PowerUp {
+    static Field.Type getPowerUp() {
         Random generator = new Random();
         double probability = 10 * generator.nextDouble();
         System.out.printf("POWER_UP: %f", probability);

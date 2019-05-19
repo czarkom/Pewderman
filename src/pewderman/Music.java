@@ -44,18 +44,18 @@ public class Music {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public void playMusic() {
+    void playMusic() {
         clip.start();
         clip.loop(Clip.LOOP_CONTINUOUSLY);
         this.musicState = true;
     }
 
-    public void stopMusic() {
+    void stopMusic() {
         this.musicState = false;
         clip.stop();
     }
 
-    public boolean getMusicState() {
+    boolean getMusicState() {
         return this.musicState;
     }
 

@@ -1,18 +1,16 @@
 package pewderman;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Mixer;
 import java.util.ArrayList;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 import static pewderman.Field.Type.*;
 
-public class GameConfiguration {
+@SuppressWarnings("SameParameterValue")
+class GameConfiguration {
     private ArrayList<Field> configWalls = new ArrayList<>();
     private int playerCount = 2;
 
@@ -28,11 +26,11 @@ public class GameConfiguration {
         getConfig();
     }
 
-    public ArrayList<Field> getWalls() {
+    ArrayList<Field> getWalls() {
         return this.configWalls;
     }
 
-    public int getPlayerCount() {
+    int getPlayerCount() {
         return this.playerCount;
     }
 

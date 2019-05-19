@@ -3,18 +3,15 @@ package pewderman;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Board {
-    public int height;
-    public int width;
-    public Field[][] fields;
+class Board {
+    int height;
+    int width;
+    Field[][] fields;
 
-    private Game currentGame;
 
-    public Board(Game currentGame) {
+    Board() {
         this.height = 21;
         this.width = 21;
-
-        this.currentGame = currentGame;
 
         Random generator = new Random();
 
@@ -35,7 +32,7 @@ public class Board {
     }
 
 
-    public void fillBoard(ArrayList<Field> _fileds) {
+    void fillBoard(ArrayList<Field> _fileds) {
         for (Field field : _fileds) {
             this.fields[field.cord.x][field.cord.y] = field;
         }

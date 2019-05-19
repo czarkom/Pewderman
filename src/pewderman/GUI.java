@@ -11,21 +11,9 @@ import javax.swing.*;
 
 import static pewderman.Player.MoveDirection.*;
 
-public class GUI extends JFrame{
+class GUI extends JFrame{
 
     private BufferedImage image;
-
-    //1 opcja, 2 to deklaracja tego w konstruktorze
-    /**JFrame frame = new JFrame();
-    JPanel panelContainer = new JPanel();
-    JPanel panelFirst = new PicturePanel();
-     JPanel panelSecond = new GamePanel();
-
-    //JButton playButton = new JButton();
-    //JButton exitButton = new JButton();
-    CardLayout cl = new CardLayout();*/
-    private JButton playButton;
-    private JButton exitButton;
 
     public GUI(){
 
@@ -55,8 +43,17 @@ public class GUI extends JFrame{
         Image newImg2 = img2.getScaledInstance(70,50,Image.SCALE_SMOOTH);
         exit = new ImageIcon(newImg2);
 
-        playButton = new JButton(startGame);
-        exitButton = new JButton(exit);
+        /*JFrame frame = new JFrame();
+         JPanel panelContainer = new JPanel();
+         JPanel panelFirst = new PicturePanel();
+         JPanel panelSecond = new GamePanel();
+
+         //JButton playButton = new JButton();
+         //JButton exitButton = new JButton();
+         CardLayout cl = new CardLayout();*/
+        JButton playButton = new JButton(startGame);
+        //1 opcja, 2 to deklaracja tego w konstruktorze
+        JButton exitButton = new JButton(exit);
         panelContainer.setLayout(cl);
         panelFirst.add(playButton);
         panelFirst.add(exitButton);

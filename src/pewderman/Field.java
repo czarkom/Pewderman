@@ -5,7 +5,7 @@ import java.util.Random;
 
 
 public class Field {
-    public Point cord;
+    Point cord;
 
     public enum TypeFamily {WALL, POWER_UP}
 
@@ -14,7 +14,7 @@ public class Field {
     private Type fieldType;
     private TypeFamily fieldTypeFamily;
 
-    public Field(Type fieldType, TypeFamily fieldTypeFamily, int x, int y) {
+    Field(Type fieldType, TypeFamily fieldTypeFamily, int x, int y) {
         this.fieldType = fieldType;
         this.fieldTypeFamily = fieldTypeFamily;
         cord = new Point(x, y);
@@ -22,7 +22,7 @@ public class Field {
         System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: created as %s%n", fieldType);
     }
 
-    public Type getFieldType() {
+    Type getFieldType() {
         return fieldType;
     }
 
@@ -30,19 +30,19 @@ public class Field {
         return fieldTypeFamily == TypeFamily.POWER_UP;
     }
 
-    public boolean isAWall() {
+    boolean isAWall() {
         return fieldTypeFamily == TypeFamily.WALL;
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return fieldType == Type.NO_WALL;
     }
 
-    public TypeFamily getFieldTypeFamily() {
+    TypeFamily getFieldTypeFamily() {
         return fieldTypeFamily;
     }
 
-    public void setOnFire(Type postExplosion) {
+    void setOnFire(Type postExplosion) {
         this.fieldType = Type.FIRE;
 
         new Thread(() -> {
@@ -56,7 +56,7 @@ public class Field {
         }).start();
     }
 
-    public void buildAWall(){
+    void buildAWall(){
         fieldType = Type.BREAKABLE_WALL;
     }
 
@@ -81,19 +81,16 @@ public class Field {
         }
     }
 
-    public boolean destroy(TypeFamily typeFamily, boolean force) {
+    void destroy(TypeFamily typeFamily) {
         switch (typeFamily) {
             case WALL: {
                 if (fieldType == Type.BREAKABLE_WALL) destroyDestroyableWall();
-                else if (fieldType == Type.UNBREAKABLE_WALL && force) destroyAllTypes();
-                else return false;
-                return true;
+                else return;
+                return;
             }
             case POWER_UP: {
                 destroyAllTypes();
-                return true;
             }
         }
-        return false;
     }
 }

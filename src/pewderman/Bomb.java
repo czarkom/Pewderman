@@ -2,16 +2,16 @@ package pewderman;
 
 import java.awt.*;
 
-public class Bomb {
+class Bomb {
     private int timeToExplode; // w milisekundach
-    public Point cord;
+    Point cord;
     private Player planter; // dodaje pole tu oraz w player (player id) w celu przyznawania punktow graczom
     private int range;
     private long plantTime;
 
     private Game currentGame;
 
-    public Bomb(int x, int y, Player planter, Game currentGame) {
+    Bomb(int x, int y, Player planter, Game currentGame) {
         this.planter = planter;
         cord = new Point(x, y);
         timeToExplode = 2500;
@@ -22,7 +22,7 @@ public class Bomb {
         System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: planted by player " + planter.playerId);
     }
 
-    public boolean isTimerUp() {
+    boolean isTimerUp() {
         return (System.currentTimeMillis() - plantTime) >= timeToExplode;
     }
 
@@ -34,7 +34,7 @@ public class Bomb {
 
     private boolean damageTheField(Field currentField) {
         if (!currentField.isEmpty() && currentField.isAWall()) {
-            currentField.destroy(Field.TypeFamily.WALL, false);
+            currentField.destroy(Field.TypeFamily.WALL);
             return false;
         } else {
             currentField.setOnFire(currentField.getFieldType());
@@ -64,7 +64,7 @@ public class Bomb {
         }
     }
 
-    public void explode() {
+    void explode() {
         System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: exploded");
 
         int range = planter.bombsRange;

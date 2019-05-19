@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Renderer extends JPanel {
-    private static int minFrameDuration = 40;
+    private static final int minFrameDuration = 40;
     private Game currentGame;
 
     private BufferedImage NWImage;
@@ -19,12 +19,12 @@ public class Renderer extends JPanel {
 
     private BufferedImage PUBombsImage;
     private BufferedImage PULivesImage;
-    private BufferedImage PUCubaLibreImage;
+    private BufferedImage PUCubaLibraImage;
     private BufferedImage PUGhostImage;
     private BufferedImage PUBootsImage;
-    private BufferedImage PUOneUpImage;
+//    private BufferedImage PUOneUpImage;
     private BufferedImage PURangeImage;
-    private BufferedImage PUThanosImage;
+//    private BufferedImage PUThanosImage;
     private BufferedImage PUTrumpImage;
 
     private BufferedImage FireImage;
@@ -36,13 +36,11 @@ public class Renderer extends JPanel {
     private static int scaledSprite = (int) (scale * spriteSize);
     private static int scaledBoard = (int) (scale * boardSize);
 
-    long frameCounter = 0;
-
     private BufferedImage[] PlayerImage = new BufferedImage[2];
     private BufferedImage DeadPlayerImage;
     private BufferedImage HaloImage;
 
-    Renderer(Game game) {
+    private Renderer(Game game) {
         setSize(scaledBoard, scaledBoard);
         setPreferredSize(new Dimension(scaledBoard, scaledBoard));
 
@@ -62,12 +60,12 @@ public class Renderer extends JPanel {
 
             PUBombsImage = ImageIO.read(new File("assets/power_ups/add_bomba.png"));
             PULivesImage = ImageIO.read(new File("assets/power_ups/add_lives.png"));
-            PUCubaLibreImage = ImageIO.read(new File("assets/power_ups/cuba_libre.png"));
+            PUCubaLibraImage = ImageIO.read(new File("assets/power_ups/cuba_libre.png"));
             PUGhostImage = ImageIO.read(new File("assets/power_ups/ghost.png"));
             PUBootsImage = ImageIO.read(new File("assets/power_ups/movement_speed_powerup.png"));
-            PUOneUpImage = ImageIO.read(new File("assets/power_ups/one_up.png"));
+//            PUOneUpImage = ImageIO.read(new File("assets/power_ups/one_up.png"));
             PURangeImage = ImageIO.read(new File("assets/power_ups/range_up.png"));
-            PUThanosImage = ImageIO.read(new File("assets/power_ups/thanos.png"));
+//            PUThanosImage = ImageIO.read(new File("assets/power_ups/thanos.png"));
             PUTrumpImage = ImageIO.read(new File("assets/power_ups/trump.png"));
 
             FireImage = ImageIO.read(new File("assets/walls/explosion_2.png"));
@@ -84,7 +82,6 @@ public class Renderer extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
-        frameCounter++;
         Field currentField;
         for (int y = 0; y < currentGame.board.height; y++) {
             for (int x = 0; x < currentGame.board.width; x++) {
@@ -115,7 +112,7 @@ public class Renderer extends JPanel {
                         break;
                     case CUBA_LIBRE:
                         g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
-                        g.drawImage(PUCubaLibreImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
+                        g.drawImage(PUCubaLibraImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
                         break;
                     case BOOTS:
                         g.drawImage(NWImage, x * scaledSprite, y * scaledSprite, scaledSprite, scaledSprite, null);
@@ -174,8 +171,6 @@ public class Renderer extends JPanel {
         Renderer renderer = new Renderer(game);
 
         renderer.loadImages();
-
-
 
         JFrame frame = new JFrame();
         frame.setTitle("PewDerMan");

@@ -11,7 +11,7 @@ public class Game implements KeyListener {
     public Board board;
     public Player[] players;
     public ArrayList<Bomb> bombs;
-    public Music music;
+    private Music music;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -119,7 +119,7 @@ public class Game implements KeyListener {
     }
 
     public Game(int playerCount) {
-        this.board = new Board(this);
+        this.board = new Board();
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
 
@@ -140,14 +140,14 @@ public class Game implements KeyListener {
     //metody
 
 
-    public void start() {
+    private void start() {
         System.out.println("pewderman.Game: pewderman.Game has started, there are " + players.length + " players alive.");
         this.players[0].dropBomb();
         this.bombs.get(0).explode();
         this.end(this.players.length, this.players);
     }
 
-    public void end(int playerCount, Player[] players) {
+    private void end(int playerCount, Player[] players) {
 
         int playersAlive = playerCount;
 

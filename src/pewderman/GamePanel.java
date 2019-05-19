@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GamePanel extends JPanel implements ActionListener, KeyListener {
+class GamePanel extends JPanel implements ActionListener, KeyListener {
 
-    Timer tm = new Timer(5,this);
-    int x=0, y=0, velX=0, velY=0;
+    private int x=0, y=0, velX=0, velY=0;
 
-    public GamePanel(){
+    GamePanel(){
         //setBackground(Color.BLUE);
+        Timer tm = new Timer(5, this);
         tm.start();
         addKeyListener(this);
         setFocusable(true);

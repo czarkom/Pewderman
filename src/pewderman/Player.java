@@ -1,38 +1,35 @@
 package pewderman;
 
 import java.awt.*;
-import java.util.ArrayList;
 
-public class Player {
+class Player {
     enum MoveDirection {UP, DOWN, RIGHT, LEFT, NONE}
 
     enum PlayerState {DEAD, ALIVE}
 
-    public int moveCounter;
-
     MoveDirection faceDirection = MoveDirection.UP;
     MoveDirection moveDirection = MoveDirection.NONE;
-    public Point cord;
-    public String name;
-    public PlayerState playerState;
-    public int playerId; // dodaje pole tu i w pewderman.Bomb w celu przyznawania punktow graczom
-    public int bombsToPlantCount;
-    public int bombsRange;
-    public int lives;
-    public int hasTrumpBlessing;
+    Point cord;
+    private String name;
+    PlayerState playerState;
+    int playerId; // dodaje pole tu i w pewderman.Bomb w celu przyznawania punktow graczom
+    int bombsToPlantCount;
+    int bombsRange;
+    private int lives;
+    private int hasTrumpBlessing;
 
     private Game currentGame;
 
     private long lastMoveTimestamp = 0;
     private long moveFrame = 160;
 
-    public Player(int x, int y, String _name, int playerId, Game currentGame) {
+    Player(int x, int y, String _name, int playerId, Game currentGame) {
         cord = new Point(x, y);
         name = _name;
         playerState = PlayerState.ALIVE;
         this.playerId = playerId;
         this.currentGame = currentGame;
-        moveCounter = 0;
+        int moveCounter = 0;
         bombsToPlantCount = 1;
         bombsRange = 1;
         lives = 1;
@@ -43,7 +40,7 @@ public class Player {
 
     //metody
 
-    public void move() {
+    void move() {
         if (lastMoveTimestamp != 0 && (System.currentTimeMillis() - lastMoveTimestamp) < moveFrame) return;
 
         switch (moveDirection) {
@@ -103,7 +100,7 @@ public class Player {
         lastMoveTimestamp = System.currentTimeMillis();
     }
 
-    public void dropBomb() {
+    void dropBomb() {
         if (this.bombsToPlantCount != 0) {
             System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
             Bomb bomb = new Bomb(cord.x, cord.y, this, currentGame);
@@ -112,25 +109,29 @@ public class Player {
         }
     }
 
-    public boolean isAlive() {
+    boolean isAlive() {
         return playerState == PlayerState.ALIVE;
     }
 
-    public int numberOfHalos() {
+    int numberOfHalos() {
         return lives - 1;
     }
 
-    public void die() {
+    private void die() {
         playerState = PlayerState.DEAD;
         System.out.println("pewderman.Player [" + playerId + "] :  has died");
     }
 
-    public void looseALife() {
+    String getName() {
+        return name;
+    }
+
+    void looseALife() {
         lives--;
         if (lives <= 0) die();
     }
 
-    public void useTrumpsBlessing() {
+    void useTrumpsBlessing() {
         switch (this.faceDirection) {
             case UP:
                 int cordYU = this.cord.y - 1;
@@ -163,11 +164,11 @@ public class Player {
         }
     }
 
-    public void collectPowerUp() {
+    private void collectPowerUp() {
         switch (currentGame.board.fields[cord.x][cord.y].getFieldType()) {
             case RANGE:
                 this.bombsRange++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
             case CUBA_LIBRE:
                 this.bombsRange++;
@@ -176,25 +177,25 @@ public class Player {
                     this.moveFrame = this.moveFrame - 10;
                 }
                 this.lives++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
             case LIVES:
                 this.lives++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
             case BOMBS:
                 this.bombsToPlantCount++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
             case BOOTS:
                 if (this.moveFrame > 79) {
                     this.moveFrame = this.moveFrame - 10;
                 }
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
             case TRUMP_BLESSING:
                 this.hasTrumpBlessing++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP, false);
+                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
         }
     }

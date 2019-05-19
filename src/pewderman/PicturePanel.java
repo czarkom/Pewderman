@@ -8,11 +8,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class PicturePanel extends JPanel {
+class PicturePanel extends JPanel {
 
     private BufferedImage image;
 
-    public PicturePanel() {
+    PicturePanel() {
         super();
 
 
