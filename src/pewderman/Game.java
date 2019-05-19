@@ -8,10 +8,11 @@ import java.util.List;
 
 
 public class Game implements KeyListener {
-    public Board board;
-    public Player[] players;
-    public ArrayList<Bomb> bombs;
+    Board board;
+    Player[] players;
+    ArrayList<Bomb> bombs;
     private Music music;
+    private boolean endGame = false;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -85,6 +86,10 @@ public class Game implements KeyListener {
             case KeyEvent.VK_SLASH:
                 if (players[1].isAlive()) players[1].dropBomb();
                 break;
+
+            case KeyEvent.VK_ESCAPE:
+                endGame = true;
+                break;
         }
     }
 
@@ -118,7 +123,7 @@ public class Game implements KeyListener {
         }
     }
 
-    public Game(int playerCount) {
+    Game(int playerCount) {
         this.board = new Board();
         this.players = new Player[playerCount];
         this.bombs = new ArrayList<>();
@@ -136,45 +141,31 @@ public class Game implements KeyListener {
         if (playerCount == 2) this.players[1] = new Player(19, 19, "player_2", 2, this);
     }
 
-
-    //metody
-
-
-    private void start() {
-        System.out.println("pewderman.Game: pewderman.Game has started, there are " + players.length + " players alive.");
-        this.players[0].dropBomb();
-        this.bombs.get(0).explode();
-        this.end(this.players.length, this.players);
-    }
-
-    private void end(int playerCount, Player[] players) {
-
-        int playersAlive = playerCount;
-
+    void step() {
+        int alivePlayerCount = 0;
         for (Player player : players) {
-            if (player.playerState == Player.PlayerState.DEAD) {
-                playersAlive--;
-            }
+            if (player.isAlive()) alivePlayerCount++;
         }
 
-        System.out.println("pewderman.Game: Currently " + playersAlive + " players alive.");
-
-        if (playersAlive == 0) {
-            System.out.println("pewderman.Game: The game has ended");
+        if (alivePlayerCount == 0 || alivePlayerCount == 1) {
+            new Thread(() -> {
+                try {
+                    Thread.sleep(2500);
+                    endGame = true;
+                } catch (InterruptedException e) {
+                    endGame = true;
+                    e.printStackTrace();
+                }
+            }).start();
         }
 
-
-    }
-
-    public void step() {
         for (Player player : players) {
             player.move();
         }
 
         List<Bomb> bombRemoval = new ArrayList<>();
 
-        for (int i = 0; i < bombs.size(); i++) {
-            Bomb currentBomb = bombs.get(i);
+        for (Bomb currentBomb : bombs) {
             if (currentBomb.isTimerUp()) {
                 currentBomb.explode();
                 bombRemoval.add(currentBomb);
@@ -186,26 +177,8 @@ public class Game implements KeyListener {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("Main: start");
-
-        System.out.println("Main: Insert number of players:");
-
-        GameConfiguration config = new GameConfiguration("data/boardData.txt");
-
-        Game game = new Game(config.getPlayerCount());
-
-        game.board.fillBoard(config.getWalls());
-
-        game.start();
-
-
-//        EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new GUI();
-//            }
-//        });
+    boolean isEndGame() {
+        return endGame;
     }
 }
 

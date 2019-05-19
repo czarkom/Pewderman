@@ -22,9 +22,9 @@ public class Renderer extends JPanel {
     private BufferedImage PUCubaLibraImage;
     private BufferedImage PUGhostImage;
     private BufferedImage PUBootsImage;
-//    private BufferedImage PUOneUpImage;
+    //    private BufferedImage PUOneUpImage;
     private BufferedImage PURangeImage;
-//    private BufferedImage PUThanosImage;
+    //    private BufferedImage PUThanosImage;
     private BufferedImage PUTrumpImage;
 
     private BufferedImage FireImage;
@@ -157,7 +157,7 @@ public class Renderer extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
+    static void runGameWithRenderer() {
         System.out.println("Main: start");
 
         System.out.println("Main: Insert number of players:");
@@ -186,7 +186,7 @@ public class Renderer extends JPanel {
 
         long frameStart;
         long timeDiff;
-        while (true) {
+        while (!game.isEndGame()) {
             frameStart = System.currentTimeMillis();
 
             game.step();
@@ -201,7 +201,11 @@ public class Renderer extends JPanel {
                     e.printStackTrace();
                 }
             }
-
         }
+        System.exit(0);
+    }
+
+    public static void main(String[] args) {
+        runGameWithRenderer();
     }
 }
