@@ -3,7 +3,7 @@ package pewderman;
 import java.awt.*;
 
 class Bomb {
-    private int timeToExplode; // w milisekundach
+    private int timeToExplode; //w milisekundach
     Point cord;
     private Player planter; // dodaje pole tu oraz w player (player id) w celu przyznawania punktow graczom
     private int range;

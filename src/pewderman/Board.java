@@ -32,8 +32,8 @@ class Board {
     }
 
 
-    void fillBoard(ArrayList<Field> _fileds) {
-        for (Field field : _fileds) {
+    void fillBoard(ArrayList<Field> _fields) {
+        for (Field field : _fields) {
             this.fields[field.cord.x][field.cord.y] = field;
         }
     }

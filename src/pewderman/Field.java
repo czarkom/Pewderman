@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 
-public class Field {
+class Field {
     Point cord;
 
     public enum TypeFamily {WALL, POWER_UP}
@@ -24,10 +24,6 @@ public class Field {
 
     Type getFieldType() {
         return fieldType;
-    }
-
-    public boolean isAPowerUp(){
-        return fieldTypeFamily == TypeFamily.POWER_UP;
     }
 
     boolean isAWall() {
