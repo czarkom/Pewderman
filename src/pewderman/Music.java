@@ -58,21 +58,4 @@ public class Music {
     boolean getMusicState() {
         return this.musicState;
     }
-
-    public int getDefaultAudioDeviceNumber() {
-        int counter = 0;
-        int outputDevice = -1;
-        char[] charArray;
-        Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
-        for (Mixer.Info info : mixInfos) {
-            charArray = info.getName().toCharArray();
-            for (char singleChar : charArray) {
-                if (singleChar == 'D') {
-                    outputDevice = counter;
-                }
-            }
-            counter++;
-        }
-        return outputDevice;
-    }
 }
