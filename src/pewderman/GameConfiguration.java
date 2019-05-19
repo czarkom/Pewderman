@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import static pewderman.Field.Type.*;
 
-@SuppressWarnings("SameParameterValue")
 class GameConfiguration {
     private ArrayList<Field> configWalls = new ArrayList<>();
     private int playerCount = 2;
