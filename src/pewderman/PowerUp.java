@@ -3,38 +3,23 @@ package pewderman;
 import java.util.Random;
 
 public class PowerUp {
-
-    private Field.Type powerUp;
-
-    public PowerUp() {
-
-        double probability;
-
-        this.powerUp = Field.Type.RANGE;
-
+    public static Field.Type getPowerUp() {
         Random generator = new Random();
-
-        probability = 10 * generator.nextDouble();
-
+        double probability = 10 * generator.nextDouble();
         System.out.printf("POWER_UP: %f", probability);
 
         if (probability > 9) {
-            this.powerUp = Field.Type.CUBA_LIBRE;
+            return Field.Type.CUBA_LIBRE;
         } else if (probability > 8) {
-            this.powerUp = Field.Type.LIVES;
+            return Field.Type.LIVES;
         } else if (probability > 6) {
-            this.powerUp = Field.Type.BOMBS;
-        } else if(probability > 4){
-            this.powerUp = Field.Type.BOOTS;
-        } else if(probability > 2){
-            this.powerUp = Field.Type.TRUMP_BLESSING;
+            return Field.Type.BOMBS;
+        } else if (probability > 4) {
+            return Field.Type.BOOTS;
+        } else if (probability > 2) {
+            return Field.Type.TRUMP_BLESSING;
+        } else {
+            return Field.Type.RANGE;
         }
-
-
-    }
-
-    public Field.Type getPowerUp() {
-
-        return this.powerUp;
     }
 }

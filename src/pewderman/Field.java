@@ -72,8 +72,7 @@ public class Field {
         probability = generator.nextDouble();
 
         if (probability * 10 < 4) {
-            PowerUp powerUp = new PowerUp();
-            setOnFire(powerUp.getPowerUp());
+            setOnFire(PowerUp.getPowerUp());
             fieldTypeFamily = TypeFamily.POWER_UP;
             System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to %s%n", fieldType);
         } else {
