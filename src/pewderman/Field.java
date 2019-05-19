@@ -19,7 +19,7 @@ public class Field {
         this.fieldTypeFamily = fieldTypeFamily;
         cord = new Point(x, y);
 
-        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: created as %s%n\n", fieldType);
+        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: created as %s%n", fieldType);
     }
 
     public Type getFieldType() {
@@ -63,7 +63,7 @@ public class Field {
     private void destroyAllTypes() {
         fieldType = Type.NO_WALL;
         fieldTypeFamily = TypeFamily.WALL;
-        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from %s%n to NO_WALL\n", fieldType);
+        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from %s to NO_WALL\n", fieldType);
     }
 
     private void destroyDestroyableWall() {
