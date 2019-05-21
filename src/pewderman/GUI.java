@@ -11,24 +11,25 @@ import javax.swing.*;
 
 import static pewderman.Player.MoveDirection.*;
 
-class GUI extends JFrame{
+class GUI extends JFrame implements ActionListener{
 
     private BufferedImage image;
+    public JPanel mainMenu;
+    private JButton playButton;
+    private JButton exitButton;
 
-    public GUI(){
+    public GUI(JFrame frame){
 
-        //super("Bomberman");
-        JFrame frame = new JFrame();
-        JPanel panelContainer = new JPanel();
-        JPanel panelFirst = new PicturePanel();
-        GamePanel panelSecond = new GamePanel();
+        //JPanel panelContainer = new JPanel();
+        //JPanel panelFirst = new PicturePanel();
+        //GamePanel panelSecond = new GamePanel();
         //frame.add(panelFirst);
-        frame.add(panelSecond);
-        frame.setTitle("Bomberman");
+        //frame.add(panelSecond);
+        //frame.setTitle("Bomberman");
 
         //JButton playButton = new JButton();
         //JButton exitButton = new JButton();
-        CardLayout cl = new CardLayout();
+        //CardLayout cl = new CardLayout();
 
 
         ImageIcon startGame = new ImageIcon("assets/GUI/play_button.png");
@@ -43,31 +44,33 @@ class GUI extends JFrame{
         Image newImg2 = img2.getScaledInstance(70,50,Image.SCALE_SMOOTH);
         exit = new ImageIcon(newImg2);
 
-        /*JFrame frame = new JFrame();
-         JPanel panelContainer = new JPanel();
-         JPanel panelFirst = new PicturePanel();
-         JPanel panelSecond = new GamePanel();
+        playButton = new JButton(startGame);
 
-         //JButton playButton = new JButton();
-         //JButton exitButton = new JButton();
-         CardLayout cl = new CardLayout();*/
-        JButton playButton = new JButton(startGame);
-        //1 opcja, 2 to deklaracja tego w konstruktorze
-        JButton exitButton = new JButton(exit);
-        panelContainer.setLayout(cl);
-        panelFirst.add(playButton);
-        panelFirst.add(exitButton);
-        //frame.add(panelFirst); (opcjonalnie)
-        validate();
+        exitButton = new JButton(exit);
+
+        playButton.addActionListener(this);
+        exitButton.addActionListener(this);
+
+        mainMenu.add(playButton);
+        mainMenu.add(exitButton);
+
+        frame.add(mainMenu);
+
+        //panelFirst.setSize(800,800);
+
+        //panelContainer.setLayout(cl);
+        //panelFirst.add(playButton);
+        //panelFirst.add(exitButton);
+        //validate();
 
 
 
-        panelContainer.add(panelFirst, "1");
-        panelContainer.add(panelSecond, "2");
+        //panelContainer.add(panelFirst, "1");
+        //panelContainer.add(panelSecond, "2");
 
-        cl.show(panelContainer, "1");
+        //cl.show(panelContainer, "1");
 
-        playButton.addActionListener(new ActionListener() {
+        /**playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelContainer, "2");
@@ -81,15 +84,18 @@ class GUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
-        });
+        });*/
 
-        frame.add(panelContainer);
+    }
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocation(400,250);
-        frame.setVisible(true);
-        frame.pack();
-        frame.setResizable(false);
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+
+        if(source == playButton)
+            mainMenu.setVisible(false);
+
+        else if(source == exitButton)
+            setBackground(Color.BLUE);
     }
 
 }
