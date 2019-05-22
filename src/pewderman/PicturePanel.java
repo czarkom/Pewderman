@@ -1,6 +1,8 @@
 package pewderman;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,11 +13,11 @@ import javax.swing.*;
 class PicturePanel extends JPanel {
 
     private BufferedImage image;
+    public int game = 0 ;
 
     PicturePanel() {
+
         super();
-
-
 
         File imageFile = new File("assets/GUI/java.jpg");
         try {
@@ -27,6 +29,18 @@ class PicturePanel extends JPanel {
 
         Dimension dimension = new Dimension(image.getWidth() - 30, image.getHeight() - 30);
         setPreferredSize(dimension);
+
+        JButton playButton = new JButton("Play");
+        add(playButton);
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Renderer.cl.show(Renderer.panelCont,"2");
+                Renderer.runGameWithRenderer();
+                game = 1;
+
+            }
+        });
     }
 
     @Override
