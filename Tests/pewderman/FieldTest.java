@@ -32,4 +32,9 @@ public class FieldTest {
         assertTrue( fieldNoWall.isEmpty());
     }
 
+    @Test
+    public void destroy(){
+        fieldBreakableWall.destroy(fieldBreakableWall.getFieldTypeFamily());
+        assertNotEquals(fieldBreakableWall.getFieldType(), Field.Type.BREAKABLE_WALL);
+    }
 }
