@@ -29,9 +29,4 @@ public class TestField {
         assertEquals(fieldBreakableWall.getFieldTypeFamily(), Field.TypeFamily.WALL);
     }
 
-    @Test
-    public void destroyTest() {
-        fieldBreakableWall.destroy(fieldBreakableWall.getFieldTypeFamily());
-        assertNotEquals(fieldBreakableWall.getFieldTypeFamily(), Field.TypeFamily.WALL);
-    }
 }
