@@ -164,6 +164,10 @@ class Player {
         }
     }
 
+    void addLife() {
+        lives++;
+    }
+
     private void collectPowerUp() {
         switch (currentGame.board.fields[cord.x][cord.y].getFieldType()) {
             case RANGE:
@@ -180,7 +184,7 @@ class Player {
                 currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
             case LIVES:
-                this.lives++;
+                addLife();
                 currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
                 break;
             case BOMBS:
