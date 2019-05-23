@@ -17,6 +17,7 @@ class MusicTest {
     void playMusicTest() {
         muse.playMusic();
         assertTrue(muse.getMusicState());
+        muse.stopMusic();
     }
 
     @Test
