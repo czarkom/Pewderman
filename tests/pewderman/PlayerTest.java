@@ -45,26 +45,53 @@ class PlayerTest {
     }
 
     @Test
-    void shouldDropABombOnPlayersCoordinates() {
+    void shouldDropABombOnCurrentCoordinates() {
+        game.players[0].dropBomb();
+
+        assertEquals(game.players[0].cord, game.bombs.get(0).cord);
     }
 
     @Test
-    void isAlive() {
+    void shouldBeAliveOnStart() {
+        assertTrue(game.players[0].isAlive());
     }
 
     @Test
-    void numberOfHalos() {
+    void shouldHaveNoHalosOnStart() {
+        assertEquals(0, game.players[0].numberOfHalos());
     }
 
     @Test
-    void getName() {
+    void shouldHaveHalosWithMoreThanOneLife() {
+        game.players[0].addLife();
+        assertEquals(1, game.players[0].numberOfHalos());
+
+        game.players[0].addLife();
+        assertEquals(2, game.players[0].numberOfHalos());
+
+        game.players[0].addLife();
+        assertEquals(3, game.players[0].numberOfHalos());
+
+        game.players[0].addLife();
+        assertEquals(4, game.players[0].numberOfHalos());
     }
 
     @Test
-    void looseALife() {
+    void shouldHaveTheDefaultNameOnStart() {
+        assertEquals("player_1", game.players[0].getName());
+        assertEquals("player_2", game.players[1].getName());
     }
 
     @Test
-    void useTrumpsBlessing() {
+    void shouldDieWhenDamagedWithOneLife() {
+        game.players[0].looseALife();
+        assertFalse(game.players[0].isAlive());
+    }
+
+    @Test
+    void shouldLiveWhenDamagedWithMoreThanOneLife() {
+        game.players[0].addLife();
+        game.players[0].looseALife();
+        assertTrue(game.players[0].isAlive());
     }
 }
