@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BombTest {
 
-    private Bomb fieldWithBomb;
+    private Bomb bomb;
     private Player player;
     private  Game game;
 
@@ -15,12 +15,12 @@ class BombTest {
     void setup(){
         game = new Game(1);
         player = new Player(11,11, "Jon", 1, game);
-        fieldWithBomb = new Bomb(11,11, player, game );
+        bomb = new Bomb(11,11, player, game );
     }
 
     @Test
     void timerShouldNotBeUpAtTheStart() {
-        assertFalse(fieldWithBomb.isTimerUp());
+        assertFalse(bomb.isTimerUp());
     }
 
     @Test
@@ -30,7 +30,7 @@ class BombTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        assertTrue(fieldWithBomb.isTimerUp());
+        assertTrue(bomb.isTimerUp());
     }
 
 }
