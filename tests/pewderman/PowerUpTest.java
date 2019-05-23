@@ -2,7 +2,6 @@ package pewderman;
 
 import org.junit.jupiter.api.Test;
 
-import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PowerUpTest {
@@ -32,7 +31,7 @@ class PowerUpTest {
     }
 
     @Test
-    void shouldReturn_BOOTS_20prct() {
+    void shouldReturn_BOOTS_20_prct() {
         double numberOfPowerUps = 0;
         double iterations = 3000000;
 
@@ -44,7 +43,7 @@ class PowerUpTest {
     }
 
     @Test
-    void shouldReturn_BOMBS_20prct() {
+    void shouldReturn_BOMBS_20_prct() {
         double numberOfPowerUps = 0;
         double iterations = 3000000;
 
@@ -56,7 +55,7 @@ class PowerUpTest {
     }
 
     @Test
-    void shouldReturn_LIVES_20prct() {
+    void shouldReturn_LIVES_10_prct() {
         double numberOfPowerUps = 0;
         double iterations = 3000000;
 
@@ -68,7 +67,7 @@ class PowerUpTest {
     }
 
     @Test
-    void shouldReturn_CUBA_LIBRE_20prct() {
+    void shouldReturn_CUBA_LIBRE_10_prct() {
         double numberOfPowerUps = 0;
         double iterations = 3000000;
 

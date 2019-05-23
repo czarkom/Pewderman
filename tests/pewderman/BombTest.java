@@ -19,8 +19,18 @@ class BombTest {
     }
 
     @Test
-    void shouldBeTimerUp() {
+    void timerShouldNotBeUpAtTheStart() {
         assertFalse(fieldWithBomb.isTimerUp());
+    }
+
+    @Test
+    void timerShouldBeUpAfter2500ms() {
+        try {
+            Thread.sleep(2501);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertTrue(fieldWithBomb.isTimerUp());
     }
 
 }
