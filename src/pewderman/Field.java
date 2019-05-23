@@ -14,6 +14,14 @@ class Field {
     private Type fieldType;
     private TypeFamily fieldTypeFamily;
 
+    /**
+     * Initializes a Field object
+     *
+     * @param fieldType       type of the Field to create
+     * @param fieldTypeFamily family type of the Field to create
+     * @param x               position on X axis
+     * @param y               position on Y axis
+     */
     Field(Type fieldType, TypeFamily fieldTypeFamily, int x, int y) {
         this.fieldType = fieldType;
         this.fieldTypeFamily = fieldTypeFamily;
@@ -22,22 +30,47 @@ class Field {
 //        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: created as %s%n", fieldType);
     }
 
+    /**
+     * Returns a Type of the Field
+     *
+     * @return Field Type
+     */
     Type getFieldType() {
         return fieldType;
     }
 
+    /**
+     * Checks if the Field is a WALL
+     *
+     * @return 'true' if WALL, 'false' otherwise
+     */
     boolean isAWall() {
         return fieldTypeFamily == TypeFamily.WALL;
     }
 
+    /**
+     * Checks if the Field is a NO_WALL
+     *
+     * @return 'true' if NO_WALL, 'false' otherwise
+     */
     boolean isEmpty() {
         return fieldType == Type.NO_WALL;
     }
 
+    /**
+     * Returns a FamilyType of the Field
+     *
+     * @return Field FamilyType
+     */
     TypeFamily getFieldTypeFamily() {
         return fieldTypeFamily;
     }
 
+    /**
+     * Sets a Field on fire for a set amount of time, then changes it to a given Type
+     *
+     * @param postExplosion a Type to which the field changes after FIRE ended
+     */
     void setOnFire(Type postExplosion) {
         this.fieldType = Type.FIRE;
 
@@ -52,16 +85,25 @@ class Field {
         }).start();
     }
 
-    void buildAWall(){
+    /**
+     * Changes Fields type to BREAKABLE_WALL
+     */
+    void buildAWall() {
         fieldType = Type.BREAKABLE_WALL;
     }
 
+    /**
+     * Changes all Types of Fields to NO_WALL
+     */
     private void destroyAllTypes() {
         fieldType = Type.NO_WALL;
         fieldTypeFamily = TypeFamily.WALL;
 //        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from %s to NO_WALL\n", fieldType);
     }
 
+    /**
+     * Changes DESTROYABLE_WALLs to NO_WALL or POWER_UPs
+     */
     private void destroyDestroyableWall() {
         double probability;
         Random generator = new Random();
@@ -77,8 +119,11 @@ class Field {
         }
     }
 
-    void destroy(TypeFamily typeFamily) {
-        switch (typeFamily) {
+    /**
+     * Handles Fields destruction based on it's TypeFamily
+     */
+    void destroy() {
+        switch (fieldTypeFamily) {
             case WALL: {
                 if (fieldType == Type.BREAKABLE_WALL) destroyDestroyableWall();
                 else return;

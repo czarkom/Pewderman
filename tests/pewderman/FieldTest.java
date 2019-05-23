@@ -39,12 +39,12 @@ class FieldTest {
 
     @Test
     void shouldDestroyBreakableWall(){
-        fieldBreakableWall.destroy(fieldBreakableWall.getFieldTypeFamily());
+        fieldBreakableWall.destroy();
         assertNotEquals(fieldBreakableWall.getFieldType(), Field.Type.BREAKABLE_WALL);
     }
     @Test
     void shouldNotDestroyUnbreakableWall(){
-        fieldUnbreakableWall.destroy(fieldUnbreakableWall.getFieldTypeFamily());
+        fieldUnbreakableWall.destroy();
         assertEquals(fieldUnbreakableWall.getFieldType(), Field.Type.UNBREAKABLE_WALL);
     }
 

@@ -196,7 +196,7 @@ class Player {
         switch (currentGame.board.fields[cord.x][cord.y].getFieldType()) {
             case RANGE:
                 this.bombsRange++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
+                currentGame.board.fields[cord.x][cord.y].destroy();
                 break;
             case CUBA_LIBRE:
                 this.bombsRange++;
@@ -205,25 +205,25 @@ class Player {
                     this.moveFrame = this.moveFrame - 10;
                 }
                 this.lives++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
+                currentGame.board.fields[cord.x][cord.y].destroy();
                 break;
             case LIVES:
                 addLife();
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
+                currentGame.board.fields[cord.x][cord.y].destroy();
                 break;
             case BOMBS:
                 this.bombsToPlantCount++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
+                currentGame.board.fields[cord.x][cord.y].destroy();
                 break;
             case BOOTS:
                 if (this.moveFrame > 79) {
                     this.moveFrame = this.moveFrame - 10;
                 }
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
+                currentGame.board.fields[cord.x][cord.y].destroy();
                 break;
             case TRUMP_BLESSING:
                 this.hasTrumpBlessing++;
-                currentGame.board.fields[cord.x][cord.y].destroy(Field.TypeFamily.POWER_UP);
+                currentGame.board.fields[cord.x][cord.y].destroy();
                 break;
         }
     }

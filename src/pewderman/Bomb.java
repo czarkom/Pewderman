@@ -58,7 +58,7 @@ class Bomb {
      */
     private boolean damageTheField(Field currentField) {
         if (!currentField.isEmpty() && currentField.isAWall()) {
-            currentField.destroy(Field.TypeFamily.WALL);
+            currentField.destroy();
             return false;
         } else {
             currentField.setOnFire(currentField.getFieldType());
@@ -95,7 +95,7 @@ class Bomb {
     }
 
     /**
-     * Sets of the Bombs Field and Player damage methods
+     * Sets off the Bombs Field and Player damage methods
      */
     void explode() {
 //        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: exploded");
