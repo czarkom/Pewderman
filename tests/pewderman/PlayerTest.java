@@ -94,4 +94,19 @@ class PlayerTest {
         game.players[0].looseALife();
         assertTrue(game.players[0].isAlive());
     }
+
+    @Test
+    void shouldNotBuildAWallWithoutTrumpsBlessing() {
+        game.players[0].useTrumpsBlessing();
+        assertTrue(game.board.fields[game.players[0].cord.x][game.players[0].cord.y].isEmpty());
+    }
+
+    @Test
+    void shouldBuildAWallWithTrumpsBlessing() {
+        game.players[0].addTrumpsBlessing();
+        game.players[0].useTrumpsBlessing();
+
+        assertFalse(game.board.fields[game.players[0].cord.x][game.players[0].cord.y].isEmpty());
+        assertTrue(game.board.fields[game.players[0].cord.x][game.players[0].cord.y].isAWall());
+    }
 }
