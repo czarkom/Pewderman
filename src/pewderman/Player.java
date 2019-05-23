@@ -30,8 +30,7 @@ class Player {
      * @param y           Player position on Y axis
      * @param _name       Player name
      * @param playerId    Player ID
-     * @param currentGame reference to current game
-     */
+m     */
     Player(int x, int y, String _name, int playerId, Game currentGame) {
         cord = new Point(x, y);
         name = _name;
@@ -169,9 +168,36 @@ class Player {
      * Creates a wall on Players current coordinates
      */
     void useTrumpsBlessing() {
-        if (currentGame.board.fields[this.cord.x][this.cord.y].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
-            currentGame.board.fields[this.cord.x][this.cord.y].buildAWall();
-            this.hasTrumpBlessing--;
+
+        switch (this.faceDirection) {
+            case UP:
+                int cordYU = this.cord.y - 1;
+                if (currentGame.board.fields[this.cord.x][cordYU].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
+                    currentGame.board.fields[this.cord.x][cordYU].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
+            case DOWN:
+                int cordYD = this.cord.y + 1;
+                if (currentGame.board.fields[this.cord.x][cordYD].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
+                    currentGame.board.fields[this.cord.x][cordYD].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
+            case RIGHT:
+                int cordXR = this.cord.x + 1;
+                if (currentGame.board.fields[cordXR][this.cord.y].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
+                    currentGame.board.fields[cordXR][this.cord.y].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
+            case LEFT:
+                int cordXL = this.cord.x - 1;
+                if (currentGame.board.fields[cordXL][this.cord.y].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
+                    currentGame.board.fields[cordXL][this.cord.y].buildAWall();
+                    this.hasTrumpBlessing--;
+                }
+                break;
         }
     }
 

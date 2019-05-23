@@ -101,12 +101,14 @@ class PlayerTest {
         assertTrue(game.board.fields[game.players[0].cord.x][game.players[0].cord.y].isEmpty());
     }
 
-    @Test
+   @Test
     void shouldBuildAWallWithTrumpsBlessing() {
         game.players[0].addTrumpsBlessing();
         game.players[0].useTrumpsBlessing();
 
-        assertFalse(game.board.fields[game.players[0].cord.x][game.players[0].cord.y].isEmpty());
-        assertTrue(game.board.fields[game.players[0].cord.x][game.players[0].cord.y].isAWall());
+        int cordY = game.players[0].cord.y - 1;
+
+        assertFalse(game.board.fields[game.players[0].cord.x][cordY].isEmpty());
+        assertTrue(game.board.fields[game.players[0].cord.x][cordY].isAWall());
     }
 }
