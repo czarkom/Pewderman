@@ -11,6 +11,14 @@ class Bomb {
 
     private Game currentGame;
 
+    /**
+     * Initializes a Bomb object
+     *
+     * @param x position on X axis
+     * @param y position on Y axis
+     * @param planter reference to the Player who planted the bomb
+     * @param currentGame reference to the current Game
+     */
     Bomb(int x, int y, Player planter, Game currentGame) {
         this.planter = planter;
         cord = new Point(x, y);
@@ -22,16 +30,32 @@ class Bomb {
 //        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: planted by player " + planter.playerId);
     }
 
+    /**
+     * Checks if the timer's ended
+     *
+     * @return 'true' if timer's up, 'false' otherwise
+     */
     boolean isTimerUp() {
         return (System.currentTimeMillis() - plantTime) >= timeToExplode;
     }
 
+    /**
+     * Deals damage to players on the provided Field
+     *
+     * @param currentField field on which the damage is dealt
+     */
     private void dealDamageToPlayers(Field currentField) {
         for (Player player : currentGame.players) {
             if (player.isAlive() && player.cord.equals(currentField.cord)) player.looseALife();
         }
     }
 
+    /**
+     * Deals damage to the provided Field
+     *
+     * @param currentField field to which the damage is dealt
+     * @return 'true' if the field was destroyed, 'false' otherwise
+     */
     private boolean damageTheField(Field currentField) {
         if (!currentField.isEmpty() && currentField.isAWall()) {
             currentField.destroy(Field.TypeFamily.WALL);
@@ -43,6 +67,12 @@ class Bomb {
         return true;
     }
 
+    /**
+     * Deals damage to all fields in range in a given direction
+     *
+     * @param dx X axis direction [ <0 = LEFT ; >0 = RIGHT]
+     * @param dy Y axis direction [ <0 = UP ; >0 = DOWN]
+     */
     private void explodeDirection(int dx, int dy) {
         if (dx > 0) dx = 1;
         else if (dx < 0) dx = -1;
@@ -64,6 +94,9 @@ class Bomb {
         }
     }
 
+    /**
+     * Sets of the Bombs Field and Player damage methods
+     */
     void explode() {
 //        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: exploded");
 
