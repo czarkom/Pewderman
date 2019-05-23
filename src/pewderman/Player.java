@@ -23,6 +23,15 @@ class Player {
     private long lastMoveTimestamp = 0;
     private long moveFrame = 160;
 
+    /**
+     * Initializes the Player object
+     *
+     * @param x           Player position on X axis
+     * @param y           Player position on Y axis
+     * @param _name       Player name
+     * @param playerId    Player ID
+     * @param currentGame reference to current game
+     */
     Player(int x, int y, String _name, int playerId, Game currentGame) {
         cord = new Point(x, y);
         name = _name;
@@ -38,8 +47,9 @@ class Player {
     }
 
 
-    //metody
-
+    /**
+     * Handles player movement according to moveDirection set and handles power-up pickups
+     */
     void move() {
         if (lastMoveTimestamp != 0 && (System.currentTimeMillis() - lastMoveTimestamp) < moveFrame) return;
 
@@ -100,6 +110,9 @@ class Player {
         lastMoveTimestamp = System.currentTimeMillis();
     }
 
+    /**
+     * Creates a new Bomb object with current Players coordinates
+     */
     void dropBomb() {
         if (this.bombsToPlantCount != 0) {
 //            System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
@@ -109,65 +122,76 @@ class Player {
         }
     }
 
+    /**
+     * Returns Players current life state
+     *
+     * @return 'true' if alive, 'false' if dead
+     */
     boolean isAlive() {
         return playerState == PlayerState.ALIVE;
     }
 
+    /**
+     * Returns Players number of excesive lives [ above 1 ]
+     *
+     * @return number of excesive lives
+     */
     int numberOfHalos() {
         return lives - 1;
     }
 
+    /**
+     * Changes Players state to DEAD
+     */
     private void die() {
         playerState = PlayerState.DEAD;
 //        System.out.println("pewderman.Player [" + playerId + "] :  has died");
     }
 
+    /**
+     * Returns Players name
+     *
+     * @return name
+     */
     String getName() {
         return name;
     }
 
+    /**
+     * Decreases Players life pool and kills them, if the life counter falls below 1;
+     */
     void looseALife() {
         lives--;
-        if (lives <= 0) die();
+        if (lives < 1) die();
     }
 
+    /**
+     * Creates a wall on Players current coordinates
+     */
     void useTrumpsBlessing() {
-        switch (this.faceDirection) {
-            case UP:
-                int cordYU = this.cord.y - 1;
-                if (currentGame.board.fields[this.cord.x][cordYU].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
-                    currentGame.board.fields[this.cord.x][cordYU].buildAWall();
-                    this.hasTrumpBlessing--;
-                }
-                break;
-            case DOWN:
-                int cordYD = this.cord.y + 1;
-                if (currentGame.board.fields[this.cord.x][cordYD].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
-                    currentGame.board.fields[this.cord.x][cordYD].buildAWall();
-                    this.hasTrumpBlessing--;
-                }
-                break;
-            case RIGHT:
-                int cordXR = this.cord.x + 1;
-                if (currentGame.board.fields[this.cord.x][cordXR].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
-                    currentGame.board.fields[this.cord.x][cordXR].buildAWall();
-                    this.hasTrumpBlessing--;
-                }
-                break;
-            case LEFT:
-                int cordXL = this.cord.x - 1;
-                if (currentGame.board.fields[this.cord.x][cordXL].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
-                    currentGame.board.fields[this.cord.x][cordXL].buildAWall();
-                    this.hasTrumpBlessing--;
-                }
-                break;
+        if (currentGame.board.fields[this.cord.x][this.cord.y].getFieldType() == Field.Type.NO_WALL && this.hasTrumpBlessing > 0) {
+            currentGame.board.fields[this.cord.x][this.cord.y].buildAWall();
+            this.hasTrumpBlessing--;
         }
     }
 
+    /**
+     * Increases Players life count by 1
+     */
     void addLife() {
         lives++;
     }
 
+    /**
+     * Increases Players Trumps blessings by 1
+     */
+    void addTrumpsBlessing() {
+        hasTrumpBlessing++;
+    }
+
+    /**
+     * Handles Power-ups effect on the Player
+     */
     private void collectPowerUp() {
         switch (currentGame.board.fields[cord.x][cord.y].getFieldType()) {
             case RANGE:
