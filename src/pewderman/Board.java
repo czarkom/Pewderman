@@ -8,7 +8,9 @@ class Board {
     int width;
     Field[][] fields;
 
-
+    /**
+     * Creates a Board object with UNBREAKABLE_WALL boundary, then fills it in with BREAKABLE_WALLs and NO_WALLs at random
+     */
     Board() {
         this.height = 21;
         this.width = 21;
@@ -31,7 +33,11 @@ class Board {
         }
     }
 
-
+    /**
+     * Changes Fields on a Board to reflect the provided list of Fields
+     *
+     * @param _fields a list of desired Fields
+     */
     void fillBoard(ArrayList<Field> _fields) {
         for (Field field : _fields) {
             this.fields[field.cord.x][field.cord.y] = field;
