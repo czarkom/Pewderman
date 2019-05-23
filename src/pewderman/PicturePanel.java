@@ -13,7 +13,6 @@ import javax.swing.*;
 class PicturePanel extends JPanel {
 
     private BufferedImage image;
-    public int game = 0 ;
 
     PicturePanel() {
 
@@ -37,7 +36,6 @@ class PicturePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Renderer.cl.show(Renderer.panelCont,"2");
                 Renderer.runGameWithRenderer();
-                game = 1;
 
             }
         });
