@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FieldTest {
+class FieldTest {
 
     private Field fieldBreakableWall;
     private Field fieldNoWall;
@@ -38,9 +38,15 @@ public class FieldTest {
     }
 
     @Test
-    void isTileSetOnFire(){
+    void isTileSetOnFire() {
         fieldBreakableWall.setOnFire(fieldBreakableWall.getFieldType());
         assertEquals(fieldBreakableWall.getFieldType(), Field.Type.FIRE);
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertNotEquals(fieldBreakableWall.getFieldType(), Field.Type.FIRE);
     }
 
 }
