@@ -92,19 +92,19 @@ class GameConfiguration {
         advance();
 
         while (this.currentLine != null) {
-            System.out.println("Read config: " + this.currentLine);
+//            System.out.println("Read config: " + this.currentLine);
             parseLine();
             advance();
         }
 
         closeConfigReader();
-        System.out.println("End of file!");
+//        System.out.println("End of file!");
     }
 
     private void setPlayerCount() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter a number of players: ");
+//        System.out.print("Enter a number of players: ");
 
         this.playerCount = input.nextInt();
 

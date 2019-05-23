@@ -34,7 +34,7 @@ class Player {
         bombsRange = 1;
         lives = 1;
         hasTrumpBlessing = 0;
-        System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
+//        System.out.println("pewderman.Player [" + this.playerId + "]: constructor");
     }
 
 
@@ -48,7 +48,7 @@ class Player {
                 faceDirection = moveDirection;
                 int cord_yU = cord.y;
                 Field nextFieldU = currentGame.board.fields[cord.x][cord_yU - 1];
-                System.out.printf("Next Field Type: %s%n", nextFieldU.getFieldType());
+//                System.out.printf("Next Field Type: %s%n", nextFieldU.getFieldType());
                 if (nextFieldU.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.y--;
                 }
@@ -61,7 +61,7 @@ class Player {
                 faceDirection = moveDirection;
                 int cord_yD = cord.y;
                 Field nextFieldD = currentGame.board.fields[cord.x][cord_yD + 1];
-                System.out.printf("Next Field Type: %s%n", nextFieldD.getFieldType());
+//                System.out.printf("Next Field Type: %s%n", nextFieldD.getFieldType());
                 if (nextFieldD.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.y++;
                 }
@@ -74,7 +74,7 @@ class Player {
                 faceDirection = moveDirection;
                 int cord_xL = cord.x;
                 Field nextFieldL = currentGame.board.fields[cord_xL - 1][cord.y];
-                System.out.printf("Next Field Type: %s%n", nextFieldL.getFieldType());
+//                System.out.printf("Next Field Type: %s%n", nextFieldL.getFieldType());
                 if (nextFieldL.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.x--;
                 }
@@ -87,7 +87,7 @@ class Player {
                 faceDirection = moveDirection;
                 int cord_xR = cord.x;
                 Field nextFieldR = currentGame.board.fields[cord_xR + 1][cord.y];
-                System.out.printf("Next Field Type: %s%n", nextFieldR.getFieldType());
+//                System.out.printf("Next Field Type: %s%n", nextFieldR.getFieldType());
                 if (nextFieldR.getFieldType() == Field.Type.NO_WALL) {
                     this.cord.x++;
                 }
@@ -102,7 +102,7 @@ class Player {
 
     void dropBomb() {
         if (this.bombsToPlantCount != 0) {
-            System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
+//            System.out.println("pewderman.Player: planted a bomb on field:" + cord.x + ", " + cord.y + ".");
             Bomb bomb = new Bomb(cord.x, cord.y, this, currentGame);
             currentGame.bombs.add(bomb);
             this.bombsToPlantCount--;
@@ -119,7 +119,7 @@ class Player {
 
     private void die() {
         playerState = PlayerState.DEAD;
-        System.out.println("pewderman.Player [" + playerId + "] :  has died");
+//        System.out.println("pewderman.Player [" + playerId + "] :  has died");
     }
 
     String getName() {

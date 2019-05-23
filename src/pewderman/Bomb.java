@@ -19,7 +19,7 @@ class Bomb {
         this.currentGame = currentGame;
         plantTime = System.currentTimeMillis();
 
-        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: planted by player " + planter.playerId);
+//        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: planted by player " + planter.playerId);
     }
 
     boolean isTimerUp() {
@@ -65,7 +65,7 @@ class Bomb {
     }
 
     void explode() {
-        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: exploded");
+//        System.out.println("pewderman.Bomb [x: " + cord.x + ", y: " + cord.y + ", range: " + range + "]: exploded");
 
         int range = planter.bombsRange;
 

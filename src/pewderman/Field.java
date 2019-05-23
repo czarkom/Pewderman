@@ -19,7 +19,7 @@ class Field {
         this.fieldTypeFamily = fieldTypeFamily;
         cord = new Point(x, y);
 
-        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: created as %s%n", fieldType);
+//        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: created as %s%n", fieldType);
     }
 
     Type getFieldType() {
@@ -59,7 +59,7 @@ class Field {
     private void destroyAllTypes() {
         fieldType = Type.NO_WALL;
         fieldTypeFamily = TypeFamily.WALL;
-        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from %s to NO_WALL\n", fieldType);
+//        System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from %s to NO_WALL\n", fieldType);
     }
 
     private void destroyDestroyableWall() {
@@ -70,10 +70,10 @@ class Field {
         if (probability * 10 < 4) {
             setOnFire(PowerUp.getPowerUp());
             fieldTypeFamily = TypeFamily.POWER_UP;
-            System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to %s%n", fieldType);
+//            System.out.printf("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to %s%n", fieldType);
         } else {
             setOnFire(Type.NO_WALL);
-            System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to NO_WALL");
+//            System.out.println("pewderman.Field [x: " + cord.x + ", y: " + cord.y + " ]: changed state from DESTROYABLE_WALL to NO_WALL");
         }
     }
 

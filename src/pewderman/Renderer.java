@@ -164,9 +164,7 @@ public class Renderer extends JPanel {
 
     static void runGameWithRenderer() {
 
-        System.out.println("Main: start");
-
-        System.out.println("Main: Insert number of players:");
+//        System.out.println("Main: start");
 
         GameConfiguration config = new GameConfiguration("data/boardData.txt");
 
@@ -212,66 +210,6 @@ public class Renderer extends JPanel {
     }
 
     public static void main(String[] args) {
-
-        /**System.out.println("Main: start");
-
-        System.out.println("Main: Insert number of players:");
-
-        GameConfiguration config = new GameConfiguration("data/boardData.txt");
-
-        Game game = new Game(config.getPlayerCount());
-
-        game.board.fillBoard(config.getWalls());
-
-        Renderer renderer = new Renderer(game);
-
-        renderer.loadImages();
-
-
-
-
-
-
-
-        PicturePanel panelMenu = new PicturePanel();
-        //JPanel panelGame = new JPanel();
-        panelCont.setLayout(cl);
-        panelCont.add(panelMenu,"1");
-        panelCont.add(renderer,"2");
-        cl.show(panelCont,"1");
-
-        frame.setTitle("PewDerMan");
-
-        frame.add(panelCont);
-        frame.pack();
-
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
-
-        frame.repaint();
-
-        long frameStart;
-        long timeDiff;
-        while (!game.isEndGame()) {
-            frameStart = System.currentTimeMillis();
-
-            game.step();
-            frame.repaint();
-
-            timeDiff = System.currentTimeMillis() - frameStart;
-
-            if (timeDiff < minFrameDuration) {
-                try {
-                    Thread.sleep(minFrameDuration - timeDiff);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        System.exit(0);*/
-
         runGameWithRenderer();
     }
 }

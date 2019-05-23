@@ -131,7 +131,7 @@ public class Game implements KeyListener {
             this.music = new Music();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Starting without music!");
+//            System.out.println("Starting without music!");
             this.music = null;
         }
 

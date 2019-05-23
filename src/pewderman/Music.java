@@ -18,7 +18,7 @@ public class Music {
         Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
 
 //        for (Mixer.Info info : mixInfos) {
-//            System.out.println(info.getName() + " --- " + info.getDescription());
+////            System.out.println(info.getName() + " --- " + info.getDescription());
 //        }
 
         for (Mixer.Info mixInfo : mixInfos) {
@@ -28,9 +28,9 @@ public class Music {
                 clip = (Clip) mixer.getLine(dataInfo);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.printf("%s is unsupported!%n", mixInfo);
+//                System.out.printf("%s is unsupported!%n", mixInfo);
             } catch (LineUnavailableException e) {
-                System.out.printf("%s is unavailable!%n", mixInfo);
+//                System.out.printf("%s is unavailable!%n", mixInfo);
             }
         }
 

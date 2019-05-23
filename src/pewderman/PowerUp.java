@@ -6,7 +6,7 @@ class PowerUp {
     static Field.Type getPowerUp() {
         Random generator = new Random();
         double probability = 10 * generator.nextDouble();
-        System.out.printf("POWER_UP: %f", probability);
+//        System.out.printf("POWER_UP: %f", probability);
 
         if (probability > 9) {
             return Field.Type.CUBA_LIBRE;

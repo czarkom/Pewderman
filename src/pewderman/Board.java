@@ -16,7 +16,7 @@ class Board {
         Random generator = new Random();
 
         this.fields = new Field[width][height];
-        System.out.println("pewderman.Board: has been created, size " + this.width + "," + this.height);
+//        System.out.println("pewderman.Board: has been created, size " + this.width + "," + this.height);
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
                 if (i == 0 || j == 0 || i == 20 || j == 20) {
