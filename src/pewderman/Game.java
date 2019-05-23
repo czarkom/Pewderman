@@ -13,10 +13,19 @@ public class Game implements KeyListener {
     private Music music;
     private boolean endGame = false;
 
+    /**
+     * DOES NOTHING
+     * @param e event
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Handles key presses in the game
+     *
+     * @param e event
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int c = e.getKeyCode();
@@ -92,6 +101,10 @@ public class Game implements KeyListener {
         }
     }
 
+    /**
+     * Handles key releases in the game
+     * @param e event
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int c = e.getKeyCode();
@@ -122,6 +135,11 @@ public class Game implements KeyListener {
         }
     }
 
+    /**
+     * Initializes a Game object
+     *
+     * @param playerCount how many players is in the game [ max 2 (at the moment)]
+     */
     Game(int playerCount) {
         this.board = new Board();
         this.players = new Player[playerCount];
@@ -140,6 +158,9 @@ public class Game implements KeyListener {
         if (playerCount == 2) this.players[1] = new Player(19, 19, "player_2", 2, this);
     }
 
+    /**
+     * Progresses the game by one step
+     */
     void step() {
         int alivePlayerCount = 0;
         for (Player player : players) {
@@ -176,6 +197,11 @@ public class Game implements KeyListener {
         }
     }
 
+    /**
+     * Checks if the game ended
+     *
+     * @return 'true' if ended, 'false' otherwise
+     */
     boolean isEndGame() {
         return endGame;
     }
