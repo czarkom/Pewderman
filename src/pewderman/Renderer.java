@@ -45,6 +45,11 @@ public class Renderer extends JPanel {
     private BufferedImage DeadPlayerImage;
     private BufferedImage HaloImage;
 
+    /**
+     * Initializes the Renderer object
+     *
+     * @param game reference to the current Game
+     */
     private Renderer(Game game) {
         setSize(scaledBoard, scaledBoard);
         setPreferredSize(new Dimension(scaledBoard, scaledBoard));
@@ -55,6 +60,10 @@ public class Renderer extends JPanel {
         addKeyListener(currentGame);
     }
 
+
+    /**
+     * Loads the images to be used as sprites
+     */
     private void loadImages() {
         try {
             NWImage = ImageIO.read(new File("assets/walls/walking_space.png"));
@@ -85,6 +94,11 @@ public class Renderer extends JPanel {
         }
     }
 
+    /**
+     * Paints the frame
+     *
+     * @param g Graphics context
+     */
     public void paint(Graphics g) {
         super.paint(g);
         Field currentField;
@@ -162,6 +176,9 @@ public class Renderer extends JPanel {
         }
     }
 
+    /**
+     * Starts a game
+     */
     static void runGameWithRenderer() {
 
 //        System.out.println("Main: start");
