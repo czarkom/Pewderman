@@ -3,6 +3,11 @@ package pewderman;
 import java.util.Random;
 
 class PowerUp {
+    /**
+     * Return a random Power-Up
+     *
+     * @return a random Power-Up
+     */
     static Field.Type getPowerUp() {
         Random generator = new Random();
         double probability = 10 * generator.nextDouble();
