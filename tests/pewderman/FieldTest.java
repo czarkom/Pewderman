@@ -1,6 +1,7 @@
 package pewderman;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,4 +36,17 @@ class FieldTest {
         fieldBreakableWall.destroy(fieldBreakableWall.getFieldTypeFamily());
         assertNotEquals(fieldBreakableWall.getFieldType(), Field.Type.BREAKABLE_WALL);
     }
+
+    @Test
+    void isTileSetOnFire() {
+        fieldBreakableWall.setOnFire(fieldBreakableWall.getFieldType());
+        assertEquals(fieldBreakableWall.getFieldType(), Field.Type.FIRE);
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertNotEquals(fieldBreakableWall.getFieldType(), Field.Type.FIRE);
+    }
+
 }
