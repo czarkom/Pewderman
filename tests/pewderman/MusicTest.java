@@ -1,5 +1,6 @@
 package pewderman;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +18,6 @@ class MusicTest {
     void playMusicTest() {
         muse.playMusic();
         assertTrue(muse.getMusicState());
-        muse.stopMusic();
     }
 
     @Test
@@ -26,5 +26,8 @@ class MusicTest {
         assertFalse(muse.getMusicState());
     }
 
-
+    @AfterEach
+    void cleanUp() {
+        muse.stopMusic();
+    }
 }

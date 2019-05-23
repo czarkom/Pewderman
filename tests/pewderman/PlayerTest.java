@@ -102,13 +102,54 @@ class PlayerTest {
     }
 
    @Test
-    void shouldBuildAWallWithTrumpsBlessing() {
+    void shouldBuildAWallWithTrumpsBlessingDOWN() {
+        game.players[0].faceDirection = Player.MoveDirection.DOWN;
+        game.players[0].addTrumpsBlessing();
+        game.players[0].useTrumpsBlessing();
+
+        int cordY = game.players[0].cord.y + 1;
+
+       assertSame(Field.Type.BREAKABLE_WALL, game.board.fields[game.players[0].cord.x][cordY].getFieldType());
+    }
+
+    @Test
+    void shouldBuildAWallWithTrumpsBlessingUP() {
+        game.players[0].faceDirection = Player.MoveDirection.DOWN;
+        game.players[0].moveDirection = Player.MoveDirection.DOWN;
+        game.players[0].move();
+
+        game.players[0].faceDirection = Player.MoveDirection.UP;
         game.players[0].addTrumpsBlessing();
         game.players[0].useTrumpsBlessing();
 
         int cordY = game.players[0].cord.y - 1;
 
-        assertFalse(game.board.fields[game.players[0].cord.x][cordY].isEmpty());
-        assertTrue(game.board.fields[game.players[0].cord.x][cordY].isAWall());
+        assertSame(Field.Type.BREAKABLE_WALL, game.board.fields[game.players[0].cord.x][cordY].getFieldType());
+    }
+
+    @Test
+    void shouldBuildAWallWithTrumpsBlessingRIGHT() {
+        game.players[0].faceDirection = Player.MoveDirection.RIGHT;
+        game.players[0].addTrumpsBlessing();
+        game.players[0].useTrumpsBlessing();
+
+        int cordX = game.players[0].cord.x + 1;
+
+        assertSame(Field.Type.BREAKABLE_WALL, game.board.fields[cordX][game.players[0].cord.y].getFieldType());
+    }
+
+    @Test
+    void shouldBuildAWallWithTrumpsBlessingLEFT() {
+        game.players[0].faceDirection = Player.MoveDirection.RIGHT;
+        game.players[0].moveDirection = Player.MoveDirection.RIGHT;
+        game.players[0].move();
+
+        game.players[0].faceDirection = Player.MoveDirection.LEFT;
+        game.players[0].addTrumpsBlessing();
+        game.players[0].useTrumpsBlessing();
+
+        int cordX = game.players[0].cord.x - 1;
+
+        assertSame(Field.Type.BREAKABLE_WALL, game.board.fields[cordX][game.players[0].cord.y].getFieldType());
     }
 }
